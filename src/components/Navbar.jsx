@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import {
-  Home,
+  Home ,
   Cpu,
   GraduationCap,
   Briefcase,
@@ -40,7 +40,7 @@ const Navbar = () => {
         className="flex items-center gap-1 p-2 bg-white/10 dark:bg-[#1a1a1a]/60 backdrop-blur-xl border border-black/5 dark:border-white/10 rounded-full shadow-lg"
       >
         <div className="flex items-center gap-1 px-1">
-          {navItems.map((item) => (
+          {navItems.map(item => (
             <Link key={item.name} href={item.href} className="relative group">
               <motion.div
                 onMouseEnter={() => setHovered(item.name)}
@@ -73,7 +73,7 @@ const Navbar = () => {
         <div className="w-[1px] h-6 bg-black/10 dark:bg-white/10 mx-1" />
 
         {/* Theme Toggle Button */}
-        <button 
+        <button
           onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
           className="p-2 mr-1 text-gray-500 dark:text-gray-400 hover:text-black dark:hover:text-white transition-colors"
         >
