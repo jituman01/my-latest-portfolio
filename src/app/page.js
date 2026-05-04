@@ -3,6 +3,7 @@ import About from "@/components/About";
 import TechStack from "@/components/TechStack";
 import Skills from "@/components/Skills";
 import Qualification from "@/components/Qualification";
+import Projects from "@/components/Projects";
 
 export default function Home() {
   return (
@@ -29,6 +30,7 @@ export default function Home() {
         <TechStack></TechStack>
         <Skills></Skills>
         <Qualification></Qualification>
+        <Projects/>
       </div>
       
     </main>
