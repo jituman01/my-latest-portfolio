@@ -25,7 +25,7 @@ const TechStack = () => {
         viewport={{ once: false, margin: "-100px" }}
         className="text-center mb-20"
       >
-        <h2 className="text-4xl md:text-5xl font-bold mb-3 text-slate-900 dark:text-white">
+        <h2 className="text-4xl md:text-5xl font-bold mb-3 text-slate-900 dark:text-white uppercase">
           Technologies
         </h2>
         <p className="text-slate-500 dark:text-gray-400 tracking-[0.3em] uppercase text-sm font-medium">
