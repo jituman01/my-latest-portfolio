@@ -4,6 +4,7 @@ import TechStack from "@/components/TechStack";
 import Skills from "@/components/Skills";
 import Qualification from "@/components/Qualification";
 import Projects from "@/components/Projects";
+import ContactSection from "@/components/ContactSection";
 
 export default function Home() {
   return (
@@ -30,7 +31,8 @@ export default function Home() {
         <TechStack></TechStack>
         <Skills></Skills>
         <Qualification></Qualification>
-        <Projects/>
+        <Projects />
+        <ContactSection/>
       </div>
       
     </main>
