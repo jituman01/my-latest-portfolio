@@ -67,8 +67,8 @@ const Hero = () => {
           className="order-2 lg:order-1 text-center lg:text-left flex flex-col items-center lg:items-start"
         >
           <h3 className="text-gray-500 dark:text-gray-400 text-base md:text-lg font-medium mb-2">Hey, I'm</h3>
-          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold text-black dark:text-white tracking-tight leading-tight">
-            Md. Naimul Islam <span className="inline-block animate-bounce">👋</span>
+          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-6xl font-extrabold text-black dark:text-white tracking-tight leading-tight">
+           Naimul Islam Jitu<span className="inline-block animate-bounce">👋</span>
           </h1>
           <h2 className="text-xl md:text-3xl text-gray-600 dark:text-gray-400 font-semibold mt-2">
             I am a <span className="text-blue-600 dark:text-blue-400">Frontend Developer</span>
@@ -106,7 +106,7 @@ const Hero = () => {
         >
           <div className="relative w-60 h-60 sm:w-72 sm:h-72 lg:w-[400px] lg:h-[400px] rounded-full border border-black/5 dark:border-white/10 p-2 bg-white/5 backdrop-blur-sm shadow-2xl">
             <div className="w-full h-full rounded-full overflow-hidden bg-gray-100 dark:bg-[#0a0a0a] border-4 border-white/10">
-              <img src="/profile.png" alt="Naimul" className="w-full h-full object-cover" />
+              <img src="/profile.pn" alt="Naimul" className="w-full h-full object-cover" />
             </div>
 
             {/* Responsive Stat Cards */}
