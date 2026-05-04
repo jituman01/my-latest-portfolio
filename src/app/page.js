@@ -1,6 +1,7 @@
 import Hero from "@/components/Hero";
 import About from "@/components/About";
 import TechStack from "@/components/TechStack";
+import Skills from "@/components/Skills";
 
 export default function Home() {
   return (
@@ -25,6 +26,7 @@ export default function Home() {
         <Hero />
         <About />
         <TechStack></TechStack>
+        <Skills></Skills>
       </div>
       
     </main>

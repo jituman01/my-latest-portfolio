@@ -13,6 +13,7 @@ const technologies = [
   { name: 'Git', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg' },
   { name: 'Framer Motion', icon: 'https://pagepro.co/blog/wp-content/uploads/2020/03/framer-motion.png' },
   { name: 'HeroUI', icon: 'https://avatars.githubusercontent.com/u/159396348?s=200&v=4' },
+  { name: 'Lucide React', icon: 'https://lucide.dev/logo.light.svg' },
 ];
 
 const TechStack = () => {
