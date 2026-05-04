@@ -17,7 +17,7 @@ export default function RootLayout({ children }) {
   return (
     <html
       lang="en"
-      className={`${OutfitFont.className} ${geistMono.variable}`}
+      className={`${OutfitFont.className}`}
       suppressHydrationWarning
     >
       <body className="min-h-screen flex flex-col transition-colors duration-300">
