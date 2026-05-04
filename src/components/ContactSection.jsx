@@ -3,7 +3,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Mail, Send, ArrowRight } from 'lucide-react';
 import { LogoLinkedin, Xmark } from '@gravity-ui/icons';
-import { FaLinkedin, FaXTwitter } from "react-icons/fa6";
+import { FaLinkedin, FaXTwitter } from 'react-icons/fa6';
 
 const ContactSection = () => {
   const contactMethods = [
@@ -15,14 +15,18 @@ const ContactSection = () => {
       color: 'hover:border-red-500/50',
     },
     {
-      icon: <FaLinkedin className="text-blue-500 dark:text-blue-400" size={20} />,
+      icon: (
+        <FaLinkedin className="text-blue-500 dark:text-blue-400" size={20} />
+      ),
       title: 'LinkedIn',
       value: 'MD NAIMUL ISLAM JITU',
       href: 'https://www.linkedin.com/in/md-naimul-islam-jitu/',
       color: 'hover:border-blue-500/50',
     },
     {
-      icon: <FaXTwitter className="text-cyan-600 dark:text-cyan-400" size={20} />,
+      icon: (
+        <FaXTwitter className="text-cyan-600 dark:text-cyan-400" size={20} />
+      ),
       title: 'Twitter',
       value: '@jitu_dev',
       href: 'https://twitter.com/jitu_dev',
@@ -58,48 +62,48 @@ const ContactSection = () => {
 
       {/* Grid wrapper-e justify-items-center add kora hoyeche */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 w-full justify-items-center items-start">
-        
         {/* Left Side - Talk to me */}
-<motion.div
-  variants={containerVariants}
-  initial="hidden"
-  whileInView="visible"
-  viewport={{ once: true }}
-  className="space-y-4 w-full max-w-[280px]"
->
-  <h3 className="text-xl font-semibold mb-6 text-center text-gray-800 dark:text-gray-200">
-    Talk to me
-  </h3>
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          className="space-y-4 w-full max-w-[280px]"
+        >
+          <h3 className="text-xl font-semibold mb-6 text-center text-gray-800 dark:text-gray-200">
+            Talk to me
+          </h3>
 
-  {contactMethods.map((method, index) => (
-    <motion.a
-      key={index}
-      href={method.href}
-      target="_blank"
-      variants={itemVariants}
-      whileHover={{ scale: 1.02 }}
+          {contactMethods.map((method, index) => (
+            <motion.a
+              key={index}
+              href={method.href}
+              target="_blank"
+              variants={itemVariants}
+              whileHover={{ scale: 1.02 }}
+              className={`flex flex-col items-center p-4 bg-white/5 dark:bg-[#1a1a1a]/40 backdrop-blur-xl border border-white/20 border-t-white/40 rounded-3xl transition-all duration-500 ${method.color} group shadow-[0_4px_10px_0_rgba(0,0,0,0.3)] relative overflow-hidden`}
+            >
+              {/* Glass Reflection Overlay */}
+              <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
-      className={`flex flex-col items-center p-4 bg-white/5 dark:bg-[#1a1a1a]/40 backdrop-blur-xl border border-white/20 border-t-white/40 rounded-3xl transition-all duration-500 ${method.color} group shadow-[0_4px_10px_0_rgba(0,0,0,0.3)] relative overflow-hidden`}
-    >
-      {/* Glass Reflection Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              <div className="p-2.5 bg-white/10 dark:bg-white/5 rounded-xl mb-2 group-hover:scale-110 transition-transform shadow-sm relative z-10">
+                {method.icon}
+              </div>
 
-      <div className="p-2.5 bg-white/10 dark:bg-white/5 rounded-xl mb-2 group-hover:scale-110 transition-transform shadow-sm relative z-10">
-        {method.icon}
-      </div>
-      
-      <h4 className="text-sm font-semibold text-gray-900 dark:text-white relative z-10">{method.title}</h4>
-      
-      <p className="text-[11px] text-gray-500 dark:text-gray-400 mb-3 truncate w-full text-center px-2 relative z-10">
-        {method.value}
-      </p>
-      
-      <span className="flex items-center gap-1.5 text-[10px] font-bold text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white transition-colors uppercase tracking-wider relative z-10">
-        Write me <ArrowRight size={12} />
-      </span>
-    </motion.a>
-  ))}
-</motion.div>
+              <h4 className="text-sm font-semibold text-gray-900 dark:text-white relative z-10">
+                {method.title}
+              </h4>
+
+              <p className="text-[11px] text-gray-500 dark:text-gray-400 mb-3 truncate w-full text-center px-2 relative z-10">
+                {method.value}
+              </p>
+
+              <span className="flex items-center gap-1.5 text-[10px] font-bold text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white transition-colors uppercase tracking-wider relative z-10">
+                Write me <ArrowRight size={12} />
+              </span>
+            </motion.a>
+          ))}
+        </motion.div>
 
         {/* Right Side - Form */}
         <motion.div

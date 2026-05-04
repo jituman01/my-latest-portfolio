@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Send } from 'lucide-react';
 import { LogoGithub, LogoLinkedin, Xmark } from '@gravity-ui/icons';
+import { FaGithub, FaLinkedin, FaTwitter } from 'react-icons/fa6';
 
 const Hero = () => {
   const [mounted, setMounted] = useState(false);
@@ -51,9 +52,9 @@ const Hero = () => {
         animate="visible"
         className="fixed left-3 md:left-8 top-1/2 -translate-y-1/2 hidden md:flex flex-col gap-4 z-40"
       >
-        <SocialIcon custom={0} variants={iconVariants} icon={<LogoLinkedin size={20} />} href="#" />
-        <SocialIcon custom={1} variants={iconVariants} icon={<LogoGithub size={20} />} href="#" />
-        <SocialIcon custom={2} variants={iconVariants} icon={<Xmark size={20} />} href="#" />
+        <SocialIcon custom={0} variants={iconVariants} icon={<FaLinkedin size={20} />} href="#" />
+        <SocialIcon custom={1} variants={iconVariants} icon={<FaGithub size={20} />} href="#" />
+        <SocialIcon custom={2} variants={iconVariants} icon={<FaTwitter size={20} />} href="#" />
         <div className="w-[1px] h-16 bg-gray-300 dark:bg-gray-700 mx-auto mt-2 opacity-50" />
       </motion.div>
 
