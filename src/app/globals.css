@@ -1,25 +1,30 @@
 @import "tailwindcss";
 @import "@heroui/styles"; 
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@custom-variant dark (&:where(.dark, .dark *));
 
-:root {
-  --bg-color: #ffffff; /* Light mode e pure white */
-  --foreground: #000000;
-}
+@layer base {
+  :root {
+    --background: #ffffff;
+    --foreground: #000000;
+    color-scheme: light !important; 
+  }
 
-.dark {
-  --bg-color: #020617; /* Dark mode e deep midnight blue/black */
-  --foreground: #ffffff;
+  .dark {
+    --background: #020617; 
+    --foreground: #ffffff;
+    color-scheme: dark !important;
+  }
 }
 
 body {
-  background-color: var(--bg-color);
-  color: var(--foreground);
-  transition: background-color 0.3s ease;
-  min-height: 100vh;
-  margin: 0;
-  padding: 0;
+  background-color: var(--background) !important;
+  color: var(--foreground) !important;
+  @apply min-h-screen transition-colors duration-300 antialiased;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not(.dark) {
+    color-scheme: light !important;
+  }
 }

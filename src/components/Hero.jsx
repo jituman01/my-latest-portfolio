@@ -43,10 +43,9 @@ const Hero = () => {
   };
 
   return (
-    // bg-transparent kora hoyeche jate global background dekha jay
     <section className="relative bg-transparent text-slate-900 dark:text-white min-h-screen flex items-center justify-center pt-20 md:pt-0 px-6 overflow-hidden">
       
-      {/* SOCIAL BAR - Mobile e niche jabe, Desktop e bame */}
+      {/* SOCIAL BAR */}
       <motion.div 
         initial="hidden"
         animate="visible"
@@ -116,7 +115,7 @@ const Hero = () => {
               custom={{ delay: 0.8 }}
               icon="🎓"
               label="Freshman"
-              sub="Sociology"
+              sub="Bachelor"
               className="-left-16 top-10 sm:-left-14"
             />
             <StatCard

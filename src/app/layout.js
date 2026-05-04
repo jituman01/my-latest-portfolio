@@ -22,15 +22,15 @@ export default function RootLayout({ children }) {
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
-      // Eita thakle hydration error asbe na
+      className={`${geistSans.variable} ${geistMono.variable}`}
       suppressHydrationWarning
     >
-      <body className="min-h-full flex flex-col transition-colors duration-300">
+      <body className="min-h-screen flex flex-col transition-colors duration-300">
         <ThemeProvider 
           attribute="class" 
           defaultTheme="dark" 
-          enableSystem={false}
+          enableSystem={false} 
+          storageKey="jituma-final-v3" 
         >
           <Navbar />
           <main className="flex-grow">
