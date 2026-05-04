@@ -90,6 +90,7 @@ const Hero = () => {
               </AnimatePresence>
             </div>
           </div>
+              <p className='text-lg md:text-lg text-gray-600 dark:text-gray-400 font-semibold mt-2'>| Available for projects and collaboration</p>
 
           <button className="mt-8 flex items-center gap-2 px-8 py-4 bg-black dark:bg-white text-white dark:text-black rounded-full font-bold shadow-2xl hover:scale-105 transition-all group">
             Say Hello <Send size={18} className="group-hover:translate-x-1 transition-transform" />
@@ -115,7 +116,7 @@ const Hero = () => {
               icon="🎓"
               label="Freshman"
               sub="Sociology"
-              className="-left-10 top-10 sm:-left-20"
+              className="-left-16 top-10 sm:-left-14"
             />
             <StatCard
               variants={statCardVariants}
@@ -123,7 +124,7 @@ const Hero = () => {
               icon="🎯"
               label="10+"
               sub="Projects"
-              className="-right-5 top-0 sm:-right-10"
+              className="-right-10 top-0 sm:-right-7"
             />
             <StatCard
               variants={statCardVariants}
@@ -131,7 +132,7 @@ const Hero = () => {
               icon="⚡"
               label="Exp"
               sub="Frontend"
-              className="left-1/2 -bottom-5 -translate-x-1/2"
+              className="left-2/3 -bottom-7 -translate-x-1/2"
             />
           </div>
         </motion.div>
