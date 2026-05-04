@@ -85,11 +85,11 @@ const ProjectCard = ({ project }) => (
   <motion.div
     variants={cardVariants}
     whileHover={{ y: -12, transition: { duration: 0.3 } }}
-    className="relative group rounded-[2rem] bg-white/5 dark:bg-white/[0.03] backdrop-blur-2xl border border-black/5 dark:border-white/10 shadow-2xl overflow-hidden flex flex-col h-full max-w-sm mx-auto"
+    className="relative group rounded-[2rem] bg-white/5 dark:bg-white/[0.03] backdrop-blur-2xl border border-black/5 dark:border-white/10 shadow-2xl overflow-hidden flex flex-col h-full w-full mx-auto"
   >
     <div className={`absolute -inset-1 rounded-[2rem] bg-gradient-to-br from-${project.themeColor}-500/10 via-transparent to-${project.themeColor}-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10`} />
 
-    <div className="relative aspect-[16/10] overflow-hidden m-4 rounded-[1.5rem] border border-white/10 shadow-inner">
+    <div className="relative aspect-[16/10] overflow-hidden m-3 sm:m-4 rounded-[1.5rem] border border-white/10 shadow-inner">
       <motion.img
         src={project.image}
         alt={project.title}
@@ -100,33 +100,33 @@ const ProjectCard = ({ project }) => (
       <div className="absolute inset-0 bg-gradient-to-t from-slate-950/70 to-transparent pointer-events-none" />
     </div>
 
-    <div className="p-6 flex-grow flex flex-col">
-      <h3 className="text-xl font-bold text-slate-950 dark:text-white mb-2 leading-tight">
+    <div className="p-5 sm:p-6 flex-grow flex flex-col">
+      <h3 className="text-lg sm:text-xl font-bold text-slate-950 dark:text-white mb-2 leading-tight">
         {project.title}
       </h3>
-      <p className="text-sm text-slate-600 dark:text-gray-400 mb-6 flex-grow">
+      <p className="text-xs sm:text-sm text-slate-600 dark:text-gray-400 mb-6 flex-grow line-clamp-2">
         {project.description}
       </p>
 
-      <div className="flex flex-wrap gap-2 mb-8">
+      <div className="flex flex-wrap gap-2 mb-6">
         {project.tags.map(tag => (
           <span
             key={tag}
-            className="px-3 py-1 text-xs font-medium rounded-full bg-slate-100 dark:bg-white/10 text-slate-700 dark:text-slate-300 border border-black/5 dark:border-white/10"
+            className="px-2.5 py-1 text-[10px] sm:text-xs font-medium rounded-full bg-slate-100 dark:bg-white/10 text-slate-700 dark:text-slate-300 border border-black/5 dark:border-white/10"
           >
             {tag}
           </span>
         ))}
       </div>
 
-      <div className="grid grid-cols-2 gap-4 mt-auto">
+      <div className="grid grid-cols-2 gap-3 mt-auto">
         <motion.a
           href={project.github}
           target="_blank"
           whileTap={{ scale: 0.95 }}
-          className="flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-slate-900 dark:bg-white/10 text-white text-sm font-medium hover:bg-slate-800 dark:hover:bg-white/20 transition border border-transparent"
+          className="flex items-center justify-center gap-2 px-3 py-2 rounded-xl bg-slate-900 dark:bg-white/10 text-white text-[11px] sm:text-sm font-medium hover:bg-slate-800 dark:hover:bg-white/20 transition border border-transparent"
         >
-          <LogoGithub size={16} /> GitHub
+          <LogoGithub size={14} /> GitHub
         </motion.a>
         
         <motion.a
@@ -134,13 +134,13 @@ const ProjectCard = ({ project }) => (
           target="_blank"
           whileTap={{ scale: 0.95 }}
           className={`
-            flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl text-sm font-medium transition
+            flex items-center justify-center gap-2 px-3 py-2 rounded-xl text-[11px] sm:text-sm font-medium transition
             text-black border-black border
             dark:text-white dark:border-white/20 
             hover:bg-black hover:text-white dark:hover:bg-${project.themeColor}-600 dark:hover:border-transparent
           `}
         >
-          <ExternalLink size={16} /> Live Demo
+          <ExternalLink size={14} /> Live Demo
         </motion.a>
       </div>
     </div>
