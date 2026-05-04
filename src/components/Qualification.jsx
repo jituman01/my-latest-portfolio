@@ -50,7 +50,7 @@ const Qualification = () => {
           <motion.h2 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            className="text-4xl md:text-5xl font-bold mb-3 text-slate-900 dark:text-white uppercase"
+            className="text-4xl md:text-5xl font-bold mb-3 text-slate-900 dark:text-white uppercase "
           >
             Qualification
           </motion.h2>
@@ -63,7 +63,7 @@ const Qualification = () => {
         <div className="flex justify-center gap-8 mb-16">
           <button
             onClick={() => setActiveTab('education')}
-            className={`flex items-center gap-2 text-xl font-medium transition-all ${
+            className={`flex items-center gap-2 text-xl font-medium transition-all cursor-pointer ${
               activeTab === 'education' ? 'text-purple-500 border-b-2 border-purple-400' : 'text-slate-400'
             }`}
           >
@@ -71,8 +71,8 @@ const Qualification = () => {
           </button>
           <button
             onClick={() => setActiveTab('experience')}
-            className={`flex items-center gap-2 text-xl font-medium transition-all ${
-              activeTab === 'experience' ? 'text-blue-500 border-b-2 border-blue-400' : 'text-slate-400'
+            className={`flex items-center gap-2 text-xl font-medium transition-all cursor-pointer ${
+              activeTab === 'experience' ? 'text-blue-400 border-b-2 border-blue-400' : 'text-slate-400'
             }`}
           >
             <Briefcase size={24} /> Experience

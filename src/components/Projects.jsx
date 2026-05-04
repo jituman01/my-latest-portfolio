@@ -33,6 +33,15 @@ const projectsData = [
     themeColor: 'green',
   },
   {
+    image: 'https://cdn.dribbble.com/userupload/11181230/file/original-a7407a16f208151505c87e6717586523.png',
+    title: 'SyncDocs: Collaboration',
+    description: 'Real-time document editor allowing multiple users to collaborate simultaneously.',
+    tags: ['Next.js', 'Node.js', 'Firebase', 'TipTap'],
+    github: '#',
+    demo: '#',
+    themeColor: 'blue',
+  },
+  {
     image: 'https://cdn.dribbble.com/userupload/14068595/file/original-9f33b1e7c536440f3b4d45548d1ac99e.png',
     title: 'SecureDrive: Cloud Storage',
     description: 'Secure file storage platform with role-based access, real-time updates, and sharing features.',
@@ -52,28 +61,45 @@ const projectsData = [
   },
 ];
 
+// Animation Variants
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.2, 
+    },
+  },
+};
+
+const cardVariants = {
+  hidden: { opacity: 0, y: 50 },
+  visible: { 
+    opacity: 1, 
+    y: 0,
+    transition: { duration: 0.6, ease: "easeOut" }
+  },
+};
+
 const ProjectCard = ({ project }) => (
   <motion.div
-    initial={{ opacity: 0, y: 30 }}
-    whileInView={{ opacity: 1, y: 0 }}
-    viewport={{ once: true }}
-    transition={{ duration: 0.5 }}
-    whileHover={{ y: -8, transition: { duration: 0.2 } }}
-    className={`relative group rounded-[2rem] bg-white/5 dark:bg-white/[0.03] backdrop-blur-2xl border border-black/5 dark:border-white/10 shadow-2xl overflow-hidden flex flex-col h-full max-w-sm mx-auto`}
+    variants={cardVariants}
+    whileHover={{ y: -12, transition: { duration: 0.3 } }}
+    className="relative group rounded-[2rem] bg-white/5 dark:bg-white/[0.03] backdrop-blur-2xl border border-black/5 dark:border-white/10 shadow-2xl overflow-hidden flex flex-col h-full max-w-sm mx-auto"
   >
     <div className={`absolute -inset-1 rounded-[2rem] bg-gradient-to-br from-${project.themeColor}-500/10 via-transparent to-${project.themeColor}-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10`} />
 
-    {/* Image Container */}
     <div className="relative aspect-[16/10] overflow-hidden m-4 rounded-[1.5rem] border border-white/10 shadow-inner">
-      <img
+      <motion.img
         src={project.image}
         alt={project.title}
-        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+        whileHover={{ scale: 1.1 }}
+        transition={{ duration: 0.6 }}
+        className="w-full h-full object-cover"
       />
-      <div className="absolute inset-0 bg-gradient-to-t from-slate-950/70 to-transparent" />
+      <div className="absolute inset-0 bg-gradient-to-t from-slate-950/70 to-transparent pointer-events-none" />
     </div>
 
-    {/* Content */}
     <div className="p-6 flex-grow flex flex-col">
       <h3 className="text-xl font-bold text-slate-950 dark:text-white mb-2 leading-tight">
         {project.title}
@@ -82,7 +108,6 @@ const ProjectCard = ({ project }) => (
         {project.description}
       </p>
 
-      {/* Tags */}
       <div className="flex flex-wrap gap-2 mb-8">
         {project.tags.map(tag => (
           <span
@@ -94,32 +119,29 @@ const ProjectCard = ({ project }) => (
         ))}
       </div>
 
-      {/* Buttons */}
       <div className="grid grid-cols-2 gap-4 mt-auto">
-        <a
+        <motion.a
           href={project.github}
           target="_blank"
+          whileTap={{ scale: 0.95 }}
           className="flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-slate-900 dark:bg-white/10 text-white text-sm font-medium hover:bg-slate-800 dark:hover:bg-white/20 transition border border-transparent"
         >
           <LogoGithub size={16} /> GitHub
-        </a>
+        </motion.a>
         
-        {/* Updated Live Demo Button */}
-        <a
+        <motion.a
           href={project.demo}
           target="_blank"
+          whileTap={{ scale: 0.95 }}
           className={`
             flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl text-sm font-medium transition
-            /* Light Mode: Black text & Black border */
             text-black border-black border
-            /* Dark Mode: Theme color text & Theme color border */
             dark:text-white dark:border-white/20 
-            /* Hover Effects */
             hover:bg-black hover:text-white dark:hover:bg-${project.themeColor}-600 dark:hover:border-transparent
           `}
         >
           <ExternalLink size={16} /> Live Demo
-        </a>
+        </motion.a>
       </div>
     </div>
   </motion.div>
@@ -131,37 +153,48 @@ const Projects = () => {
       <motion.div
         animate={{
           scale: [1, 1.2, 1],
-          opacity: [0.3, 0.5, 0.3],
+          x: [0, 50, 0],
+          opacity: [0.2, 0.4, 0.2],
         }}
-        transition={{ duration: 10, repeat: Infinity }}
-        className="absolute top-0 right-10 w-[500px] h-[500px] bg-blue-500/10 blur-[120px] rounded-full -z-10"
+        transition={{ duration: 12, repeat: Infinity, ease: "linear" }}
+        className="absolute top-20 right-10 w-[500px] h-[500px] bg-blue-500/10 blur-[120px] rounded-full -z-10"
       />
 
-      <div className="max-w-6xl mx-auto"> {/* Container width ektu komiye 6xl kora hoyeche */}
-        <div className="text-center mb-16">
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            className="text-4xl md:text-5xl font-bold mb-3 text-slate-950 dark:text-white"
-          >
+      <div className="max-w-6xl mx-auto">
+        <motion.div 
+          initial={{ opacity: 0, y: -20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: false, amount: 0.3 }} 
+          className="text-center mb-16"
+        >
+          <h2 className="text-4xl md:text-5xl font-bold mb-3 text-slate-950 dark:text-white uppercase">
             Projects
-          </motion.h2>
+          </h2>
           <p className="text-slate-500 dark:text-gray-400 tracking-[0.2em] uppercase text-xs font-semibold">
             Recent Work
           </p>
-        </div>
+        </motion.div>
 
-        {/* Gap adjust kora hoyeche compact look-er jonno */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <motion.div 
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: false, amount: 0.1 }}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+        >
           {projectsData.map((project, index) => (
             <ProjectCard key={index} project={project} />
           ))}
-        </div>
+        </motion.div>
 
         <div className="text-center mt-16">
           <motion.a
             href="https://github.com/Jitu01-hub"
             target="_blank"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: false }}
+            transition={{ delay: 0.2 }}
             whileHover={{ gap: '12px' }}
             className="inline-flex items-center gap-2 text-blue-500 font-medium group transition-all"
           >

@@ -5,6 +5,7 @@ import Skills from "@/components/Skills";
 import Qualification from "@/components/Qualification";
 import Projects from "@/components/Projects";
 import ContactSection from "@/components/ContactSection";
+import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
@@ -32,7 +33,8 @@ export default function Home() {
         <Skills></Skills>
         <Qualification></Qualification>
         <Projects />
-        <ContactSection/>
+        <ContactSection />
+        <Footer></Footer>
       </div>
       
     </main>

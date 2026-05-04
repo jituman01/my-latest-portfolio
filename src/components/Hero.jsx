@@ -92,7 +92,7 @@ const Hero = () => {
           </div>
               <p className='text-lg md:text-lg text-gray-600 dark:text-gray-400 font-semibold mt-2'>| Available for projects and collaboration</p>
 
-          <button className="mt-8 flex items-center gap-2 px-8 py-4 bg-black dark:bg-white text-white dark:text-black rounded-full font-bold shadow-2xl hover:scale-105 transition-all group">
+          <button className="mt-8 flex items-center gap-2 px-8 py-4 bg-black dark:bg-white text-white dark:text-black rounded-full font-bold shadow-2xl hover:scale-105 transition-all group cursor-pointer">
             Say Hello <Send size={18} className="group-hover:translate-x-1 transition-transform" />
           </button>
         </motion.div>

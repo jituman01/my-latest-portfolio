@@ -86,7 +86,7 @@ const About = () => {
           </p>
 
           <div className="flex justify-center lg:justify-start">
-            <button className="flex items-center gap-3 px-8 py-4 bg-black dark:bg-white text-white dark:text-black rounded-full font-bold shadow-2xl hover:scale-105 transition-all rounded-2xl font-semibold shadow-lg group">
+            <button className="flex items-center gap-3 px-8 py-4 bg-black dark:bg-white text-white dark:text-black rounded-full font-bold shadow-2xl hover:scale-105 transition-all rounded-2xl font-semibold shadow-lg group cursor-pointer">
               Download Resume
               <Download
                 size={20}
