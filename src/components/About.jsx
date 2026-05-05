@@ -64,7 +64,7 @@ const About = () => {
             <AboutCard
               icon={<Briefcase size={24} className="text-blue-600 dark:text-blue-400" />}
               title="Completed"
-              desc="10+ Projects"
+              desc="20+ Projects"
             />
             <AboutCard
               icon={<Headphones size={24} className="text-blue-600 dark:text-blue-400" />}
