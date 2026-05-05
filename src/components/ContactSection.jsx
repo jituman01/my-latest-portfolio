@@ -64,7 +64,7 @@ const ContactSection = () => {
   };
 
   return (
-    <section className="py-20 px-4 md:px-10 max-w-6xl mx-auto flex flex-col items-center overflow-hidden">
+    <section className="py-20 px-4 md:px-10 max-w-6xl mx-auto flex flex-col items-center overflow-hidden" id="contact">
       {/* Header Section */}
       <motion.div
         initial={{ opacity: 0, y: -30 }}

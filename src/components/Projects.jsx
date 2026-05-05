@@ -85,7 +85,7 @@ const ProjectCard = ({ project }) => (
   <motion.div
     variants={cardVariants}
     whileHover={{ y: -12, transition: { duration: 0.3 } }}
-    className="relative group rounded-[2rem] bg-white/5 dark:bg-white/[0.03] backdrop-blur-2xl border border-black/5 dark:border-white/10 shadow-2xl overflow-hidden flex flex-col h-full w-full mx-auto"
+    className="relative group rounded-[2rem] bg-white/5 dark:bg-white/[0.03] backdrop-blur-2xl border border-black/5 dark:border-white/10 shadow-2xl overflow-hidden flex flex-col h-full w-full mx-auto" id="projects"
   >
     <div className={`absolute -inset-1 rounded-[2rem] bg-gradient-to-br from-${project.themeColor}-500/10 via-transparent to-${project.themeColor}-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10`} />
 

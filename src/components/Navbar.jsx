@@ -25,23 +25,23 @@ const Navbar = () => {
   }, []);
 
   const navItems = [
-    { name: 'Home', href: '/', icon: Home, color: 'text-yellow-300' },
-    { name: 'Tech Stack', href: '/tech', icon: Cpu, color: 'text-cyan-300' },
+    { name: 'Home', href: '#hero', icon: Home, color: 'text-yellow-300' },
+    { name: 'Tech Stack', href: '#tech', icon: Cpu, color: 'text-cyan-300' },
     {
       name: 'Qualification',
-      href: '/edu',
+      href: '#qualification',
       icon: GraduationCap,
       color: 'text-purple-300',
     },
     {
       name: 'Projects',
-      href: '/projects',
+      href: '#projects',
       icon: Briefcase,
       color: 'text-orange-300',
     },
     {
       name: 'Contact Me',
-      href: '/contact',
+      href: '#contact',
       icon: Send,
       color: 'text-pink-300',
     },

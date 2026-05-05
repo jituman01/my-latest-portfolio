@@ -18,7 +18,7 @@ const technologies = [
 
 const TechStack = () => {
   return (
-    <section className="py-24 px-6 bg-transparent flex flex-col items-center">
+    <section className="py-24 px-6 bg-transparent flex flex-col items-center" id="tech">
       {/* Header Section */}
       <motion.div 
         initial={{ opacity: 0, y: 20 }}

@@ -43,7 +43,7 @@ const Hero = () => {
   };
 
   return (
-    <section className="relative bg-transparent text-slate-900 dark:text-white min-h-screen flex items-center justify-center pt-20 md:pt-0 px-6 overflow-hidden">
+    <section className="relative bg-transparent text-slate-900 dark:text-white min-h-screen flex items-center justify-center pt-20 md:pt-0 px-6 overflow-hidden" id="hero">
       
       {/* SOCIAL BAR */}
       <motion.div 
@@ -99,15 +99,25 @@ const Hero = () => {
 
         {/* Image Side */}
         <motion.div
-          initial={{ scale: 0.8, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          transition={{ duration: 0.8 }}
-          className="order-1 lg:order-2 relative flex justify-center lg:justify-end"
-        >
-          <div className="relative w-60 h-60 sm:w-72 sm:h-72 lg:w-[400px] lg:h-[400px] rounded-full border border-black/5 dark:border-white/10 p-2 bg-white/5 backdrop-blur-sm shadow-2xl">
-            <div className="w-full h-full rounded-full overflow-hidden bg-gray-100 dark:bg-[#0a0a0a] border-4 border-white/10">
-              <img src="/profile.pn" alt="Naimul" className="w-full h-full object-cover" />
-            </div>
+  initial={{ scale: 0.8, opacity: 0 }}
+  animate={{ scale: 1, opacity: 1 }}
+  transition={{ duration: 0.8 }}
+  className="order-1 lg:order-2 relative flex justify-center lg:justify-end"
+>
+  <div className="relative w-60 h-60 sm:w-72 sm:h-72 lg:w-[400px] lg:h-[400px] rounded-full border border-black/5 dark:border-white/10 p-2 bg-white/5 backdrop-blur-sm shadow-2xl">
+    
+    {/* --- CIRCLE ER VHETORE GLOW --- */}
+    <div className="relative w-full h-full rounded-full overflow-hidden bg-gray-100 dark:bg-[#0a0a0a] border-4 border-white/10 flex items-center justify-center">
+      
+      {/* Inner Blue Glow*/}
+      <div className="absolute w-[70%] h-[70%] bg-blue-500/40 rounded-full blur-[60px] pointer-events-none"></div>
+      
+      <img 
+        src="/profile.png" 
+        alt="Naimul" 
+        className="relative z-10 w-full h-full object-contain scale-130 translate-y-3" 
+      />
+    </div>
 
             {/* Responsive Stat Cards */}
             <StatCard
@@ -122,7 +132,7 @@ const Hero = () => {
               variants={statCardVariants}
               custom={{ delay: 1.0 }}
               icon="🎯"
-              label="10+"
+              label="20+"
               sub="Projects"
               className="-right-10 top-0 sm:-right-7"
             />
