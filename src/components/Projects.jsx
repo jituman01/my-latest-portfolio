@@ -16,7 +16,7 @@ const projectsData = [
   },
   {
     image: 'https://i.ibb.co.com/1GVKz39T/Behance-Mockup-Shot-Cover-6.png',
-    title: 'SecureDrive: Cloud Storage',
+    title: 'Gadget Heaven: E-commerce',
     description: 'Secure file storage platform with role-based access, real-time updates, and sharing features.',
     tags: ['React', 'Node.js', 'MongoDB', 'Clerk'],
     github: 'https://github.com/jituman01/gadget-heaven',
@@ -25,7 +25,7 @@ const projectsData = [
   },
   {
     image: 'https://i.ibb.co.com/99vDnRQb/Behance-Mockup-Shot-Cover-3.png',
-    title: 'qurbanihat:livestock-booking-platform',
+    title: 'qurbanihat:livestock booking platform',
     description: 'A modern livestock marketplace for booking and selling cattle. Built with Next.js for a seamless user experience.',
     tags: ['Next.js', 'Tailwind','MongoDB','BetterAuth'],
     github: 'https://github.com/jituman01/qurbanihat-livestock-booking-platform',
@@ -56,7 +56,7 @@ const projectsData = [
     description: 'GitHub Issue Tracker is a productivity tool designed to help developers manage and monitor project issues efficiently. By integrating directly with the GitHub API, it provides a real-time interface to fetch, filter, and track issues from any public repository.',
     tags: ['Javascript', 'CSS', 'DaisyUi'],
     github: 'https://github.com/jituman01/B13-A5-Github-Issue-Tracker',
-    demo: 'https://jituman01.github.io/B13-A5-Github-Issue-Tracker/',
+    demo: 'https://jituman01.github.io/B13-A5-Github-Issue-Tracker',
     themeColor: 'green',
   },
   
