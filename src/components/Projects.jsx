@@ -6,59 +6,60 @@ import { LogoGithub } from '@gravity-ui/icons';
 
 const projectsData = [
   {
-    image: 'https://cdn.dribbble.com/userupload/8636183/file/original-f70d246067b54a23075677c77f0d04c0.png',
-    title: 'GameHub: Live Streaming',
-    description: 'A twitch clone with real-time chat, streamer dashboard, and high-quality streaming capabilities.',
-    tags: ['Next.js', 'Prisma', 'Socket.IO', 'Tailwind'],
-    github: '#',
-    demo: '#',
+    image: 'https://i.ibb.co.com/4bkHH1C/Behance-Mockup-Shot-Cover-2.png',
+    title: 'Pixgen:Image Generator with Ai',
+    description: 'It is a modern web application that leverages artificial intelligence to transform text descriptions into high-quality, unique images. This project demonstrates my ability to integrate complex AI models with a seamless, user-centric frontend.',
+    tags: ['Next.js', 'Tailwind','MongoDB','BetterAuth'],
+    github: 'https://github.com/jituman01/pixgen',
+    demo: 'https://pixgen-snowy.vercel.app/',
     themeColor: 'purple',
   },
   {
-    image: 'https://cdn.dribbble.com/userupload/11181230/file/original-a7407a16f208151505c87e6717586523.png',
-    title: 'SyncDocs: Collaboration',
-    description: 'Real-time document editor allowing multiple users to collaborate simultaneously.',
-    tags: ['Next.js', 'Node.js', 'Firebase', 'TipTap'],
-    github: '#',
-    demo: '#',
+    image: 'https://i.ibb.co.com/1GVKz39T/Behance-Mockup-Shot-Cover-6.png',
+    title: 'SecureDrive: Cloud Storage',
+    description: 'Secure file storage platform with role-based access, real-time updates, and sharing features.',
+    tags: ['React', 'Node.js', 'MongoDB', 'Clerk'],
+    github: 'https://github.com/jituman01/gadget-heaven',
+    demo: 'https://gadget-heaven-amber.vercel.app',
+    themeColor: 'green',
+  },
+  {
+    image: 'https://i.ibb.co.com/99vDnRQb/Behance-Mockup-Shot-Cover-3.png',
+    title: 'qurbanihat:livestock-booking-platform',
+    description: 'A modern livestock marketplace for booking and selling cattle. Built with Next.js for a seamless user experience.',
+    tags: ['Next.js', 'Tailwind','MongoDB','BetterAuth'],
+    github: 'https://github.com/jituman01/qurbanihat-livestock-booking-platform',
+    demo: 'https://qurbanihat-livestock-booking-platfo.vercel.app/',
+    themeColor: 'blue',
+  },
+  {
+    image: 'https://i.ibb.co.com/5xMxZHDx/Behance-Mockup-Shot-Cover-4.png',
+    title: 'KeenKeeper',
+    description: 'KeenKeeper helps you keep track of your friendships and social connections. Its designed to remind you when you last spoke to someone and helps you maintain meaningful relationships without losing touch.',
+    tags: ['React', 'Tailwind','React Router DOM','DaisyUI','Hot-Toast'],
+    github: 'https://github.com/jituman01/B13-A7-KeenKeeper',
+    demo: 'https://keenkeeper-connection.netlify.app',
+    themeColor: 'green',
+  },
+  {
+    image: 'https://i.ibb.co.com/q3sFZ6GF/Behance-Mockup-Shot-Cover-5.png',
+    title: 'DigiTools-Platform',
+    description: 'DigiTools is a fast and clean web application where users can find premium digital products. I built it to practice real-world frontend development with a professional design.',
+    tags: ['React', 'Tailwind', 'DaisyUI', 'Lucide React','React-Toastify'],
+    github: 'https://github.com/jituman01/B13-A6-DigiTools-Platform',
+    demo: 'https://digitoolsplatformapp.netlify.app/',
     themeColor: 'blue',
   },
   {
     image: 'https://cdn.dribbble.com/userupload/14068595/file/original-9f33b1e7c536440f3b4d45548d1ac99e.png',
-    title: 'SecureDrive: Cloud Storage',
-    description: 'Secure file storage platform with role-based access, real-time updates, and sharing features.',
-    tags: ['React', 'Node.js', 'MongoDB', 'Clerk'],
-    github: '#',
-    demo: '#',
+    title: 'Github-Issue-Tracker',
+    description: 'GitHub Issue Tracker is a productivity tool designed to help developers manage and monitor project issues efficiently. By integrating directly with the GitHub API, it provides a real-time interface to fetch, filter, and track issues from any public repository.',
+    tags: ['Javascript', 'CSS', 'DaisyUi'],
+    github: 'https://github.com/jituman01/B13-A5-Github-Issue-Tracker',
+    demo: 'https://jituman01.github.io/B13-A5-Github-Issue-Tracker/',
     themeColor: 'green',
   },
-  {
-    image: 'https://cdn.dribbble.com/userupload/11181230/file/original-a7407a16f208151505c87e6717586523.png',
-    title: 'SyncDocs: Collaboration',
-    description: 'Real-time document editor allowing multiple users to collaborate simultaneously.',
-    tags: ['Next.js', 'Node.js', 'Firebase', 'TipTap'],
-    github: '#',
-    demo: '#',
-    themeColor: 'blue',
-  },
-  {
-    image: 'https://cdn.dribbble.com/userupload/14068595/file/original-9f33b1e7c536440f3b4d45548d1ac99e.png',
-    title: 'SecureDrive: Cloud Storage',
-    description: 'Secure file storage platform with role-based access, real-time updates, and sharing features.',
-    tags: ['React', 'Node.js', 'MongoDB', 'Clerk'],
-    github: '#',
-    demo: '#',
-    themeColor: 'green',
-  },
-  {
-    image: 'https://cdn.dribbble.com/userupload/14068595/file/original-9f33b1e7c536440f3b4d45548d1ac99e.png',
-    title: 'SecureDrive: Cloud Storage',
-    description: 'Secure file storage platform with role-based access, real-time updates, and sharing features.',
-    tags: ['React', 'Node.js', 'MongoDB', 'Clerk'],
-    github: '#',
-    demo: '#',
-    themeColor: 'green',
-  },
+  
 ];
 
 // Animation Variants
@@ -89,7 +90,7 @@ const ProjectCard = ({ project }) => (
   >
     <div className={`absolute -inset-1 rounded-[2rem] bg-gradient-to-br from-${project.themeColor}-500/10 via-transparent to-${project.themeColor}-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10`} />
 
-    <div className="relative aspect-[16/10] overflow-hidden m-3 sm:m-4 rounded-[1.5rem] border border-white/10 shadow-inner">
+    <div className="relative aspect-[16/10] overflow-hidden m-3 sm:m-4 rounded-[1.5rem] border border-white/10 ">
       <motion.img
         src={project.image}
         alt={project.title}
