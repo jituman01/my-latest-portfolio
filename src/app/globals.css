@@ -22,6 +22,8 @@ body {
   color: var(--foreground) !important;
   @apply min-h-screen transition-colors duration-300 antialiased;
 }
+
+
 html {
       scroll-behavior: smooth;
     }

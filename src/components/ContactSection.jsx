@@ -64,7 +64,10 @@ const ContactSection = () => {
   };
 
   return (
-    <section className="py-20 px-4 md:px-10 max-w-6xl mx-auto flex flex-col items-center overflow-hidden" id="contact">
+    <section
+      className="py-20 px-4 md:px-10 max-w-6xl mx-auto flex flex-col items-center overflow-hidden"
+      id="contact"
+    >
       {/* Header Section */}
       <motion.div
         initial={{ opacity: 0, y: -30 }}
@@ -75,7 +78,7 @@ const ContactSection = () => {
         className="text-center mb-16"
       >
         <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-2 uppercase tracking-tight">
-          Get in Touch
+          READY TO BUILD ?
         </h2>
         <p className="text-gray-500 dark:text-gray-400 font-medium">
           Contact Me
@@ -99,46 +102,43 @@ const ContactSection = () => {
             Talk to me
           </motion.h3>
 
+          {contactMethods.map((method, index) => (
+            <motion.a
+              key={index}
+              href={method.href}
+              target="_blank"
+              variants={itemVariants}
+              whileHover={{ scale: 1.03, y: -5 }}
+              whileTap={{ scale: 0.97 }}
+              // Dark mode background-e white/[0.07] ebong border-e white/[0.15] use kora hoyeche
+              className={`flex flex-col items-center p-5 bg-white/10 dark:bg-white/[0.07] backdrop-blur-xl border border-gray-200 dark:border-white/[0.15] rounded-3xl transition-all duration-300 ${method.color} group shadow-lg relative overflow-hidden`}
+            >
+              {/* Subtle Inner Glow - eti card-ke arektu light dekhate shahajjo korbe */}
+              <div className="absolute inset-0 bg-gradient-to-br from-white/[0.05] to-transparent pointer-events-none" />
 
+              <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
-{contactMethods.map((method, index) => (
-  <motion.a
-    key={index}
-    href={method.href}
-    target="_blank"
-    variants={itemVariants}
-    whileHover={{ scale: 1.03, y: -5 }}
-    whileTap={{ scale: 0.97 }}
-    // Dark mode background-e white/[0.07] ebong border-e white/[0.15] use kora hoyeche
-    className={`flex flex-col items-center p-5 bg-white/10 dark:bg-white/[0.07] backdrop-blur-xl border border-gray-200 dark:border-white/[0.15] rounded-3xl transition-all duration-300 ${method.color} group shadow-lg relative overflow-hidden`}
-  >
-    {/* Subtle Inner Glow - eti card-ke arektu light dekhate shahajjo korbe */}
-    <div className="absolute inset-0 bg-gradient-to-br from-white/[0.05] to-transparent pointer-events-none" />
-    
-    <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              <div className="p-3 bg-gray-100 dark:bg-white/10 rounded-2xl mb-3 group-hover:bg-white dark:group-hover:bg-white/15 transition-colors shadow-sm relative z-10">
+                {method.icon}
+              </div>
 
-    <div className="p-3 bg-gray-100 dark:bg-white/10 rounded-2xl mb-3 group-hover:bg-white dark:group-hover:bg-white/15 transition-colors shadow-sm relative z-10">
-      {method.icon}
-    </div>
+              <h4 className="text-sm font-bold text-gray-900 dark:text-white relative z-10">
+                {method.title}
+              </h4>
 
-    <h4 className="text-sm font-bold text-gray-900 dark:text-white relative z-10">
-      {method.title}
-    </h4>
+              <p className="text-[11px] text-gray-500 dark:text-gray-400 mb-4 truncate w-full text-center px-2 relative z-10 font-medium">
+                {method.value}
+              </p>
 
-    <p className="text-[11px] text-gray-500 dark:text-gray-400 mb-4 truncate w-full text-center px-2 relative z-10 font-medium">
-      {method.value}
-    </p>
-
-    <span className="flex items-center gap-2 text-[10px] font-black text-gray-400 group-hover:text-cyan-600 dark:group-hover:text-cyan-400 transition-colors uppercase tracking-widest relative z-10">
-      Write me{' '}
-      <ArrowRight
-        size={14}
-        className="group-hover:translate-x-1 transition-transform"
-      />
-    </span>
-  </motion.a>
-))}
-
+              <span className="flex items-center gap-2 text-[10px] font-black text-gray-400 group-hover:text-cyan-600 dark:group-hover:text-cyan-400 transition-colors uppercase tracking-widest relative z-10">
+                Write me{' '}
+                <ArrowRight
+                  size={14}
+                  className="group-hover:translate-x-1 transition-transform"
+                />
+              </span>
+            </motion.a>
+          ))}
         </motion.div>
 
         {/* Right Side - Form */}

@@ -54,7 +54,7 @@ const Navbar = () => {
       <motion.div
         initial={{ y: -100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
-        className="flex items-center gap-1 p-1.5 md:p-2 bg-white/10 dark:bg-[#1a1a1a]/60 backdrop-blur-xl border border-black/5 dark:border-white/10 rounded-full shadow-lg max-w-full"
+        className="flex items-center gap-1 p-1.5 md:p-2 bg-white/10 dark:bg-white/10 backdrop-blur-xl border border-black/5 dark:border-white/10 rounded-full shadow-lg max-w-full"
       >
         <div className="flex items-center gap-0.5 md:gap-1 px-1">
           {navItems.map(item => {

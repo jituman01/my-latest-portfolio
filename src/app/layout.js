@@ -21,6 +21,7 @@ export default function RootLayout({ children }) {
       suppressHydrationWarning
     >
       <body className="min-h-screen flex flex-col transition-colors duration-300">
+        
         <ThemeProvider 
           attribute="class" 
           defaultTheme="dark" 
@@ -32,6 +33,7 @@ export default function RootLayout({ children }) {
             {children}
           </main>
         </ThemeProvider>
+      
       </body>
     </html>
   );

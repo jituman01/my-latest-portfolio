@@ -6,6 +6,7 @@ import Qualification from "@/components/Qualification";
 import Projects from "@/components/Projects";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
+import ToolKit from "@/components/ToolKit";
 
 export default function Home() {
   return (
@@ -33,6 +34,7 @@ export default function Home() {
         <Skills></Skills>
         <Qualification></Qualification>
         <Projects />
+        <ToolKit/>
         <ContactSection />
         <Footer></Footer>
       </div>

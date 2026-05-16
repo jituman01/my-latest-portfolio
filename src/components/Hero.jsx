@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Send } from 'lucide-react';
 import { LogoGithub, LogoLinkedin, Xmark } from '@gravity-ui/icons';
 import { FaGithub, FaLinkedin, FaTwitter } from 'react-icons/fa6';
+import LottieBot from './LottieBot';
 
 const Hero = () => {
   const [mounted, setMounted] = useState(false);
@@ -67,8 +68,11 @@ const Hero = () => {
           className="order-2 lg:order-1 text-center lg:text-left flex flex-col items-center lg:items-start"
         >
           <h3 className="text-gray-500 dark:text-gray-400 text-base md:text-lg font-medium mb-2">Hey, I'm</h3>
+          
           <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-6xl font-extrabold text-black dark:text-white tracking-tight leading-tight">
-           Naimul Islam Jitu<span className="inline-block animate-bounce">👋</span>
+           Naimul Islam Jitu
+                   
+            <span className="inline-block animate-shake">👋</span>
           </h1>
           <h2 className="text-xl md:text-3xl text-gray-600 dark:text-gray-400 font-semibold mt-2">
             I am a <span className="text-blue-600 dark:text-blue-400">Frontend Developer</span>
