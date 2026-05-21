@@ -7,6 +7,7 @@ import Projects from "@/components/Projects";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
 import ToolKit from "@/components/ToolKit";
+import Achievements from "@/components/Achievements";
 
 export default function Home() {
   return (
@@ -32,8 +33,9 @@ export default function Home() {
         <About />
         <TechStack></TechStack>
         <Skills></Skills>
-        <Qualification></Qualification>
         <Projects />
+        <Qualification></Qualification>
+        <Achievements/>
         <ToolKit/>
         <ContactSection />
         <Footer></Footer>

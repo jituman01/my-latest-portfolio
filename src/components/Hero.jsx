@@ -52,8 +52,8 @@ const Hero = () => {
         animate="visible"
         className="fixed left-3 md:left-8 top-1/2 -translate-y-1/2 hidden md:flex flex-col gap-4 z-40"
       >
-        <SocialIcon custom={0} variants={iconVariants} icon={<FaLinkedin size={20} />} href="#" />
-        <SocialIcon custom={1} variants={iconVariants} icon={<FaGithub size={20} />} href="#" />
+        <SocialIcon custom={0} variants={iconVariants} icon={<FaLinkedin size={20} />} href="https://www.linkedin.com/in/md-naimul-islam-jitu" />
+        <SocialIcon custom={1} variants={iconVariants} icon={<FaGithub size={20} />} href="https://github.com/jituman01" />
         <SocialIcon custom={2} variants={iconVariants} icon={<FaTwitter size={20} />} href="#" />
         <div className="w-[1px] h-16 bg-gray-300 dark:bg-gray-700 mx-auto mt-2 opacity-50" />
       </motion.div>
@@ -72,7 +72,7 @@ const Hero = () => {
           <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-6xl font-extrabold text-black dark:text-white tracking-tight leading-tight">
            Naimul Islam Jitu
                    
-            <span className="inline-block animate-shake">👋</span>
+            <span className="inline-block animate-bounce">👋</span>
           </h1>
           <h2 className="text-xl md:text-3xl text-gray-600 dark:text-gray-400 font-semibold mt-2">
             I am a <span className="text-blue-600 dark:text-blue-400">Frontend Developer</span>

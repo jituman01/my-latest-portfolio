@@ -82,66 +82,6 @@ const projectsData = [
     demo: 'https://jituman01.github.io/B13-A5-Github-Issue-Tracker',
     themeColor: 'green',
   },
-  {
-    image: 'https://i.ibb.co.com/ytz4rBx/Behance-Mockup-Shot-Cover-7.png',
-    title: 'Github-Issue-Tracker',
-    description:
-      'GitHub Issue Tracker is a productivity tool designed to help developers manage and monitor project issues efficiently.',
-    tags: ['Javascript', 'CSS', 'DaisyUi'],
-    github: 'https://github.com/jituman01/B13-A5-Github-Issue-Tracker',
-    demo: 'https://jituman01.github.io/B13-A5-Github-Issue-Tracker',
-    themeColor: 'green',
-  },
-  {
-    image: 'https://i.ibb.co.com/ytz4rBx/Behance-Mockup-Shot-Cover-7.png',
-    title: 'Github-Issue-Tracker',
-    description:
-      'GitHub Issue Tracker is a productivity tool designed to help developers manage and monitor project issues efficiently.',
-    tags: ['Javascript', 'CSS', 'DaisyUi'],
-    github: 'https://github.com/jituman01/B13-A5-Github-Issue-Tracker',
-    demo: 'https://jituman01.github.io/B13-A5-Github-Issue-Tracker',
-    themeColor: 'green',
-  },
-  {
-    image: 'https://i.ibb.co.com/ytz4rBx/Behance-Mockup-Shot-Cover-7.png',
-    title: 'Github-Issue-Tracker',
-    description:
-      'GitHub Issue Tracker is a productivity tool designed to help developers manage and monitor project issues efficiently.',
-    tags: ['Javascript', 'CSS', 'DaisyUi'],
-    github: 'https://github.com/jituman01/B13-A5-Github-Issue-Tracker',
-    demo: 'https://jituman01.github.io/B13-A5-Github-Issue-Tracker',
-    themeColor: 'green',
-  },
-  {
-    image: 'https://i.ibb.co.com/ytz4rBx/Behance-Mockup-Shot-Cover-7.png',
-    title: 'Github-Issue-Tracker',
-    description:
-      'GitHub Issue Tracker is a productivity tool designed to help developers manage and monitor project issues efficiently.',
-    tags: ['Javascript', 'CSS', 'DaisyUi'],
-    github: 'https://github.com/jituman01/B13-A5-Github-Issue-Tracker',
-    demo: 'https://jituman01.github.io/B13-A5-Github-Issue-Tracker',
-    themeColor: 'green',
-  },
-  {
-    image: 'https://i.ibb.co.com/ytz4rBx/Behance-Mockup-Shot-Cover-7.png',
-    title: 'Github-Issue-Tracker',
-    description:
-      'GitHub Issue Tracker is a productivity tool designed to help developers manage and monitor project issues efficiently.',
-    tags: ['Javascript', 'CSS', 'DaisyUi'],
-    github: 'https://github.com/jituman01/B13-A5-Github-Issue-Tracker',
-    demo: 'https://jituman01.github.io/B13-A5-Github-Issue-Tracker',
-    themeColor: 'green',
-  },
-  {
-    image: 'https://i.ibb.co.com/ytz4rBx/Behance-Mockup-Shot-Cover-7.png',
-    title: 'Github-Issue-Tracker',
-    description:
-      'GitHub Issue Tracker is a productivity tool designed to help developers manage and monitor project issues efficiently.',
-    tags: ['Javascript', 'CSS', 'DaisyUi'],
-    github: 'https://github.com/jituman01/B13-A5-Github-Issue-Tracker',
-    demo: 'https://jituman01.github.io/B13-A5-Github-Issue-Tracker',
-    themeColor: 'green',
-  },
 ];
 
 const slideVariants = {

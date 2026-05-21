@@ -7,6 +7,8 @@ import {
   RiHtml5Line,
   RiCss3Line,
   RiShieldUserLine,
+  RiGithubFill,
+  RiNodejsFill,
 } from 'react-icons/ri';
 import {
   IoLogoJavascript,
@@ -19,6 +21,8 @@ import {
   SiExpress,
   SiPrisma,
   SiGit,
+  SiBetterauth,
+  SiGoogleauthenticator,
 } from 'react-icons/si';
 import { ArrowRight, Send } from 'lucide-react';
 import Link from 'next/link';
@@ -59,8 +63,8 @@ const orbitData = [
     icons: [
       <SiMongodb key="mongo" />,
       <SiExpress key="express" />,
-      <SiPrisma key="prisma" />,
-      <IoLogoFirebase key="fb" />,
+      <RiNodejsFill key="prisma" />,
+      <SiGoogleauthenticator key="fb" />,
     ],
   },
   {
@@ -73,7 +77,8 @@ const orbitData = [
       <RiHtml5Line key="html" />,
       <RiCss3Line key="css" />,
       <SiGit key="git" />,
-      <RiShieldUserLine key="auth" />,
+      <RiGithubFill key="auth" />,
+      <SiBetterauth key="auth" />,
     ],
   },
 ];
@@ -135,10 +140,10 @@ const SkillsOrbit = () => {
         {/* Right Content Area: 4-Track Orbiting Planetary System */}
         <div className="relative flex items-center justify-center h-[560px] w-full overflow-hidden sm:overflow-visible">
           {/* Central Sun core with Dynamic Blinking Glow */}
-          <div className="absolute z-30 w-16 h-16 rounded-full border border-purple-400 dark:border-blue-900 flex items-center justify-center backdrop-blur-xl uppercase animate-glow-pulse ">
-            <h3 className="text-xs font-bold tracking-wider text-slate-800 dark:text-white">
-              JITU
-            </h3>
+          <div className="absolute z-30 w-16 h-16 rounded-full border  border-purple-400 dark:border-blue-900 flex items-center justify-center backdrop-blur-xl uppercase animate-glow-pulse ">
+            <img
+              width={40} height={50}
+              src="./dark-logo.png" alt="" />
           </div>
 
           {/* Map Orbit System */}
@@ -149,7 +154,7 @@ const SkillsOrbit = () => {
             >
               {/* Radial Orbit Ring Pathway */}
               <div
-                className={`absolute rounded-full border border-slate-900/[0.06] dark:border-white/[0.05] shadow-[inset_0_0_12px_rgba(0,0,0,0.01)] ${orbit.size}`}
+                className={`absolute rounded-full border border-slate-900/[0.07] dark:border-white/[0.06] shadow-[inset_0_0_12px_rgba(0,0,0,0.01)] ${orbit.size}`}
               />
 
               {/* Orbiting element handling node rotation with direct/reverse mapping */}
