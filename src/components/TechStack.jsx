@@ -21,6 +21,7 @@ const techCategories = [
       { name: 'HeroUI', icon: 'https://avatars.githubusercontent.com/u/159396348?s=200&v=4' },
       { name: 'Lucide React', icon: 'https://lucide.dev/logo.light.svg' },
       { name: 'daisyUI', icon: 'https://i.ibb.co.com/zT6PWZwD/images-removebg-preview.png' },
+      {name: 'Lottie React',icon: 'https://i.ibb.co.com/p6SmmFgQ/1-Ne-VWPYVuurc41-Qt4-Vv46g-Q.jpg'}
     ],
   },
   {

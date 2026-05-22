@@ -19,7 +19,7 @@ const About = () => {
   if (!mounted) return null;
 
   return (
-    <section className="py-20 px-6 bg-transparent text-slate-900 dark:text-white min-h-screen flex flex-col items-center justify-center">
+    <section className=" px-6 bg-transparent text-slate-900 dark:text-white min-h-screen flex flex-col items-center justify-center">
       
       {/* Header */}
       <motion.div 

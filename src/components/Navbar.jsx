@@ -55,7 +55,7 @@ const Navbar = () => {
   {/* Left Logo */}
   <Link
     href="/"
-    className="absolute left-3 md:left-6 flex items-center justify-center w-11 h-11 rounded-full overflow-hidden  bg-white/10 dark:bg-white/10 backdrop-blur-xl shadow-lg"
+    className="absolute left-3 md:left-6 flex items-center justify-center w-11 h-11  overflow-hidden"
   >
     <Image
       src={theme === 'dark' ? '/light-logo.png' : '/dark-logo.png'}
