@@ -111,10 +111,10 @@ const Hero = () => {
   <div className="relative w-60 h-60 sm:w-72 sm:h-72 lg:w-[400px] lg:h-[400px] rounded-full border border-black/5 dark:border-white/10 p-2 bg-white/5 backdrop-blur-sm shadow-2xl">
     
     {/* --- CIRCLE ER VHETORE GLOW --- */}
-    <div className="relative w-full h-full rounded-full overflow-hidden bg-gray-100 dark:bg-[#0a0a0a] border-4 border-white/10 flex items-center justify-center">
+    <div className="relative w-full h-full rounded-full overflow-hidden bg-gray-100 dark:bg-[#0a0a0a] border- border-white/10 flex items-center justify-center">
       
       {/* Inner Blue Glow*/}
-      <div className="absolute w-[70%] h-[70%] bg-blue-500/40 rounded-full blur-[60px] pointer-events-none"></div>
+      <div className="absolute w-[70%] h-[70%] bg-blue-500/40 rounded-full blur-[50px] pointer-events-none"></div>
       
       <img 
         src="/profile.png" 

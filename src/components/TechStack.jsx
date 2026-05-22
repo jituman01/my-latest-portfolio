@@ -20,7 +20,7 @@ const techCategories = [
       { name: 'Framer Motion', icon: 'https://pagepro.co/blog/wp-content/uploads/2020/03/framer-motion.png' },
       { name: 'HeroUI', icon: 'https://avatars.githubusercontent.com/u/159396348?s=200&v=4' },
       { name: 'Lucide React', icon: 'https://lucide.dev/logo.light.svg' },
-      { name: 'daisyUI', icon: 'https://unpkg.com/daisyui@4.12.10/dist/images/logo.svg' },
+      { name: 'daisyUI', icon: 'https://i.ibb.co.com/zT6PWZwD/images-removebg-preview.png' },
     ],
   },
   {
@@ -32,7 +32,7 @@ const techCategories = [
       { name: 'Node.js', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg' },
       { name: 'Express', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg' },
       { name: 'MongoDB', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg' },
-      { name: 'Better Auth', icon: 'https://unpkg.com/better-auth@1.1.1/docs/public/favicon.svg' }
+      
     ],
   },
   {
@@ -42,12 +42,14 @@ const techCategories = [
     textGlow: 'text-purple-500 dark:text-purple-400',
     skills: [
       { name: 'Git', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg' },
+      { name: 'Better Auth', icon: 'https://i.ibb.co.com/Kct0J5SX/betterauth.jpg' },
       { 
       name: 'Google Auth', 
       icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/google/google-original.svg' 
       },
       { name: 'Vercel', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vercel/vercel-original.svg' },
       { name: 'Netlify', icon: 'https://raw.githubusercontent.com/devicons/devicon/v2.16.0/icons/netlify/netlify-original.svg' },
+      {name: 'GitHub',icon: 'https://skillicons.dev/icons?i=github'}
     ],
   },
 ];

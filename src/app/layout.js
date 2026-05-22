@@ -26,7 +26,7 @@ export default function RootLayout({ children }) {
           attribute="class" 
           defaultTheme="dark" 
           enableSystem={false} 
-          storageKey="jituma-final-v3" 
+          storageKey="jituman-final-v3" 
         >
           <Navbar />
           <main className="flex-grow">
