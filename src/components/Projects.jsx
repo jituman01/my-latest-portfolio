@@ -11,6 +11,16 @@ import { LogoGithub } from '@gravity-ui/icons';
 
 const projectsData = [
   {
+    image: 'https://i.ibb.co.com/Hp1Hz8ff/Behance-Mockup-Shot-Cover-9.png',
+    title: 'DOcAppoint: Appointment Booking Platform',
+    description:
+      'A Doctor Appointment Management System is a web-based platform designed to streamline the interaction between patients and healthcare providers. Its primary goal is to provide a fast, efficient, and hassle-free experience for patients booking medical consultations.',
+    tags: ['Next.js', 'Tailwind', 'MongoDB', 'BetterAuth', 'ExpressJs','GoogleAuth'],
+    github: 'https://github.com/jituman01/doctor-appointment-manager',
+    demo: 'https://doctor-appointment-manager-lovat.vercel.app',
+    themeColor: 'purple',
+  },
+  {
     image: 'https://i.ibb.co.com/hN1v2Vq/Behance-Mockup-Shot-Cover-8.png',
     title: 'Wanderlast: Travel Booking Platform',
     description:
