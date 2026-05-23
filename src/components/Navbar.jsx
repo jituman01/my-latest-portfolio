@@ -57,13 +57,15 @@ const Navbar = () => {
     href="/"
     className="absolute left-3 md:left-6 flex items-center justify-center w-11 h-11  overflow-hidden"
   >
-    <Image
+        <div>
+          <Image
       src={theme === 'dark' ? '/light-logo.png' : '/dark-logo.png'}
       alt="Logo"
-      width={44}
-      height={44}
+      width={20}
+      height={20}
       className="object-cover w-full h-full"
     />
+    </div>
   </Link>
 
   {/* Center Navbar */}

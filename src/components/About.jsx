@@ -46,7 +46,7 @@ const About = () => {
           transition={{ duration: 0.8 }}
           className="relative flex justify-center lg:justify-start"
         >
-          <div className="absolute -inset-4"></div>
+          <div className=" w-100 h-100">
 
           <Lottie
             animationData={
@@ -55,7 +55,8 @@ const About = () => {
                 : lightAnimation
             }
             loop={true}
-          />
+            />
+            </div>
         </motion.div>
 
         {/* Right Side */}
