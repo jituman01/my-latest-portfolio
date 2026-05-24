@@ -121,6 +121,7 @@ const Hero = () => {
               <div className="absolute w-[70%] h-[70%] bg-blue-500/40 rounded-full blur-[50px] pointer-events-none"></div>
 
               <img
+                
                 src="/profile.png"
                 alt="Naimul"
                 className="relative z-10 w-full h-full object-contain scale-130 translate-y-3"

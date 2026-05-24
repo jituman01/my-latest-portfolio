@@ -50,7 +50,7 @@ const Navbar = () => {
       
       <Link
         href="/"
-        className="absolute left-4 md:left-8 hidden sm:flex items-center justify-center w-10 h-10 hover:scale-105 transition-transform"
+        className="absolute left-4 md:left-8 items-center justify-center mt-5 w-10 h-10 hover:scale-105 transition-transform"
       >
         <Image
           src={theme === 'dark' ? '/light-logo.png' : '/dark-logo.png'}
