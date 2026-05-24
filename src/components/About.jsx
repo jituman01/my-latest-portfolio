@@ -4,6 +4,7 @@ import { Award, Briefcase, Headphones, Download, MapPin, GraduationCap } from 'l
 import { useTheme } from 'next-themes';
 import AOS from 'aos';
 import 'aos/dist/aos.css'; 
+import Link from 'next/link';
 
 const About = () => {
   const { theme } = useTheme();
@@ -127,13 +128,16 @@ const About = () => {
           </p>
 
           <div className="flex justify-center lg:justify-start">
-            <button className="flex items-center gap-3 px-8 py-4 bg-black dark:bg-white text-white dark:text-black font-bold shadow-2xl transition-all duration-300 transform hover:scale-105 active:scale-95 rounded-full group cursor-pointer">
+            <Link
+            href={"https://drive.google.com/file/d/1nZFXtPpMWHR-S_SmIMl6L2Edmk4DmYJk/view?usp=sharing"}>
+              <button className="flex items-center gap-3 px-8 py-4 bg-black dark:bg-white text-white dark:text-black font-bold shadow-2xl transition-all duration-300 transform hover:scale-105 active:scale-95 rounded-full group cursor-pointer">
               Download Resume
               <Download
                 size={20}
                 className="group-hover:translate-y-1 transition-transform duration-300"
               />
             </button>
+            </Link>
           </div>
         </div>
 
