@@ -55,8 +55,8 @@ const Navbar = () => {
         <Image
           src={theme === 'dark' ? '/light-logo.png' : '/dark-logo.png'}
           alt="Logo"
-          width={24}
-          height={24}
+          width={26}
+          height={26}
           className="object-contain"
           priority
         />

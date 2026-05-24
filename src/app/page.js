@@ -11,14 +11,13 @@ import Footer from "@/components/Footer";
 import Achievements from "@/components/Achievements";
 import Services from "@/components/Services";
 import SpiderNetBg from "@/components/SpiderNetBg"; 
-import WelcomeLoader from "@/components/WelcomeLoader"; // লোডারটি ইমপোর্ট করা হলো
+import WelcomeLoader from "@/components/WelcomeLoader"; 
 
 export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
 
   return (
     <>
-      {/* ওয়েলকাম অ্যানিমেশন স্ক্রিন */}
       {isLoading && <WelcomeLoader onComplete={() => setIsLoading(false)} />}
 
       <main className={`relative min-h-screen w-full bg-white dark:bg-[#0a0a0a] transition-colors duration-300 ${isLoading ? 'overflow-hidden max-h-screen' : ''}`}>
