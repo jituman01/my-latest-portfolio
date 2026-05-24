@@ -1,16 +1,28 @@
 'use client';
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useEffect, useState } from 'react';
 import { Mail, Send, ArrowRight } from 'lucide-react';
 import { FaLinkedin, FaXTwitter } from 'react-icons/fa6';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 const ContactSection = () => {
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+    AOS.init({
+      duration: 600,
+      once: true,
+      easing: 'ease-out-cubic',
+    });
+  }, []);
+
   const contactMethods = [
     {
       icon: <Mail className="text-red-500 dark:text-red-400" size={20} />,
       title: 'Email',
       value: 'naimulislamjitu585@gmail.com',
-      href: 'mailto:naimulislamjitu585@gmail.com',
+      href: 'https://mail.google.com/mail/?view=cm&fs=1&to=naimulislamjitu585@gmail.com',
       color: 'hover:border-red-500/50',
     },
     {
@@ -33,35 +45,7 @@ const ContactSection = () => {
     },
   ];
 
-  // Animation Variants
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.15,
-        delayChildren: 0.1,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { y: 30, opacity: 0 },
-    visible: {
-      y: 0,
-      opacity: 1,
-      transition: { duration: 0.5, ease: 'easeOut' },
-    },
-  };
-
-  const formVariants = {
-    hidden: { x: 50, opacity: 0 },
-    visible: {
-      x: 0,
-      opacity: 1,
-      transition: { duration: 0.6, ease: 'easeOut' },
-    },
-  };
+  if (!mounted) return null;
 
   return (
     <section
@@ -69,53 +53,36 @@ const ContactSection = () => {
       id="contact"
     >
       {/* Header Section */}
-      <motion.div
-        initial={{ opacity: 0, y: -30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        // Changed once: true to once: false
-        viewport={{ once: false, margin: '-100px' }}
-        transition={{ duration: 0.8 }}
-        className="text-center mb-16"
-      >
+      <div className="text-center mb-16" data-aos="fade-up">
         <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-2 uppercase tracking-tight">
-          READY TO BUILD ?
+          READY TO BUILD?
         </h2>
         <p className="text-gray-500 dark:text-gray-400 font-medium">
           Contact Me
         </p>
-      </motion.div>
+      </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 w-full justify-items-center items-start">
         {/* Left Side - Talk to me */}
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          // Changed once: true to once: false
-          viewport={{ once: false, amount: 0.2 }}
+        <div
           className="space-y-4 w-full max-w-[280px]"
+          data-aos="fade-right"
+          data-aos-delay="100"
         >
-          <motion.h3
-            variants={itemVariants}
-            className="text-xl font-semibold mb-6 text-center text-gray-800 dark:text-gray-200"
-          >
+          <h3 className="text-xl font-semibold mb-6 text-center text-gray-800 dark:text-gray-200">
             Talk to me
-          </motion.h3>
+          </h3>
 
           {contactMethods.map((method, index) => (
-            <motion.a
+            <a
               key={index}
               href={method.href}
               target="_blank"
-              variants={itemVariants}
-              whileHover={{ scale: 1.03, y: -5 }}
-              whileTap={{ scale: 0.97 }}
-              // Dark mode background-e white/[0.07] ebong border-e white/[0.15] use kora hoyeche
-              className={`flex flex-col items-center p-5 bg-white/10 dark:bg-white/[0.07] backdrop-blur-xl border border-gray-200 dark:border-white/[0.15] rounded-3xl transition-all duration-300 ${method.color} group shadow-lg relative overflow-hidden`}
+              rel="noopener noreferrer"
+              className={`flex flex-col items-center p-5 bg-white/10 dark:bg-white/[0.07] backdrop-blur-xl border border-gray-200 dark:border-white/[0.15] rounded-3xl transition-all duration-300 transform hover:-translate-y-1.5 hover:scale-[1.02] ${method.color} group shadow-lg relative overflow-hidden`}
             >
-              {/* Subtle Inner Glow - eti card-ke arektu light dekhate shahajjo korbe */}
+              {/* Subtle Inner Glow */}
               <div className="absolute inset-0 bg-gradient-to-br from-white/[0.05] to-transparent pointer-events-none" />
-
               <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
               <div className="p-3 bg-gray-100 dark:bg-white/10 rounded-2xl mb-3 group-hover:bg-white dark:group-hover:bg-white/15 transition-colors shadow-sm relative z-10">
@@ -134,21 +101,18 @@ const ContactSection = () => {
                 Write me{' '}
                 <ArrowRight
                   size={14}
-                  className="group-hover:translate-x-1 transition-transform"
+                  className="group-hover:translate-x-1 transition-transform duration-300"
                 />
               </span>
-            </motion.a>
+            </a>
           ))}
-        </motion.div>
+        </div>
 
         {/* Right Side - Form */}
-        <motion.div
-          variants={formVariants}
-          initial="hidden"
-          whileInView="visible"
-          // Changed once: true to once: false
-          viewport={{ once: false, amount: 0.2 }}
+        <div
           className="w-full max-w-[450px]"
+          data-aos="fade-left"
+          data-aos-delay="150"
         >
           <h3 className="text-xl font-semibold mb-6 text-center text-gray-800 dark:text-gray-200">
             Write me your project
@@ -163,50 +127,38 @@ const ContactSection = () => {
                 placeholder: 'Insert your email',
               },
             ].map((field, idx) => (
-              <motion.div
-                key={idx}
-                variants={itemVariants}
-                className="relative group"
-              >
+              <div key={idx} className="relative group">
                 <label className="absolute -top-3 left-5 px-2 bg-white dark:bg-[#0a0a0a] text-xs font-bold text-gray-500 dark:text-gray-400 group-focus-within:text-cyan-600 dark:group-focus-within:text-cyan-400 transition-colors z-10">
                   {field.label}
                 </label>
                 <input
                   type={field.type}
                   placeholder={field.placeholder}
-                  className="w-full p-4 bg-transparent border-2 border-gray-100 dark:border-white/10 rounded-2xl focus:outline-none focus:border-cyan-500 dark:focus:border-cyan-400 transition-all text-gray-900 dark:text-gray-200"
+                  className="w-full p-4 bg-transparent border-2 border-gray-100 dark:border-white/10 rounded-2xl focus:outline-none focus:border-cyan-500 dark:focus:border-cyan-400 transition-all duration-300 text-gray-900 dark:text-gray-200"
                 />
-              </motion.div>
+              </div>
             ))}
 
-            <motion.div variants={itemVariants} className="relative group">
+            <div className="relative group">
               <label className="absolute -top-3 left-5 px-2 bg-white dark:bg-[#0a0a0a] text-xs font-bold text-gray-500 dark:text-gray-400 group-focus-within:text-cyan-600 dark:group-focus-within:text-cyan-400 transition-colors z-10">
                 Project
               </label>
               <textarea
                 rows="4"
                 placeholder="Write your project"
-                className="w-full p-4 bg-transparent border-2 border-gray-100 dark:border-white/10 rounded-2xl focus:outline-none focus:border-cyan-500 dark:focus:border-cyan-400 transition-all text-gray-900 dark:text-gray-200 resize-none"
+                className="w-full p-4 bg-transparent border-2 border-gray-100 dark:border-white/10 rounded-2xl focus:outline-none focus:border-cyan-500 dark:focus:border-cyan-400 transition-all duration-300 text-gray-900 dark:text-gray-200 resize-none"
               ></textarea>
-            </motion.div>
+            </div>
 
-            <motion.button
-              variants={itemVariants}
-              whileHover={{
-                scale: 1.02,
-                boxShadow: '0px 10px 20px rgba(0,0,0,0.1)',
-              }}
-              whileTap={{ scale: 0.98 }}
-              className="flex items-center justify-center gap-3 w-full lg:w-max px-12 py-4 bg-gray-900 dark:bg-white text-white dark:text-black rounded-2xl font-bold transition-all shadow-xl group cursor-pointer"
-            >
+            <button className="flex items-center justify-center gap-3 w-full lg:w-max px-12 py-4 bg-gray-900 dark:bg-white text-white dark:text-black rounded-2xl font-bold transition-all duration-300 transform active:scale-98 hover:shadow-[0_10px_20px_rgba(0,0,0,0.1)] group cursor-pointer">
               Send Message
               <Send
                 size={18}
-                className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform"
+                className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform duration-300"
               />
-            </motion.button>
+            </button>
           </form>
-        </motion.div>
+        </div>
       </div>
     </section>
   );

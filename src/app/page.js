@@ -6,19 +6,21 @@ import Qualification from "@/components/Qualification";
 import Projects from "@/components/Projects";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
-import ToolKit from "@/components/ToolKit";
 import Achievements from "@/components/Achievements";
+import Services from "@/components/Services";
+import SpiderNetBg from "@/components/SpiderNetBg"; 
 
 export default function Home() {
   return (
     <main className="relative min-h-screen w-full bg-white dark:bg-[#0a0a0a] transition-colors duration-300">
       
-      {/* --- GLOBAL BACKGROUND GLOWS --- */}
+      <SpiderNetBg />
 
+      {/* --- GLOBAL BACKGROUND GLOWS --- */}
       <div className="fixed inset-0 pointer-events-none overflow-hidden" style={{ zIndex: 0 }}>
         
         {/* Top Left Glow */}
-        <div className="absolute top-[-10%] left-[-10%] w-[350px] h-[350px] md:w-[600px] md:h-[600px] bg-blue-600/30 dark:bg-blue-600/20 blur-[100px] md:blur-[150px] rounded-full" />
+        <div className="absolute top-[-10%] left-[-10%] w-[350px] h-[350px] md:w-[600px] md:h-[600px] bg-blue-400/30 dark:bg-blue-400/20 blur-[100px] md:blur-[150px] rounded-full" />
         
         {/* Middle Right Glow */}
         <div className="absolute top-[30%] right-[-10%] w-[350px] h-[350px] md:w-[600px] md:h-[600px] bg-purple-600/20 dark:bg-purple-600/10 blur-[90px] md:blur-[140px] rounded-full" />
@@ -31,14 +33,14 @@ export default function Home() {
       <div className="relative" style={{ zIndex: 10 }}>
         <Hero />
         <About />
-        <TechStack></TechStack>
-        <Skills></Skills>
+        <TechStack />
+        <Skills />
         <Projects />
-        <Qualification></Qualification>
-        <Achievements/>
-        <ToolKit/>
+        <Qualification />
+        <Achievements />
+        <Services />
         <ContactSection />
-        <Footer></Footer>
+        <Footer />
       </div>
       
     </main>

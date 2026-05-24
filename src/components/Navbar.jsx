@@ -1,132 +1,115 @@
 'use client';
-import React, { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
-import {
-  Home,
-  Cpu,
-  GraduationCap,
-  Briefcase,
-  Send,
-  Sun,
-  Moon,
-} from 'lucide-react';
+import React, { useEffect, useState } from 'react';
+import { Home, Cpu, GraduationCap, Briefcase, Send, Sun, Moon } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useTheme } from 'next-themes';
-import { usePathname } from 'next/navigation';
 
 const Navbar = () => {
   const [hovered, setHovered] = useState(null);
+  const [activeSection, setActiveSection] = useState('hero');
   const { theme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
-  const pathname = usePathname();
+
+  const navItems = [
+    { name: 'Home', href: '#hero', id: 'hero', icon: Home, color: 'text-yellow-500 dark:text-yellow-400' },
+    { name: 'Tech Stack', href: '#tech', id: 'tech', icon: Cpu, color: 'text-cyan-500 dark:text-cyan-400' },
+    { name: 'Qualification', href: '#qualification', id: 'qualification', icon: GraduationCap, color: 'text-purple-500 dark:text-purple-400' },
+    { name: 'Projects', href: '#projects', id: 'projects', icon: Briefcase, color: 'text-orange-500 dark:text-orange-400' },
+    { name: 'Contact Me', href: '#contact', id: 'contact', icon: Send, color: 'text-pink-500 dark:text-pink-400' },
+  ];
 
   useEffect(() => {
     setMounted(true);
-  }, []);
 
-  const navItems = [
-    { name: 'Home', href: '#hero', icon: Home, color: 'text-yellow-300' },
-    { name: 'Tech Stack', href: '#tech', icon: Cpu, color: 'text-cyan-300' },
-    {
-      name: 'Qualification',
-      href: '#qualification',
-      icon: GraduationCap,
-      color: 'text-purple-300',
-    },
-    {
-      name: 'Projects',
-      href: '#projects',
-      icon: Briefcase,
-      color: 'text-orange-300',
-    },
-    {
-      name: 'Contact Me',
-      href: '#contact',
-      icon: Send,
-      color: 'text-pink-300',
-    },
-  ];
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY + 160; 
+
+      for (const item of navItems) {
+        const el = document.getElementById(item.id);
+        if (el) {
+          const top = el.offsetTop;
+          const height = el.offsetHeight;
+
+          if (scrollPosition >= top && scrollPosition < top + height) {
+            setActiveSection(item.id);
+            break;
+          }
+        }
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   if (!mounted) return null;
 
   return (
-    <div className="fixed top-6 left-0 right-0 flex justify-center items-center z-50 px-2">
-  {/* Left Logo */}
-  <Link
-    href="/"
-    className="absolute left-3 md:left-6 flex items-center justify-center w-11 h-11  overflow-hidden"
-  >
-        <div>
-          <Image
-      src={theme === 'dark' ? '/light-logo.png' : '/dark-logo.png'}
-      alt="Logo"
-      width={20}
-      height={20}
-      className="object-cover w-full h-full"
-    />
-    </div>
-  </Link>
+    <div className="fixed top-4 md:top-6 left-0 right-0 flex justify-center items-center z-50 px-4 max-w-7xl mx-auto">
+      
+      <Link
+        href="/"
+        className="absolute left-4 md:left-8 hidden sm:flex items-center justify-center w-10 h-10 hover:scale-105 transition-transform"
+      >
+        <Image
+          src={theme === 'dark' ? '/light-logo.png' : '/dark-logo.png'}
+          alt="Logo"
+          width={24}
+          height={24}
+          className="object-contain"
+          priority
+        />
+      </Link>
 
-  {/* Center Navbar */}
-  <motion.div
-    initial={{ y: -100, opacity: 0 }}
-    animate={{ y: 0, opacity: 1 }}
-    className="flex items-center gap-1 p-1.5 md:p-2 bg-white/10 dark:bg-white/10 backdrop-blur-xl border border-black/5 dark:border-white/10 rounded-full shadow-lg max-w-full"
-  >
-    <div className="flex items-center gap-0.5 md:gap-1 px-1">
-      {navItems.map(item => {
-        const Icon = item.icon;
-        const isActive = pathname === item.href;
+      <nav className="flex items-center gap-1 p-3 bg-white/40 dark:bg-black/20 backdrop-blur-xl border border-gray-200/50 dark:border-white/10 rounded-full shadow-xl transition-all max-w-[95vw] sm:max-w-auto overflow-x-auto no-scrollbar">
+        <div className="flex items-center gap-0.5 md:gap-1 px-1">
+          {navItems.map((item) => {
+            const Icon = item.icon;
+            const isActive = activeSection === item.id;
 
-        return (
-          <Link key={item.name} href={item.href} className="relative group">
-            <motion.div
-              onMouseEnter={() => setHovered(item.name)}
-              onMouseLeave={() => setHovered(null)}
-              className={`flex items-center gap-2 px-2.5 md:px-4 py-2 rounded-full transition-all duration-300 relative ${
-                isActive || hovered === item.name
-                  ? 'text-black dark:text-white'
-                  : 'text-gray-500 dark:text-gray-400'
-              }`}
-            >
-              <span className="flex items-center justify-center p-1.5 rounded-lg transition-all duration-300">
+            return (
+              <Link 
+                key={item.name} 
+                href={item.href} 
+                className="relative py-1.5 px-3 md:px-4 rounded-full transition-all duration-200 group flex items-center gap-2 select-none"
+                onMouseEnter={() => setHovered(item.name)}
+                onMouseLeave={() => setHovered(null)}
+              >
+                <div
+                  className={`absolute inset-0 rounded-full bg-neutral-900/5 dark:bg-white/10 transition-all duration-200 -z-10 transform ${
+                    isActive || hovered === item.name ? 'scale-100 opacity-100' : 'scale-90 opacity-0'
+                  }`}
+                />
+
                 <Icon
-                  size={18}
-                  className={`${item.color} drop-shadow-[0_0_5px_rgba(255,255,255,0.2)] group-hover:scale-110 transition-transform`}
+                  size={17}
+                  className={`${item.color} transition-transform duration-200 ${
+                    isActive || hovered === item.name ? 'scale-110' : 'scale-100'
+                  }`}
                 />
-              </span>
 
-              <span className="text-xs font-medium hidden lg:block">
-                {item.name}
-              </span>
+                <span
+                  className={`text-xs font-semibold transition-colors duration-200 hidden md:block ${
+                    isActive ? 'text-blue-600 dark:text-white' : 'text-slate-600 dark:text-slate-400'
+                  }`}
+                >
+                  {item.name}
+                </span>
+              </Link>
+            );
+          })}
+        </div>
+      </nav>
 
-              {(isActive || hovered === item.name) && (
-                <motion.div
-                  layoutId="nav-pill"
-                  className="absolute inset-0 bg-black/10 dark:bg-white/15 rounded-full -z-10"
-                  transition={{
-                    type: 'spring',
-                    bounce: 0.2,
-                    duration: 0.6,
-                  }}
-                />
-              )}
-            </motion.div>
-          </Link>
-        );
-      })}
+      <button
+        onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+        aria-label="Toggle Theme"
+        className="absolute right-4 md:right-8 w-10 h-10 flex items-center justify-center rounded-full bg-white/40 dark:bg-black/20 backdrop-blur-xl border border-gray-200/50 dark:border-white/10 shadow-lg text-slate-600 dark:text-white hover:bg-white/60 dark:hover:bg-white/20 active:scale-95 transition-all cursor-pointer"
+      >
+        {theme === 'dark' ? <Sun size={17} /> : <Moon size={17} />}
+      </button>
     </div>
-  </motion.div>
-
-  {/* Right Theme Toggle */}
-  <button
-    onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-    className="absolute right-3 md:right-6 w-11 h-11 flex items-center justify-center rounded-full bg-white/10 dark:bg-white/10 backdrop-blur-xl border border-black/10 dark:border-white/10 shadow-lg text-gray-500 dark:text-white hover:text-black dark:hover:text-white transition-colors"
-  >
-    {theme === 'dark' ? <Sun size={18} /> : <Moon size={18} />}
-  </button>
-</div>
   );
 };
 

@@ -1,12 +1,9 @@
 'use client';
 import React, { useEffect, useState } from 'react';
-import { motion } from 'framer-motion';
-import { Award, Briefcase, Headphones, Download } from 'lucide-react';
-import Lottie from 'lottie-react';
+import { Award, Briefcase, Headphones, Download, MapPin, GraduationCap } from 'lucide-react';
 import { useTheme } from 'next-themes';
-
-import lightAnimation from '../animations/light.json';
-import darkAnimation from '../animations/dark2.json';
+import AOS from 'aos';
+import 'aos/dist/aos.css'; 
 
 const About = () => {
   const { theme } = useTheme();
@@ -14,90 +11,104 @@ const About = () => {
 
   useEffect(() => {
     setMounted(true);
+    
+    AOS.init({
+      duration: 1000, 
+      once: true,    
+      easing: 'ease-out-cubic', 
+    });
   }, []);
 
   if (!mounted) return null;
 
   return (
-    <section className=" px-6 bg-transparent text-slate-900 dark:text-white min-h-screen flex flex-col items-center justify-center">
-      
-      {/* Header */}
-      <motion.div 
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: false, margin: "-100px" }}
-        transition={{ duration: 0.6 }}
-        className="text-center mb-16"
-      >
-        <h2 className="text-4xl font-bold mb-2">About</h2>
-
+    <section 
+      className="px-6 bg-transparent text-slate-900 dark:text-white min-h-screen flex flex-col items-center justify-center py-20 overflow-hidden"
+      id="about"
+    >
+      <div className="text-center mb-16" data-aos="fade-up">
+        <h2 className="text-4xl font-bold mb-2 tracking-tight">About</h2>
         <p className="text-slate-500 dark:text-gray-500 tracking-widest uppercase text-sm font-medium">
           My Introduction
         </p>
-      </motion.div>
+      </div>
 
       <div className="max-w-6xl w-full grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
         
-        {/* Left Side */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.8 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: false, margin: "-50px" }}
-          transition={{ duration: 0.8 }}
-          className="relative flex justify-center lg:justify-start"
+        {/* Left Side: Personal Details, Education, and Interests */}
+        <div 
+          className="bg-white/50 dark:bg-white/[0.03] backdrop-blur-md border border-slate-200 dark:border-white/10 p-8 rounded-3xl flex flex-col gap-8 shadow-sm"
+          data-aos="fade-right"
         >
-          <div className=" w-100 h-100">
-
-          <Lottie
-            animationData={
-              theme === 'dark'
-                ? darkAnimation
-                : lightAnimation
-            }
-            loop={true}
-            />
+          {/* Section: Details and Location */}
+          <div className="flex flex-col gap-4">
+            <h3 className="text-2xl font-bold text-slate-900 dark:text-white">Details</h3>
+            
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 rounded-full bg-slate-100 dark:bg-white/10 flex items-center justify-center border border-slate-200/50 dark:border-white/10">
+                <MapPin size={20} className="text-blue-600 dark:text-blue-400" />
+              </div>
+              <div>
+                <p className="text-xs text-slate-500 dark:text-gray-400 font-medium">Location</p>
+                <p className="text-sm md:text-base font-semibold text-slate-900 dark:text-white">Natore, Bangladesh</p>
+              </div>
             </div>
-        </motion.div>
+          </div>
 
-        {/* Right Side */}
-        <motion.div
-          initial={{ opacity: 0, x: 50 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: false, margin: "-50px" }}
-          transition={{ duration: 0.8 }}
-          className="flex flex-col gap-8"
-        >
-          {/* Cards */}
+          {/* Section: Education */}
+          <div className="flex flex-col gap-4">
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 rounded-full bg-slate-100 dark:bg-white/10 flex items-center justify-center border border-slate-200/50 dark:border-white/10">
+                <GraduationCap size={20} className="text-blue-600 dark:text-blue-400" />
+              </div>
+              <div>
+                <p className="text-xs text-slate-500 dark:text-gray-400 font-medium">Education</p>
+                <p className="text-sm md:text-base font-semibold text-slate-900 dark:text-white leading-snug max-w-xs">
+                  Bachelor of Social Science
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Section: Interests with Rounded Pills */}
+          <div className="flex flex-col gap-4">
+            <p className="text-xs text-slate-500 dark:text-gray-400 font-medium">Interests</p>
+            <div className="flex flex-wrap gap-2.5">
+              {[
+                "Frontend Development", 
+                "Web Applications", 
+                "Responsive UI/UX", 
+                "E-Commerce Solutions", 
+                "Financial Apps Logic"
+              ].map((interest) => (
+                <span 
+                  key={interest} 
+                  className="px-4 py-1.5 rounded-full bg-slate-100 dark:bg-white/10 text-xs font-semibold text-slate-800 dark:text-white border border-slate-200/50 dark:border-white/10 transition-colors hover:border-blue-500/50 dark:hover:border-blue-400/50"
+                >
+                  {interest}
+                </span>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* Right Side: Original About Cards and Text */}
+        <div className="flex flex-col gap-8" data-aos="fade-left">
+          
+          {/* Cards Grid */}
           <div className="grid grid-cols-3 gap-4">
             <AboutCard
-              icon={
-                <Award
-                  size={24}
-                  className="text-blue-600 dark:text-blue-400"
-                />
-              }
+              icon={<Award size={24} className="text-blue-600 dark:text-blue-400" />}
               title="Experience"
               desc="Learning & Projects"
             />
-
             <AboutCard
-              icon={
-                <Briefcase
-                  size={24}
-                  className="text-blue-600 dark:text-blue-400"
-                />
-              }
+              icon={<Briefcase size={24} className="text-blue-600 dark:text-blue-400" />}
               title="Completed"
               desc="20+ Projects"
             />
-
             <AboutCard
-              icon={
-                <Headphones
-                  size={24}
-                  className="text-blue-600 dark:text-blue-400"
-                />
-              }
+              icon={<Headphones size={24} className="text-blue-600 dark:text-blue-400" />}
               title="Support"
               desc="Online 24/7"
             />
@@ -116,29 +127,28 @@ const About = () => {
           </p>
 
           <div className="flex justify-center lg:justify-start">
-            <button className="flex items-center gap-3 px-8 py-4 bg-black dark:bg-white text-white dark:text-black rounded-full font-bold shadow-2xl hover:scale-105 transition-all rounded-2xl font-semibold shadow-lg group cursor-pointer">
+            <button className="flex items-center gap-3 px-8 py-4 bg-black dark:bg-white text-white dark:text-black font-bold shadow-2xl transition-all duration-300 transform hover:scale-105 active:scale-95 rounded-full group cursor-pointer">
               Download Resume
-
               <Download
                 size={20}
-                className="group-hover:translate-y-1 transition-transform"
+                className="group-hover:translate-y-1 transition-transform duration-300"
               />
             </button>
           </div>
-        </motion.div>
+        </div>
+
       </div>
     </section>
   );
 };
 
+// Clean UI Card with Hover Effect
 const AboutCard = ({ icon, title, desc }) => (
-  <div className="bg-white/50 dark:bg-white/5 backdrop-blur-sm border border-slate-200 dark:border-white/10 p-5 rounded-2xl flex flex-col items-center text-center gap-2 hover:scale-105 transition-all">
+  <div className="bg-white/50 dark:bg-white/[0.03] backdrop-blur-md border border-slate-200 dark:border-white/10 p-5 rounded-2xl flex flex-col items-center text-center gap-2 transition-all duration-300 transform hover:scale-105 hover:bg-white/80 dark:hover:bg-white/10 shadow-sm hover:shadow-md">
     {icon}
-
     <h4 className="text-sm md:text-base font-bold text-slate-900 dark:text-white">
       {title}
     </h4>
-
     <p className="text-[10px] md:text-xs text-slate-500 dark:text-gray-400">
       {desc}
     </p>
