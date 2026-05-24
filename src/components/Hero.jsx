@@ -70,7 +70,7 @@ const Hero = () => {
           <h2 className="text-xl md:text-3xl text-gray-600 dark:text-gray-400 font-semibold mt-2">
             I am a{' '}
             <span className="text-blue-600 dark:text-blue-400">
-              Frontend Developer
+              Full Stack Developer
             </span>
           </h2>
 

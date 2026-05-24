@@ -2,8 +2,6 @@
 import React, { useState, useEffect } from 'react';
 import { ExternalLink, Download } from 'lucide-react';
 import { LogoGithub } from '@gravity-ui/icons';
-import AOS from 'aos';
-import 'aos/dist/aos.css';
 
 const projectsData = [
   {
@@ -88,7 +86,6 @@ const projectsData = [
   },
 ];
 
-// Tailwind Inline Theme Maps to fix Dynamic Class string issue
 const themeGlowMap = {
   purple: 'group-hover:from-purple-500/10 group-hover:to-purple-500/5',
   green: 'group-hover:from-emerald-500/10 group-hover:to-emerald-500/5',
@@ -101,15 +98,12 @@ const themeButtonMap = {
   blue: 'dark:hover:bg-blue-600',
 };
 
-const ProjectCard = ({ project, index, isChanging }) => (
+const ProjectCard = ({ project, isChanging }) => (
   <div
-    data-aos="fade-up"
-    data-aos-delay={index * 100}
     className={`relative group rounded-2xl bg-white/40 dark:bg-white/[0.03] backdrop-blur-xl border border-gray-300 dark:border-white/20 shadow-xl overflow-hidden flex flex-col h-full w-full mx-auto transition-all duration-500 transform hover:-translate-y-2 ${
       isChanging ? 'opacity-0 scale-95' : 'opacity-100 scale-100'
     }`}
   >
-    {/* Colored glow on hover — Pre-mapped for GPU Acceleration */}
     <div
       className={`absolute inset-0 bg-gradient-to-br from-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10 ${themeGlowMap[project.themeColor] || themeGlowMap.blue}`}
     />
@@ -166,17 +160,7 @@ const ProjectCard = ({ project, index, isChanging }) => (
 const Projects = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [isChanging, setIsChanging] = useState(false);
-  const [mounted, setMounted] = useState(false);
   const projectsPerPage = 6;
-
-  useEffect(() => {
-    setMounted(true);
-    AOS.init({
-      duration: 700,
-      once: true,
-      easing: 'ease-out-cubic',
-    });
-  }, []);
 
   const totalPages = Math.ceil(projectsData.length / projectsPerPage);
   const indexOfLastProject = currentPage * projectsPerPage;
@@ -188,20 +172,15 @@ const Projects = () => {
     setTimeout(() => {
       setCurrentPage(pageNumber);
       setIsChanging(false);
-      setTimeout(() => AOS.refresh(), 50);
     }, 250);
   };
 
-  if (!mounted) return null;
-
   return (
     <section id="projects" className="py-24 px-6 relative overflow-hidden">
-      {/* Dynamic Background Glow — Static lightweight layout instead of heavy loops */}
       <div className="absolute top-20 right-10 w-[500px] h-[500px] bg-blue-500/5 blur-[120px] rounded-full -z-10 pointer-events-none" />
 
       <div className="max-w-6xl mx-auto">
-        {/* Header Section */}
-        <div className="text-center mb-16" data-aos="fade-up">
+        <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold mb-3 text-slate-950 dark:text-white uppercase tracking-tight">
             Projects
           </h2>
@@ -210,13 +189,11 @@ const Projects = () => {
           </p>
         </div>
 
-        {/* Clean Grid Architecture */}
         <div className="relative">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {currentProjects.map((project, index) => (
               <ProjectCard 
                 key={currentPage + '-' + index} 
-                index={index} 
                 project={project} 
                 isChanging={isChanging}
               />
@@ -224,8 +201,7 @@ const Projects = () => {
           </div>
         </div>
 
-        {/* Premium Pagination Controls */}
-        <div className="flex justify-center items-center gap-4 mt-16 font-mono" data-aos="fade-up">
+        <div className="flex justify-center items-center gap-4 mt-16 font-mono">
           <button
             onClick={() => currentPage > 1 && paginate(currentPage - 1)}
             disabled={currentPage === 1}

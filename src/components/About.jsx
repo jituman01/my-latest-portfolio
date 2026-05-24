@@ -117,11 +117,11 @@ const About = () => {
           <p className="text-slate-600 dark:text-gray-300 leading-relaxed text-base md:text-lg">
             I am a{' '}
             <span className="text-slate-900 dark:text-white font-semibold">
-              Frontend Developer
+              Full Stack Developer
             </span>{' '}
             dedicated to building sleek web interfaces. My focus is on{' '}
             <span className="text-blue-600 dark:text-blue-400 font-medium">
-              Next.js and Tailwind CSS
+              Next.js and Express Js
             </span>{' '}
             to create seamless user experiences.
           </p>
