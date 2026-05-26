@@ -70,7 +70,7 @@ const Hero = () => {
           <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-6xl font-extrabold text-black dark:text-white tracking-tight leading-tight">
             Naimul Islam Jitu <span className="wave-hand ml-2">
   👋
-</span>
+        </span>
           </h1>
           <h2 className="text-xl md:text-3xl text-gray-600 dark:text-gray-400 font-semibold mt-2">
             I am a <span className="text-blue-600 dark:text-blue-400">Full Stack Developer</span>
@@ -130,10 +130,10 @@ const SocialIcon = ({ icon, href }) => (
 );
 
 const StatCard = ({ icon, label, sub, className }) => (
-  <div className={`absolute flex items-center gap-2 px-3 py-2 bg-white/90 dark:bg-[#0a0a0a]/90 backdrop-blur-xl border border-black/10 dark:border-white/10 rounded-xl shadow-xl z-50 ${className}`}>
+  <div className={`absolute flex items-center gap-2 px-2 py-2 lg:px-3 lg:py-2 bg-white/90 dark:bg-[#0a0a0a]/90 backdrop-blur-xl border border-black/10 dark:border-white/10 rounded-xl shadow-xl z-50 ${className}`}>
     <span className="text-lg">{icon}</span>
     <div className="text-left">
-      <p className="text-black dark:text-white font-bold text-l leading-none">
+      <p className="text-black dark:text-white font-bold lg:text-l text-sm leading-none">
         {label}
       </p>
       <p className="text-gray-500 text-[10px] uppercase mt-1">{sub}</p>
