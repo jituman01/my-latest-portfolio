@@ -43,8 +43,8 @@ export default function Home() {
           <About />
           <TechStack />
           <Skills />
-          <Projects />
           <Qualification />
+          <Projects />
           <Achievements />
           <Services />
           <ContactSection />
