@@ -29,7 +29,7 @@ export default function RootLayout({ children }) {
           storageKey="jituman-final-v3" 
         >
           <Navbar />
-          <main className="flex-grow">
+          <main className="flex-grow ">
             {children}
           </main>
         </ThemeProvider>
