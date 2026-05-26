@@ -39,8 +39,8 @@ const ContactSection = () => {
         <FaXTwitter className="text-cyan-600 dark:text-cyan-400" size={20} />
       ),
       title: 'Twitter',
-      value: '@jitu_dev',
-      href: 'https://twitter.com/jitu_dev',
+      value: '@naimulislam585',
+      href: 'https://x.com/jnaimulislam585',
       color: 'hover:border-cyan-500/50',
     },
   ];
