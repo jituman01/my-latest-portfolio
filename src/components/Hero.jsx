@@ -27,7 +27,7 @@ const Hero = () => {
 
   return (
     <section
-      className="relative bg-transparent text-slate-900 dark:text-white min-h-screen flex items-center justify-center pt-20 md:pt-0 px-6 overflow-hidden"
+      className="relative bg-transparent text-slate-900 dark:text-white min-h-screen flex items-center justify-center pt-20 md:pt-0 px-6 overflow-hidden max-w-7xl mx-auto"
       id="hero"
     >
       {/* SOCIAL BAR — Pure CSS GPU Transitions */}
@@ -122,7 +122,7 @@ const Hero = () => {
 
               <img
                 
-                src="/profile.png"
+                src="/profile3.png"
                 alt="Naimul"
                 className="relative z-10 w-full h-full object-contain scale-130 translate-y-3"
               />
