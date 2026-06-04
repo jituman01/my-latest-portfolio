@@ -81,7 +81,7 @@ const Achievements = () => {
       <div 
         data-aos="fade-up"
         data-aos-delay="150"
-        className="max-w-7xl w-full rounded-xl bg-white/[0.40] dark:bg-black/[0.2] backdrop-blur-xl border border-gray-300 dark:border-gray-700 shadow-md overflow-hidden grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4"
+        className="max-w-7xl w-full rounded-xl bg-white/[0.40] dark:bg-transparent backdrop-blur-xl border border-gray-300 dark:border-gray-700 shadow-md overflow-hidden grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4"
       >
         {visibleCertificates.map((cert, index) => {
           const isNotFirst = index !== 0;
