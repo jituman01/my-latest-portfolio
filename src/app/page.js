@@ -20,9 +20,9 @@ export default function Home() {
     <>
       {isLoading && <WelcomeLoader onComplete={() => setIsLoading(false)} />}
 
-      <main className={`relative min-h-screen w-full bg-white dark:bg-[#0a0a0a] transition-colors duration-300 ${isLoading ? 'overflow-hidden max-h-screen' : ''}`}>
+      <main className={`relative min-h-screen w-full bg-white dark:bg-black transition-colors duration-300 ${isLoading ? 'overflow-hidden max-h-screen' : ''}`}>
         
-        {/* <SpiderNetBg /> */}
+        <SpiderNetBg />
 
         {/* --- GLOBAL BACKGROUND GLOWS --- */}
         {/* <div className="fixed inset-0 pointer-events-none overflow-hidden" style={{ zIndex: 0 }}>

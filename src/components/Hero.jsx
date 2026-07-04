@@ -67,7 +67,7 @@ const Hero = () => {
               src="/profile2.png"
               alt="Naimul Islam Jitu"
               className="
-                w-[400px] md:w-[500px] lg:w-[580px]
+                w-[400px] md:w-[500px] lg:w-[550px]
                 object-contain
               "
             />
@@ -98,7 +98,7 @@ const Hero = () => {
 
             <h2 className="text-lg md:text-xl lg:text-2xl text-gray-300 font-semibold mt-4">
               I am a{' '}
-              <span className="text-blue-500">
+              <span className="text-blue-400">
                 Full Stack Developer
               </span>
             </h2>
@@ -110,7 +110,7 @@ const Hero = () => {
                 {words.map((word, i) => (
                   <span
                     key={i}
-                    className={`absolute inset-0 font-bold text-blue-500 transition-all duration-500 ${
+                    className={`absolute inset-0 font-bold text-blue-400 transition-all duration-500 ${
                       i === index
                         ? 'translate-y-0 opacity-100'
                         : i < index
@@ -149,7 +149,7 @@ const Hero = () => {
 
             <div className='lg:mt-80'>
               <h1 className="uppercase leading-[0.9]">
-              <span className="block text-blue-500 text-2xl md:text-3xl lg:text-4xl font-black">
+              <span className="block text-blue-400 text-2xl md:text-3xl lg:text-4xl font-black">
                 FULL STACK
               </span>
 
@@ -187,7 +187,7 @@ const SocialIcon = ({ icon, href }) => (
     href={href}
     target="_blank"
     rel="noopener noreferrer"
-    className="w-12 h-12 flex items-center justify-center rounded-full bg-white/10 backdrop-blur-md border border-white/10 hover:bg-blue-500 transition-all duration-300 hover:scale-110"
+    className="w-12 h-12 flex items-center justify-center rounded-full bg-white/10 backdrop-blur-md border border-white/10 hover:bg-blue-400 transition-all duration-300 hover:scale-110"
   >
     {icon}
   </a>
