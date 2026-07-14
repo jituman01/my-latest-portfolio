@@ -129,7 +129,7 @@ const About = () => {
 
           <div className="flex justify-center lg:justify-start">
             <Link
-            href={"https://drive.google.com/file/d/1zSchRvQlgwEL5wIBsrA9YYlg5j3NKH09/view?usp=sharing"}>
+            href={"https://drive.google.com/file/d/1yTlVUgGP9svfO9-7h6kABXWYkoWBSqWC/view?usp=sharing"}>
               <button className="flex items-center gap-3 px-8 py-4 bg-black dark:bg-white text-white dark:text-black font-bold shadow-2xl transition-all duration-300 transform hover:scale-105 active:scale-95 rounded-full group cursor-pointer">
               Download Resume
               <Download
