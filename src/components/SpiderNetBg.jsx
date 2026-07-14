@@ -10,7 +10,7 @@ const SpiderNetBg = () => {
 
     const ctx = canvas.getContext('2d');
     let animationFrameId;
-    let isActive = true; // অ্যানিমেশনটি চলবে কি না তা ট্র্যাক করবে
+    let isActive = true; 
 
     const resizeCanvas = () => {
       canvas.width = window.innerWidth;
@@ -30,13 +30,12 @@ const SpiderNetBg = () => {
 
     const particleCount = Math.min(80, Math.floor((canvas.width * canvas.height) / 18000));
 
-    // ডার্ক মোড চেক করার ফাংশন
     const isDarkMode = () => document.documentElement.classList.contains('dark');
 
-    // MutationObserver: থিম পরিবর্তন মনিটর করবে
+ 
     const observer = new MutationObserver(() => {
       if (!isDarkMode()) {
-        ctx.clearRect(0, 0, canvas.width, canvas.height); // ডার্ক মোড না থাকলে ক্যানভাস ক্লিয়ার করে দাও
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
       }
     });
     observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
@@ -55,7 +54,7 @@ const SpiderNetBg = () => {
         this.x += this.vx; this.y += this.vy;
       }
       draw() {
-        if (!isDarkMode()) return; // শুধু ডার্ক মোডেই আঁকবে
+        if (!isDarkMode()) return; 
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
         ctx.fillStyle = 'rgba(255, 255, 255, 0.35)';
@@ -105,7 +104,7 @@ const SpiderNetBg = () => {
 
     const animate = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-      if (isDarkMode()) { // শুধু ডার্ক মোডেই অ্যানিমেশন চলবে
+      if (isDarkMode()) { 
         particles.forEach((p) => { p.update(); p.draw(); });
         connectParticles();
       }
