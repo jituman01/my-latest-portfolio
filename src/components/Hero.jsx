@@ -61,22 +61,22 @@ const Hero = () => {
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
         <div className="flex flex-col lg:block min-h-screen">
-          {/* IMAGE */}
-          <div className="order-1 lg:order-none relative lg:absolute lg:left-1/2 lg:-translate-x-1/2 lg:top-2 flex justify-center mt-10 mb-20 lg:my-0 z-10 ">
+{/* IMAGE CONTAINER WITH PROFESSIONAL MASKING */}
+          <div className="order-1 lg:order-none relative lg:absolute lg:left-1/2 lg:-translate-x-1/2 lg:top-2 flex justify-center mt-10 mb-20 lg:my-0 z-10">
+            {/* Blue Glow */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] lg:w-[600px] lg:h-[600px] bg-blue-500/5 blur-[120px] rounded-full pointer-events-none z-0" />
+            
             <img
               src="/profile2.png"
               alt="Naimul Islam Jitu"
-              className="
-                w-[400px] md:w-[500px] lg:w-[550px]
-                object-contain
-              "
+              className="relative z-10 w-[400px] md:w-[500px] lg:w-[550px] object-contain"
+              style={{
+                WebkitMaskImage: 'linear-gradient(to bottom, white 70%, transparent 100%), linear-gradient(to right, transparent 0%, white 15%, white 85%, transparent 100%)',
+                WebkitMaskComposite: 'destination-in',
+                maskImage: 'linear-gradient(to bottom, white 70%, transparent 100%), linear-gradient(to right, transparent 0%, white 15%, white 85%, transparent 100%)',
+                maskComposite: 'intersect'
+              }}
             />
-            {/* bottom fade */}
-            <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-black via-black/70 to-transparent pointer-events-none" />
-            {/* right fade */}
-            <div className="hidden lg:block absolute right-0 top-0 w-7 h-full bg-gradient-to-l from-black to-transparent z-20 pointer-events-none" />
-            {/* left fade */}
-            <div className="hidden lg:block absolute left-0 top-0 w-7 h-full bg-gradient-to-r from-black to-transparent z-20 pointer-events-none" />
           </div>
 
 
