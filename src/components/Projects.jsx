@@ -5,14 +5,51 @@ import { LogoGithub } from '@gravity-ui/icons';
 
 const projectsData = [
   {
-    image: 'https://i.ibb.co.com/Hp1Hz8ff/Behance-Mockup-Shot-Cover-9.png',
-    title:'DocAppoint: Appointment Booking Platform',
+    image: 'https://i.ibb.co.com/4wGYbh0h/Recipe-Hub-Project-Mockup.png',
+    title: 'RecipeHub: Recipe Sharing Platform',
+    description:
+      'RecipeHub is a dynamic recipe-sharing platform designed for food enthusiasts and home chefs. It serves as a social ecosystem where users can publish unique recipes, discover secret family dishes, and build a vibrant community of culinary creators. With a clean and intuitive interface, the platform aims to celebrate the art of cooking by making it easy to share techniques and connect with food lovers worldwide.',
+    tags: [
+      'Tailwind',
+      'Next.js',
+      'ExpressJs',
+      'MongoDB',
+      'BetterAuth',
+      'GoogleAuth',
+      "Stripe",
+
+    ],
+    github: 'https://github.com/jituman01/recipehub-client',
+    demo: 'https://recipehub-client-nine.vercel.app',
+    themeColor: 'purple',
+  },
+  {
+    image: 'https://i.ibb.co.com/KxGjVPQj/Doc-Appoint-Project-Mockup.png',
+    title: 'DocAppoint: Appointment Booking Platform',
     description:
       'A Doctor Appointment Management System is a web-based platform designed to streamline the interaction between patients and healthcare providers. Its primary goal is to provide a fast, efficient, and hassle-free experience for patients booking medical consultations.',
-    tags: ['Next.js', 'Tailwind', 'MongoDB', 'BetterAuth', 'ExpressJs','GoogleAuth'],
+    tags: [
+      'Next.js',
+      'Tailwind',
+      'MongoDB',
+      'BetterAuth',
+      'ExpressJs',
+      'GoogleAuth',
+    ],
     github: 'https://github.com/jituman01/doctor-appointment-manager',
     demo: 'https://doctor-appointment-manager-lovat.vercel.app',
     themeColor: 'purple',
+  },
+    {
+    image: 'https://i.ibb.co.com/qY6BSkVz/Chat-GPT-Image-Jul-14-2026-10-55-16-PM.png',
+    title: 'Qurbanihat:livestock booking platform',
+    description:
+      'A modern livestock marketplace for booking and selling cattle. Built with Next.js for a seamless user experience.',
+    tags: ['Next.js', 'Tailwind', 'MongoDB', 'BetterAuth'],
+    github:
+      'https://github.com/jituman01/qurbanihat-livestock-booking-platform',
+    demo: 'https://qurbanihat-livestock-booking-platfo.vercel.app/',
+    themeColor: 'blue',
   },
   {
     image: 'https://i.ibb.co.com/hN1v2Vq/Behance-Mockup-Shot-Cover-8.png',
@@ -43,16 +80,6 @@ const projectsData = [
     github: 'https://github.com/jituman01/pixgen',
     demo: 'https://pixgen-snowy.vercel.app',
     themeColor: 'purple',
-  },
-  {
-    image: 'https://i.ibb.co.com/99vDnRQb/Behance-Mockup-Shot-Cover-3.png',
-    title: 'qurbanihat:livestock booking platform',
-    description:
-      'A modern livestock marketplace for booking and selling cattle. Built with Next.js for a seamless user experience.',
-    tags: ['Next.js', 'Tailwind', 'MongoDB', 'BetterAuth'],
-    github: 'https://github.com/jituman01/qurbanihat-livestock-booking-platform',
-    demo: 'https://qurbanihat-livestock-booking-platfo.vercel.app/',
-    themeColor: 'blue',
   },
   {
     image: 'https://i.ibb.co.com/5xMxZHDx/Behance-Mockup-Shot-Cover-4.png',
@@ -105,7 +132,9 @@ const ProjectCard = ({ project, isChanging }) => (
     }`}
   >
     <div
-      className={`absolute inset-0 bg-gradient-to-br from-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10 ${themeGlowMap[project.themeColor] || themeGlowMap.blue}`}
+      className={`absolute inset-0 bg-gradient-to-br from-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10 ${
+        themeGlowMap[project.themeColor] || themeGlowMap.blue
+      }`}
     />
 
     <div className="relative aspect-[16/10] overflow-hidden m-3 sm:m-2 rounded-xl border border-white/20">
@@ -148,7 +177,9 @@ const ProjectCard = ({ project, isChanging }) => (
           href={project.demo}
           target="_blank"
           rel="noopener noreferrer"
-          className={`flex items-center justify-center gap-2 px-3 py-2 rounded-xl text-[11px] sm:text-sm font-medium transition-all duration-200 text-black border-black/20 border dark:text-white dark:border-white/20 hover:bg-black hover:text-white active:scale-95 ${themeButtonMap[project.themeColor] || themeButtonMap.blue}`}
+          className={`flex items-center justify-center gap-2 px-3 py-2 rounded-xl text-[11px] sm:text-sm font-medium transition-all duration-200 text-black border-black/20 border dark:text-white dark:border-white/20 hover:bg-black hover:text-white active:scale-95 ${
+            themeButtonMap[project.themeColor] || themeButtonMap.blue
+          }`}
         >
           <ExternalLink size={14} /> Live Demo
         </a>
@@ -165,9 +196,12 @@ const Projects = () => {
   const totalPages = Math.ceil(projectsData.length / projectsPerPage);
   const indexOfLastProject = currentPage * projectsPerPage;
   const indexOfFirstProject = indexOfLastProject - projectsPerPage;
-  const currentProjects = projectsData.slice(indexOfFirstProject, indexOfLastProject);
+  const currentProjects = projectsData.slice(
+    indexOfFirstProject,
+    indexOfLastProject
+  );
 
-  const paginate = (pageNumber) => {
+  const paginate = pageNumber => {
     setIsChanging(true);
     setTimeout(() => {
       setCurrentPage(pageNumber);
@@ -192,9 +226,9 @@ const Projects = () => {
         <div className="relative">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {currentProjects.map((project, index) => (
-              <ProjectCard 
-                key={currentPage + '-' + index} 
-                project={project} 
+              <ProjectCard
+                key={currentPage + '-' + index}
+                project={project}
                 isChanging={isChanging}
               />
             ))}
@@ -227,7 +261,9 @@ const Projects = () => {
           ))}
 
           <button
-            onClick={() => currentPage < totalPages && paginate(currentPage + 1)}
+            onClick={() =>
+              currentPage < totalPages && paginate(currentPage + 1)
+            }
             disabled={currentPage === totalPages}
             className={`flex items-center gap-1 px-4 py-2 rounded-lg border border-blue-500/20 text-blue-500 hover:bg-blue-500/10 transition-all cursor-pointer ${
               currentPage === totalPages ? 'opacity-30 !cursor-not-allowed' : ''
