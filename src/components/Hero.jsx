@@ -59,7 +59,7 @@ const Hero = () => {
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
         <div className="flex flex-col lg:block min-h-screen">
           {/* IMAGE CONTAINER WITH PROFESSIONAL MASKING */}
-          <div className="order-1 lg:order-none relative lg:absolute lg:left-1/2 lg:-translate-x-1/2 lg:top-25 flex justify-center mt-10 mb-20 lg:my-0 z-10">
+          <div className="order-1 lg:order-none relative lg:absolute lg:left-1/2 lg:-translate-x-1/2 lg:top-25 flex justify-center mt-20 lg:mb-20 mb-5 lg:my-0 z-10">
             {/* Blue Glow */}
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] lg:w-[600px] lg:h-[600px] bg-blue-500/5 blur-[120px] rounded-full pointer-events-none z-0" />
 
@@ -94,11 +94,11 @@ const Hero = () => {
               <span className="">Naimul</span> Islam Jitu
             </h1>
 
-            <h2 className="text-lg md:text-xl lg:text-2xl text-gray-300 font-semibold mt-4">
+            <h2 className="text-lg md:text-xl lg:text-2xl text-gray-300 font-semibold lg:mt-4 mt-2">
               I am a <span className="text-blue-400">Full Stack Developer</span>
             </h2>
 
-            <div className="flex justify-center lg:justify-start items-center gap-2 text-gray-400 text-sm md:text-base mt-5">
+            <div className="flex justify-center lg:justify-start items-center gap-2 text-gray-400 text-sm md:text-base lg:mt-5 mt-2">
               🚀 Turning ideas into
               <div className="relative h-[30px] overflow-hidden w-[180px] md:w-[220px]">
                 {words.map((word, i) => (
@@ -118,7 +118,7 @@ const Hero = () => {
               </div>
             </div>
 
-            <p className="mt-4 text-gray-500 text-sm md:text-base font-medium">
+            <p className="lg:mt-4  text-gray-500 text-sm md:text-base font-medium">
               | Available for projects and collaboration
             </p>
           </div>
@@ -129,7 +129,7 @@ const Hero = () => {
               animate ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-10'
             }`}
           >
-            <div className="mb-8">
+            <div className="mb-8 hidden lg:flex md:flex-col">
               <h4 className="italic text-gray-300 text-lg md:text-xl font-medium">
                 Design that speaks.
               </h4>
@@ -139,7 +139,7 @@ const Hero = () => {
               </p>
             </div>
 
-            <div className="lg:mt-80">
+            <div className="lg:mt-80 hidden lg:flex md:flex-col">
               <h1 className="uppercase leading-[0.9]">
                 <span className="block text-blue-400 text-2xl md:text-3xl lg:text-4xl font-black">
                   FULL STACK
