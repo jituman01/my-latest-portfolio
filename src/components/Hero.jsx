@@ -141,7 +141,7 @@ const Hero = () => {
 
             <div className="lg:mt-80 hidden lg:flex md:flex-col">
               <h1 className="uppercase leading-[0.9]">
-                <span className="block text-blue-400 text-2xl md:text-3xl lg:text-4xl font-black">
+                <span className="block text-blue-700 text-2xl md:text-3xl lg:text-4xl font-black">
                   FULL STACK
                 </span>
 
@@ -158,11 +158,11 @@ const Hero = () => {
               animate ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'
             }`}
           >
-            <p className="text-gray-500 uppercase text-xs md:text-sm lg:text-5 leading-7 md:leading-9 tracking-wide">
+            <p className="text-gray-500 uppercase text-xs md:text-sm lg:text-5 leading-7 md:leading-9 tracking-wide italic">
               Passionate about building scalable web applications and
-              transforming ideas into modern digital experiences. <br /> I
+              transform<span className='text-black'>ing ideas into modern</span> digital experiences.<br />I
               specialize in React.js, Next.js, Node.js, Express.js and MongoDB
-              while focusing on clean architecture,
+              while <span className='text-black'>focusing on clean</span> architecture,
               <br />
               thoughtful UI design and seamless user experiences.
             </p>
