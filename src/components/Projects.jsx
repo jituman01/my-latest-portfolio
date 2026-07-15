@@ -41,7 +41,7 @@ const projectsData = [
     themeColor: 'purple',
   },
     {
-    image: 'https://i.ibb.co.com/qY6BSkVz/Chat-GPT-Image-Jul-14-2026-10-55-16-PM.png',
+    image: 'https://i.ibb.co.com/QjXwFVQW/Qurbani-Hat-Project-Mockup.png',
     title: 'Qurbanihat:livestock booking platform',
     description:
       'A modern livestock marketplace for booking and selling cattle. Built with Next.js for a seamless user experience.',
