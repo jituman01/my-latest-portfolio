@@ -64,7 +64,7 @@ const Achievements = () => {
 
   return (
     <section
-      className="py-24 px-4 md:px-10 bg-transparent flex flex-col items-center w-full overflow-hidden"
+      className="py-10 px-4 md:px-10 bg-transparent flex flex-col items-center w-full overflow-hidden"
       id="achievements"
     >
       {/* Header Section */}

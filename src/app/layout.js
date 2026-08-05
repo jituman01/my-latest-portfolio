@@ -2,6 +2,7 @@ import { Outfit } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import { ThemeProvider } from "@/components/ThemeProvider";
+import SmoothScroll from "@/components/SmoothScroll";
 
 const OutfitFont = Outfit({
 
@@ -28,10 +29,12 @@ export default function RootLayout({ children }) {
           enableSystem={false} 
           storageKey="jituman-final-v3" 
         >
-          <Navbar />
-          <main className="flex-grow ">
-            {children}
-          </main>
+          <SmoothScroll>
+            <Navbar />
+            <main className="flex-grow ">
+              {children}
+            </main>
+          </SmoothScroll>
         </ThemeProvider>
       
       </body>

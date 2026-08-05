@@ -72,6 +72,20 @@ const Navbar = () => {
               <Link 
                 key={item.name} 
                 href={item.href} 
+                onClick={(e) => {
+                  if (item.href.startsWith("#")) {
+                    e.preventDefault();
+                    const targetEl = document.querySelector(item.href);
+                    if (targetEl && window.lenis) {
+                      window.lenis.scrollTo(targetEl, {
+                        offset: -80,
+                        duration: 1.2,
+                      });
+                    } else if (targetEl) {
+                      targetEl.scrollIntoView({ behavior: "smooth" });
+                    }
+                  }
+                }}
                 className="relative py-1.5 px-3 md:px-4 rounded-full transition-all duration-200 group flex items-center gap-2 select-none"
                 onMouseEnter={() => setHovered(item.name)}
                 onMouseLeave={() => setHovered(null)}

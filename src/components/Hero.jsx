@@ -141,12 +141,12 @@ const Hero = () => {
 
             <div className="lg:mt-80 hidden lg:flex md:flex-col">
               <h1 className="uppercase leading-[0.9]">
-                <span className="block text-blue-700 text-2xl md:text-3xl lg:text-4xl font-black">
+                <span className="block text-blue-800 text-2xl md:text-3xl lg:text-5xl font-black">
                   FULL STACK
                 </span>
 
-                <span className="block text-white text-2xl md:text-3xl lg:text-4xl font-black">
-                  DEVELOPER
+                <span className="block text-gray-300 text-2xl md:text-3xl lg:text-5xl font-black">
+                  Engineer
                 </span>
               </h1>
             </div>
