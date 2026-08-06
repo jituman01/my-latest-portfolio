@@ -1,17 +1,19 @@
 'use client';
 import React, { useState } from 'react';
+import dynamic from 'next/dynamic';
 import Hero from "@/components/Hero";
 import About from "@/components/About";
-import TechStack from "@/components/TechStack";
 import Skills from "@/components/Skills";
 import Qualification from "@/components/Qualification";
-import Projects from "@/components/Projects";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
-import Achievements from "@/components/Achievements";
-import Services from "@/components/Services";
 import SpiderNetBg from "@/components/SpiderNetBg"; 
 import WelcomeLoader from "@/components/WelcomeLoader"; 
+
+const TechStack = dynamic(() => import("@/components/TechStack"), { ssr: false });
+const Projects = dynamic(() => import("@/components/Projects"), { ssr: false });
+const Achievements = dynamic(() => import("@/components/Achievements"), { ssr: false });
+const Services = dynamic(() => import("@/components/Services"), { ssr: false });
 
 export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
@@ -39,7 +41,7 @@ export default function Home() {
     <>
       {isLoading && <WelcomeLoader onComplete={() => setIsLoading(false)} />}
 
-      <main className={`relative min-h-screen w-full bg-white dark:bg-black transition-colors duration-300 ${isLoading ? 'overflow-hidden max-h-screen' : ''}`}>
+      <main className={`relative min-h-screen w-full bg-white dark:bg-black transition-colors duration-500 ${isLoading ? 'overflow-hidden max-h-screen' : ''}`}>
         
         {/* <SpiderNetBg /> */}
   
@@ -53,7 +55,7 @@ export default function Home() {
 
         {/* --- SECTIONS --- */}
         <div className="relative" style={{ zIndex: 10 }}>
-          <Hero />
+          <Hero isLoaded={!isLoading} />
           <About />
           <TechStack />
           <Skills />

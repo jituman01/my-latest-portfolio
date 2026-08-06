@@ -1,8 +1,8 @@
 'use client';
 import React, { useState, useEffect } from 'react';
 import { ExternalLink, X, Eye, ChevronDown, LucideAward } from 'lucide-react';
-import AOS from 'aos';
-import 'aos/dist/aos.css';
+import Image from 'next/image';
+import ScrollReveal from './ScrollReveal';
 
 // Achievements & Certificates Data Model
 const certificatesData = [
@@ -11,7 +11,7 @@ const certificatesData = [
     title: 'Web Dev with JavaScript',
     issuer: 'Ostad',
     date: 'December 2025',
-    image: 'https://i.ibb.co.com/bRH86zVH/Screenshot-2026-05-17-144713.png',
+    image: '/achievements/cert-webdev.png',
     verifyLink: 'https://ostad.app/share/certificate/c43083-null',
     tags: ['MongoDB', 'Express', 'React', 'Node'],
   },
@@ -20,7 +20,7 @@ const certificatesData = [
     title: 'Adobe Illustrator',
     issuer: '10 Minute School',
     date: 'April 2026',
-    image: 'https://i.ibb.co.com/d0dVBfVm/Screenshot-2026-05-17-144850.png',
+    image: '/achievements/cert-illustrator.png',
     verifyLink: 'https://10minuteschool.com/certificate/6a06aff791d73',
     tags: ['Networking', 'Personal Branding', 'Professional Profile'],
   },
@@ -29,7 +29,7 @@ const certificatesData = [
     title: 'JavaScript Fundamentals',
     issuer: 'Ostad',
     date: 'February 2026',
-    image: 'https://i.ibb.co.com/7twmbz3k/Screenshot-2026-05-17-150517.png',
+    image: '/achievements/cert-js.png',
     verifyLink: 'https://ostad.app/share/certificate/c43244-null',
     tags: ['JavaScript', 'Frontend', 'ES6+'],
   },
@@ -38,7 +38,7 @@ const certificatesData = [
     title: 'UX/UI Design',
     issuer: 'Ostad',
     date: 'March 2026',
-    image: 'https://i.ibb.co.com/TD7WWFKW/Screenshot-2026-05-17-144730.png',
+    image: '/achievements/cert-uxui.png',
     verifyLink: 'https://ostad.app/share/certificate/c43082-null',
     tags: ['Design', 'UX/UI'],
   },
@@ -51,11 +51,6 @@ const Achievements = () => {
 
   useEffect(() => {
     setMounted(true);
-    AOS.init({
-      duration: 600,
-      once: true,
-      easing: 'ease-out-cubic',
-    });
   }, []);
 
   if (!mounted) return null;
@@ -68,19 +63,19 @@ const Achievements = () => {
       id="achievements"
     >
       {/* Header Section */}
-      <div className="text-center mb-20" data-aos="fade-up">
+      <ScrollReveal className="text-center mb-20" effect="fade-up">
         <h2 className="text-4xl md:text-5xl font-bold mb-3 text-slate-900 dark:text-white uppercase tracking-tight">
           Achievements
         </h2>
         <p className="text-slate-500 dark:text-gray-400 tracking-[0.3em] uppercase text-sm font-semibold">
           Certificates & Recognition
         </p>
-      </div>
+      </ScrollReveal>
 
       {/* Main 4-Column Bento Container */}
-      <div 
-        data-aos="fade-up"
-        data-aos-delay="150"
+      <ScrollReveal 
+        effect="fade-up"
+        delay={0.15}
         className="max-w-7xl w-full rounded-xl bg-white/[0.40] dark:bg-transparent backdrop-blur-xl border border-gray-300 dark:border-gray-700 shadow-md overflow-hidden grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4"
       >
         {visibleCertificates.map((cert, index) => {
@@ -107,10 +102,12 @@ const Achievements = () => {
                   onClick={() => setSelectedCert(cert)}
                   className="relative aspect-[16/10] overflow-hidden rounded-xl bg-slate-100 dark:bg-slate-900/60 border border-slate-200/40 dark:border-white/[0.03] mb-5 group-hover:border-blue-500/30 transition-all duration-300 cursor-pointer"
                 >
-                  <img
+                  <Image
                     src={cert.image}
                     alt={cert.title}
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    fill
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
                   />
                   {/* View Overlay Icon */}
                   <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
@@ -160,14 +157,13 @@ const Achievements = () => {
             </div>
           );
         })}
-      </div>
+      </ScrollReveal>
 
       {/* Dynamic Show All Switch Trigger */}
       {certificatesData.length > 4 && (
         <button
           onClick={() => {
             setShowAll(!showAll);
-            setTimeout(() => AOS.refresh(), 50);
           }}
           className="mt-12 flex items-center gap-2 px-6 py-2.5 bg-white/[0.02] dark:bg-neutral-900/[0.2] hover:bg-blue-600/[0.05] hover:text-blue-400 dark:hover:text-blue-400 backdrop-blur-md border border-slate-200/60 dark:border-white/[0.05] hover:border-blue-500/30 text-slate-800 dark:text-white text-sm font-semibold rounded-xl shadow-md transition-all group cursor-pointer"
         >
@@ -203,11 +199,14 @@ const Achievements = () => {
           
           {selectedCert && (
             <>
-              <img
-                src={selectedCert.image}
-                alt={selectedCert.title}
-                className="w-full h-auto max-h-[70vh] object-contain bg-black"
-              />
+              <div className="relative w-full h-[50vh] md:h-[70vh] bg-black">
+                <Image
+                  src={selectedCert.image}
+                  alt={selectedCert.title}
+                  fill
+                  className="object-contain"
+                />
+              </div>
               <div className="p-6 md:p-8 border-t border-slate-100 dark:border-white/[0.05]">
                 <h4 className="text-xl md:text-2xl font-bold text-slate-900 dark:text-white mb-1">
                   {selectedCert.title}

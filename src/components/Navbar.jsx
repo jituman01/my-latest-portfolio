@@ -116,13 +116,26 @@ const Navbar = () => {
         </div>
       </nav>
 
-      {/* <button
+      <button
         onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
         aria-label="Toggle Theme"
-        className="absolute right-4 md:right-8 w-10 h-10 flex items-center justify-center rounded-full bg-white/40 dark:bg-black/20 backdrop-blur-xl border border-gray-200/50 dark:border-white/10 shadow-lg text-slate-600 dark:text-white hover:bg-white/60 dark:hover:bg-white/20 active:scale-95 transition-all cursor-pointer"
+        className="absolute right-4 md:right-8 w-11 h-11 flex items-center justify-center rounded-full bg-white dark:bg-neutral-900 border border-slate-200 dark:border-white/10 shadow-md text-slate-700 dark:text-amber-400 hover:scale-105 active:scale-95 transition-all duration-300 cursor-pointer overflow-hidden"
       >
-        {theme === 'dark' ? <Sun size={17} /> : <Moon size={17} />}
-      </button> */}
+        <div className="relative w-5 h-5 flex items-center justify-center">
+          <Sun
+            size={18}
+            className={`absolute transition-all duration-500 ease-out ${
+              theme === 'dark' ? 'rotate-0 scale-100 opacity-100' : 'rotate-90 scale-0 opacity-0'
+            }`}
+          />
+          <Moon
+            size={18}
+            className={`absolute transition-all duration-500 ease-out ${
+              theme === 'light' ? 'rotate-0 scale-100 opacity-100' : '-rotate-90 scale-0 opacity-0'
+            }`}
+          />
+        </div>
+      </button>
     </div>
   );
 };

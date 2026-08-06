@@ -1,5 +1,4 @@
 @import "tailwindcss";
-@import "@heroui/styles"; 
 
 @custom-variant dark (&:where(.dark, .dark *));
 
@@ -20,7 +19,7 @@
 body {
   background-color: var(--background) !important;
   color: var(--foreground) !important;
-  @apply min-h-screen transition-colors duration-300 antialiased;
+  @apply min-h-screen transition-colors duration-500 antialiased;
 }
 
 /* Lenis smooth scrolling configuration */

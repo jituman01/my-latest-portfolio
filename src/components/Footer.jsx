@@ -3,6 +3,8 @@ import React from 'react';
 import { Mail, ArrowUp } from 'lucide-react';
 import { FaGithub, FaLinkedin, FaTwitter, FaXTwitter } from 'react-icons/fa6';
 
+import ScrollReveal from './ScrollReveal';
+
 const Footer = () => {
   const currentYear = new Date().getFullYear();
 
@@ -41,7 +43,7 @@ const Footer = () => {
       <div className="max-w-6xl mx-auto px-6 py-12">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 items-center">
           {/* Logo & Info */}
-          <div className="text-center md:text-left" data-aos="fade-up">
+          <ScrollReveal className="text-center md:text-left" effect="fade-up">
             <h2 className="text-2xl font-bold bg-gradient-to-r from-slate-900 to-slate-600 dark:from-white dark:to-slate-400 bg-clip-text text-transparent mb-4">
               Naimul Islam Jitu
             </h2>
@@ -49,13 +51,13 @@ const Footer = () => {
               Building modern web experiences with precision and passion.
               Specialized in Frontend Development.
             </p>
-          </div>
+          </ScrollReveal>
 
           {/* Social Links */}
-          <div
+          <ScrollReveal
             className="flex flex-col items-center gap-6"
-            data-aos="fade-up"
-            data-aos-delay="100"
+            effect="fade-up"
+            delay={0.1}
           >
             <div className="flex gap-4">
               {socialLinks.map((social, index) => (
@@ -71,13 +73,13 @@ const Footer = () => {
                 </a>
               ))}
             </div>
-          </div>
+          </ScrollReveal>
 
           {/* Scroll to Top */}
-          <div
+          <ScrollReveal
             className="flex flex-col items-center md:items-end"
-            data-aos="fade-up"
-            data-aos-delay="200"
+            effect="fade-up"
+            delay={0.2}
           >
             <button
               onClick={scrollToTop}
@@ -96,7 +98,7 @@ const Footer = () => {
               {/* Pure CSS Hardware Accelerated Glowing Layer */}
               <div className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-500/10 via-purple-500/10 to-blue-500/10 blur-md -z-10 animate-pulse" />
             </button>
-          </div>
+          </ScrollReveal>
         </div>
 
         {/* Bottom Bar */}

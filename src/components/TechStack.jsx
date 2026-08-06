@@ -70,7 +70,7 @@ const allSkills = [
   },
   {
     name: 'Express.js',
-    icon: 'https://i.ibb.co.com/MkBKNhWk/express-js-photoaidcom-cropped.png',
+    icon: '/tech/express.png',
     desc: 'Minimal and flexible web framework for creating Restful API backends.',
     category: 'Backend & Database',
     themeColor: 'emerald',
@@ -107,7 +107,7 @@ const allSkills = [
   },
   {
     name: 'Better Auth',
-    icon: 'https://i.ibb.co.com/Kct0J5SX/betterauth.jpg',
+    icon: '/tech/betterauth.jpg',
     desc: 'Highly customizable backend security authentication utility.',
     category: 'Tools & Auth',
     themeColor: 'purple',
@@ -121,7 +121,7 @@ const allSkills = [
   },
   {
     name: 'Vercel',
-    icon: 'https://i.ibb.co.com/7xBckc3w/image.png',
+    icon: '/tech/vercel.png',
     desc: 'Cloud hosting optimization ecosystem tailored for frontend projects.',
     category: 'Tools & Auth',
     themeColor: 'purple',
@@ -332,12 +332,27 @@ const TechStack = () => {
 
     mountRef.current.addEventListener('mousemove', handleMouseMove);
 
+    // Set up IntersectionObserver to check if section is visible
+    let isIntersecting = true;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        isIntersecting = entry.isIntersecting;
+      },
+      { threshold: 0.05 } // Triggers when 5% of the section is visible
+    );
+    const sectionEl = mountRef.current.closest('section');
+    if (sectionEl) {
+      observer.observe(sectionEl);
+    }
+
     // 8. Animation Loop
     let animationFrameId;
     const tempVector = new THREE.Vector3();
 
     const animate = () => {
       animationFrameId = requestAnimationFrame(animate);
+
+      if (!isIntersecting) return;
 
       // Damp mouse speeds for organic movement inertia
       mouseX.current += (targetX.current - mouseX.current) * 0.05;
@@ -480,11 +495,20 @@ const TechStack = () => {
     window.addEventListener('resize', handleResize);
 
     // Clean up
+    const mountNode = mountRef.current;
     return () => {
       cancelAnimationFrame(animationFrameId);
       window.removeEventListener('resize', handleResize);
-      if (mountRef.current && renderer.domElement) {
-        mountRef.current.removeChild(renderer.domElement);
+      if (mountNode) {
+        mountNode.removeEventListener('mousemove', handleMouseMove);
+      }
+      observer.disconnect();
+      if (mountNode && renderer.domElement) {
+        try {
+          mountNode.removeChild(renderer.domElement);
+        } catch (e) {
+          // ignore if already removed
+        }
       }
       renderer.dispose();
     };

@@ -9,8 +9,7 @@ import {
   GraduationCap,
 } from 'lucide-react';
 import { useTheme } from 'next-themes';
-import AOS from 'aos';
-import 'aos/dist/aos.css';
+import ScrollReveal from './ScrollReveal';
 import Link from 'next/link';
 
 const About = () => {
@@ -19,12 +18,6 @@ const About = () => {
 
   useEffect(() => {
     setMounted(true);
-
-    AOS.init({
-      duration: 1000,
-      once: true,
-      easing: 'ease-out-cubic',
-    });
   }, []);
 
   if (!mounted) return null;
@@ -34,18 +27,18 @@ const About = () => {
       className="px-6 bg-transparent text-slate-900 dark:text-white min-h-screen flex flex-col items-center justify-center py-20 overflow-hidden"
       id="about"
     >
-      <div className="text-center mb-16" data-aos="fade-up">
+      <ScrollReveal className="text-center mb-16" effect="fade-up">
         <h2 className="text-4xl font-bold mb-2 tracking-tight">About</h2>
         <p className="text-slate-500 dark:text-gray-500 tracking-widest uppercase text-sm font-medium">
           My Introduction
         </p>
-      </div>
+      </ScrollReveal>
 
       <div className="max-w-6xl w-full grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
         {/* Left Side: Personal Details, Education, and Interests */}
-        <div
+        <ScrollReveal
           className="bg-white/50 dark:bg-white/[0.03] backdrop-blur-md border border-slate-200 dark:border-white/10 p-8 rounded-3xl flex flex-col gap-8 shadow-sm"
-          data-aos="fade-right"
+          effect="fade-right"
         >
           {/* Section: Details and Location */}
           <div className="flex flex-col gap-4">
@@ -113,10 +106,10 @@ const About = () => {
               ))}
             </div>
           </div>
-        </div>
+        </ScrollReveal>
 
         {/* Right Side: Original About Cards and Text */}
-        <div className="flex flex-col gap-8" data-aos="fade-left">
+        <ScrollReveal className="flex flex-col gap-8" effect="fade-left">
           {/* Cards Grid */}
           <div className="grid grid-cols-3 gap-4">
             <AboutCard
@@ -177,7 +170,7 @@ const About = () => {
               </button>
             </Link>
           </div>
-        </div>
+        </ScrollReveal>
       </div>
     </section>
   );

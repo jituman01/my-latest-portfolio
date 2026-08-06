@@ -1,8 +1,7 @@
 'use client';
 import React, { useState, useEffect } from 'react';
 import { GraduationCap, Briefcase, Calendar } from 'lucide-react';
-import AOS from 'aos';
-import 'aos/dist/aos.css';
+import ScrollReveal from './ScrollReveal';
 
 const qualificationData = [
   {
@@ -44,11 +43,6 @@ const Qualification = () => {
 
   useEffect(() => {
     setMounted(true);
-    AOS.init({
-      duration: 600,
-      once: true,
-      easing: 'ease-out-cubic',
-    });
   }, []);
 
   
@@ -58,8 +52,6 @@ const Qualification = () => {
     setTimeout(() => {
       setActiveTab(tab);
       setIsChanging(false);
-     
-      setTimeout(() => AOS.refresh(), 30);
     }, 150);
   };
 
@@ -68,23 +60,22 @@ const Qualification = () => {
   const filteredData = qualificationData.filter((item) => item.type === activeTab);
 
   return (
-    <section className="py-24 px-6 relative overflow-hidden" id="qualification">
-      {/* Background Subtle Glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-purple-500/5 blur-[120px] rounded-full -z-10 pointer-events-none" />
-
+    <section className="py-24 px-6 relative overflow-hidden bg-white dark:bg-black transition-colors duration-700 w-full" id="qualification">
+      {/* Grid Pattern */}
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808006_1px,transparent_1px),linear-gradient(to_bottom,#80808006_1px,transparent_1px)] bg-[size:40px_40px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,#000_70%,transparent_100%)] pointer-events-none -z-10" />
       <div className="max-w-4xl mx-auto">
         {/* Header Section */}
-        <div className="text-center mb-16" data-aos="fade-up">
+        <ScrollReveal className="text-center mb-16" effect="fade-up">
           <h2 className="text-4xl md:text-5xl font-bold mb-3 text-slate-900 dark:text-white uppercase tracking-tight">
             Qualification
           </h2>
           <p className="text-slate-500 dark:text-gray-400 tracking-[0.2em] uppercase text-xs font-semibold">
             My Personal Journey
           </p>
-        </div>
+        </ScrollReveal>
 
         {/* Tab Selection */}
-        <div className="flex justify-center gap-8 mb-16" data-aos="fade-up" data-aos-delay="100">
+        <ScrollReveal className="flex justify-center gap-8 mb-16" effect="fade-up" delay={0.1}>
           <button
             onClick={() => handleTabChange('education')}
             className={`flex items-center gap-2 text-xl font-medium transition-all duration-300 relative py-1 cursor-pointer group ${
@@ -104,18 +95,18 @@ const Qualification = () => {
             <Briefcase size={24} /> Experience
             <span className={`absolute bottom-0 left-0 h-[2px] bg-blue-500 transition-all duration-300 ${activeTab === 'experience' ? 'w-full' : 'w-0 group-hover:w-1/2'}`} />
           </button>
-        </div>
+        </ScrollReveal>
 
         {/* Timeline Content */}
         <div className={`relative transition-all duration-300 ${isChanging ? 'opacity-0 scale-98 translate-y-2' : 'opacity-100 scale-100 translate-y-0'}`}>
           {filteredData.map((item, index) => {
             const isEven = index % 2 === 0;
             return (
-              <div 
+              <ScrollReveal 
                 key={activeTab + '-' + index} 
                 className="grid grid-cols-[1fr_auto_1fr] gap-x-4 md:gap-x-8 mb-10"
-                data-aos={isEven ? "fade-right" : "fade-left"}
-                data-aos-delay={index * 100}
+                effect={isEven ? "fade-right" : "fade-left"}
+                delay={(index * 100) / 1000}
               >
                 {/* Left Side (Even Index) */}
                 {isEven ? (
@@ -144,7 +135,7 @@ const Qualification = () => {
                     </div>
                   </div>
                 ) : <div />}
-              </div>
+              </ScrollReveal>
             );
           })}
         </div>

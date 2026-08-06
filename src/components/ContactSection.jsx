@@ -2,19 +2,13 @@
 import React, { useEffect, useState } from 'react';
 import { Mail, Send, ArrowRight } from 'lucide-react';
 import { FaLinkedin, FaXTwitter } from 'react-icons/fa6';
-import AOS from 'aos';
-import 'aos/dist/aos.css';
+import ScrollReveal from './ScrollReveal';
 
 const ContactSection = () => {
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
     setMounted(true);
-    AOS.init({
-      duration: 600,
-      once: true,
-      easing: 'ease-out-cubic',
-    });
   }, []);
 
   const contactMethods = [
@@ -49,25 +43,28 @@ const ContactSection = () => {
 
   return (
     <section
-      className="py-20 px-4 md:px-10 max-w-6xl mx-auto flex flex-col items-center overflow-hidden"
+      className="py-20 px-4 md:px-10 w-full flex flex-col items-center overflow-hidden bg-white dark:bg-black transition-colors duration-700 relative"
       id="contact"
     >
+      {/* Grid Pattern */}
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808006_1px,transparent_1px),linear-gradient(to_bottom,#80808006_1px,transparent_1px)] bg-[size:40px_40px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,#000_70%,transparent_100%)] pointer-events-none -z-10" />
+      <div className="max-w-6xl w-full flex flex-col items-center">
       {/* Header Section */}
-      <div className="text-center mb-16" data-aos="fade-up">
+      <ScrollReveal className="text-center mb-16" effect="fade-up">
         <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-2 uppercase tracking-tight">
           READY TO BUILD?
         </h2>
         <p className="text-gray-500 dark:text-gray-400 font-medium">
           Contact Me
         </p>
-      </div>
+      </ScrollReveal>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 w-full justify-items-center items-start">
         {/* Left Side - Talk to me */}
-        <div
+        <ScrollReveal
           className="space-y-4 w-full max-w-[280px]"
-          data-aos="fade-right"
-          data-aos-delay="100"
+          effect="fade-right"
+          delay={0.1}
         >
           <h3 className="text-xl font-semibold mb-6 text-center text-gray-800 dark:text-gray-200">
             Talk to me
@@ -106,13 +103,13 @@ const ContactSection = () => {
               </span>
             </a>
           ))}
-        </div>
+        </ScrollReveal>
 
         {/* Right Side - Form */}
-        <div
+        <ScrollReveal
           className="w-full max-w-[450px]"
-          data-aos="fade-left"
-          data-aos-delay="150"
+          effect="fade-left"
+          delay={0.15}
         >
           <h3 className="text-xl font-semibold mb-6 text-center text-gray-800 dark:text-gray-200">
             Write me your project
@@ -158,7 +155,8 @@ const ContactSection = () => {
               />
             </button>
           </form>
-        </div>
+        </ScrollReveal>
+      </div>
       </div>
     </section>
   );

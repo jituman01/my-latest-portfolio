@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useEffect, useRef, useState } from "react";
+import Image from "next/image";
 import { ExternalLink, ChevronDown } from "lucide-react";
 import { LogoGithub } from "@gravity-ui/icons";
 import gsap from "gsap";
@@ -13,7 +14,7 @@ if (typeof window !== "undefined") {
 
 const projectsData = [
   {
-    image: "https://i.ibb.co.com/4wGYbh0h/Recipe-Hub-Project-Mockup.png",
+    image: "/mockups/recipehub.png",
     title: "RecipeHub: Recipe Sharing Platform",
     description:
       "RecipeHub is a dynamic recipe-sharing platform designed for food enthusiasts and home chefs. It serves as a social ecosystem where users can publish unique recipes, discover secret family dishes, and build a vibrant community of culinary creators. With a clean and intuitive interface, the platform aims to celebrate the art of cooking by making it easy to share techniques and connect with food lovers worldwide.",
@@ -31,7 +32,7 @@ const projectsData = [
     themeColor: "purple",
   },
   {
-    image: "https://i.ibb.co.com/KxGjVPQj/Doc-Appoint-Project-Mockup.png",
+    image: "/mockups/docappoint.png",
     title: "DocAppoint: Appointment Booking Platform",
     description:
       "A Doctor Appointment Management System is a web-based platform designed to streamline the interaction between patients and healthcare providers. Its primary goal is to provide a fast, efficient, and hassle-free experience for patients booking medical consultations.",
@@ -48,7 +49,7 @@ const projectsData = [
     themeColor: "purple",
   },
   {
-    image: "https://i.ibb.co.com/QjXwFVQW/Qurbani-Hat-Project-Mockup.png",
+    image: "/mockups/qurbanihat.png",
     title: "Qurbanihat: livestock booking platform",
     description:
       "A modern livestock marketplace for booking and selling cattle. Built with Next.js for a seamless user experience.",
@@ -59,7 +60,7 @@ const projectsData = [
     themeColor: "blue",
   },
   {
-    image: "https://i.ibb.co.com/hN1v2Vq/Behance-Mockup-Shot-Cover-8.png",
+    image: "/mockups/wanderlast.png",
     title: "Wanderlast: Travel Booking Platform",
     description:
       "Wanderlast is a next-generation travel booking platform built for modern adventurers. By combining real-time flight and accommodation booking with personalized, AI-driven itinerary planning, Wanderlast removes the friction from travel.",
@@ -69,7 +70,7 @@ const projectsData = [
     themeColor: "purple",
   },
   {
-    image: "https://i.ibb.co.com/1GVKz39T/Behance-Mockup-Shot-Cover-6.png",
+    image: "/mockups/gadgetheaven.png",
     title: "Gadget Heaven: E-commerce",
     description:
       "Secure file storage platform with role-based access, real-time updates, and sharing features. Gadget Heaven is a premier e-commerce destination built for tech enthusiasts, early adopters, and everyday consumers looking to upgrade their digital lives.",
@@ -79,7 +80,7 @@ const projectsData = [
     themeColor: "green",
   },
   {
-    image: "https://i.ibb.co.com/4bkHH1C/Behance-Mockup-Shot-Cover-2.png",
+    image: "/mockups/pixgen.png",
     title: "Pixgen: Image Generator with Ai",
     description:
       "It is a modern web application that leverages artificial intelligence to transform text descriptions into high-quality, unique images.",
@@ -89,7 +90,7 @@ const projectsData = [
     themeColor: "purple",
   },
   {
-    image: "https://i.ibb.co.com/5xMxZHDx/Behance-Mockup-Shot-Cover-4.png",
+    image: "/mockups/keenkeeper.png",
     title: "KeenKeeper",
     description:
       "KeenKeeper helps you keep track of your friendships and social connections. Reminds you when you last spoke to someone.",
@@ -99,7 +100,7 @@ const projectsData = [
     themeColor: "green",
   },
   {
-    image: "https://i.ibb.co.com/q3sFZ6GF/Behance-Mockup-Shot-Cover-5.png",
+    image: "/mockups/digitools.png",
     title: "DigiTools-Platform",
     description:
       "DigiTools is a fast and clean web application where users can find premium digital products.",
@@ -109,7 +110,7 @@ const projectsData = [
     themeColor: "blue",
   },
   {
-    image: "https://i.ibb.co.com/ytz4rBx/Behance-Mockup-Shot-Cover-7.png",
+    image: "/mockups/issue-tracker.png",
     title: "Github-Issue-Tracker",
     description:
       "GitHub Issue Tracker is a productivity tool designed to help developers manage and monitor project issues efficiently.",
@@ -161,12 +162,15 @@ const ProjectCard = React.forwardRef(({ project, index, total }, ref) => {
 
       <div className="flex flex-col md:flex-row h-full w-full min-h-[460px] md:h-[480px]">
         {/* Left Side: Mockup Image */}
-        <div className="w-full  relative overflow-hidden  flex items-center justify-center">
+        <div className="w-full  relative overflow-hidden  flex items-center justify-center min-h-[250px] md:min-h-0">
           <div className="w-full h-full rounded-2xl overflow-hidden relative group/img">
-            <img
+            <Image
               src={project.image}
               alt={project.title}
-              className="w-full h-full object-cover transition-transform duration-700 group-hover/img:scale-105"
+              fill
+              sizes="(max-width: 768px) 100vw, 50vw"
+              className="object-cover transition-transform duration-700 group-hover/img:scale-105"
+              priority={index === 0}
             />
             {/* Overlay gradient */}
             <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent pointer-events-none" />

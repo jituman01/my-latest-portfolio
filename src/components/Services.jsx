@@ -2,6 +2,8 @@
 import React from 'react';
 import { Code2, Layout, Smartphone, Globe, ShieldCheck, Zap } from 'lucide-react';
 
+import ScrollReveal from './ScrollReveal';
+
 const Services = () => {
   const servicesList = [
     {
@@ -43,9 +45,12 @@ const Services = () => {
   ];
 
   return (
-    <section id="services" className="relative py-20 px-6 max-w-6xl mx-auto scroll-mt-16">
+    <section id="services" className="relative py-20 px-6 w-full scroll-mt-16 bg-white dark:bg-black transition-colors duration-700">
+      {/* Grid Pattern */}
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808006_1px,transparent_1px),linear-gradient(to_bottom,#80808006_1px,transparent_1px)] bg-[size:40px_40px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,#000_70%,transparent_100%)] pointer-events-none -z-10" />
+      <div className="max-w-6xl mx-auto">
       {/* Section Header */}
-      <div className="text-center mb-16" data-aos="fade-up">
+      <ScrollReveal className="text-center mb-16" effect="fade-up">
         <h2 className="text-3xl md:text-4xl font-extrabold bg-gradient-to-r from-slate-900 via-slate-700 to-slate-900 dark:from-white dark:via-slate-300 dark:to-white bg-clip-text text-transparent mb-4">
           What I Offer
         </h2>
@@ -53,15 +58,15 @@ const Services = () => {
         <p className="text-sm md:text-base text-slate-500 dark:text-gray-400 max-w-md mx-auto">
           Providing specialized frontend services to bring your digital concepts to life with speed, precision, and modern technology.
         </p>
-      </div>
+      </ScrollReveal>
 
       {/* Services Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {servicesList.map((service, index) => (
-          <div
+          <ScrollReveal
             key={service.id}
-            data-aos="fade-up"
-            data-aos-delay={index * 50}
+            effect="fade-up"
+            delay={(index * 50) / 1000}
             className="
               group relative p-6 md:p-8 rounded-3xl 
               bg-neutral-50/60 dark:bg-white/[0.02] 
@@ -91,8 +96,9 @@ const Services = () => {
             <p className="text-sm leading-relaxed text-slate-500 dark:text-gray-400 group-hover:text-slate-600 dark:group-hover:text-gray-300 transition-colors duration-200">
               {service.description}
             </p>
-          </div>
+          </ScrollReveal>
         ))}
+      </div>
       </div>
     </section>
   );
