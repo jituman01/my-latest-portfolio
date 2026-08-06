@@ -2,7 +2,7 @@
 
 import React, { useEffect, useRef, useState } from 'react';
 import * as THREE from 'three';
-import { Sparkles, Info } from 'lucide-react';
+import { Sparkles } from 'lucide-react';
 
 const allSkills = [
   // Frontend
@@ -35,12 +35,12 @@ const allSkills = [
     themeColor: 'blue',
   },
   {
-  name: 'TypeScript',
-  icon: 'https://cdn.simpleicons.org/typescript',
-  desc: 'Strongly typed programming language that builds on JavaScript for scalable apps.',
-  category: 'Frontend Development',
-  themeColor: 'blue',
-},
+    name: 'TypeScript',
+    icon: 'https://cdn.simpleicons.org/typescript',
+    desc: 'Strongly typed programming language that builds on JavaScript for scalable apps.',
+    category: 'Frontend Development',
+    themeColor: 'blue',
+  },
   {
     name: 'React',
     icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg',
@@ -55,11 +55,6 @@ const allSkills = [
     category: 'Frontend',
     themeColor: 'blue',
   },
-  // { name: "HeroUI", icon: "https://avatars.githubusercontent.com/u/159396348?s=200&v=4", desc: "Sleek and accessible component library for modern user interfaces.", category: "Frontend", themeColor: "blue" },
-  // { name: "Lucide React", icon: "https://lucide.dev/logo.light.svg", desc: "Clean and consistent vector icons designed for React platforms.", category: "Frontend", themeColor: "blue" },
-  // { name: "daisyUI", icon: "https://i.ibb.co.com/zT6PWZwD/images-removebg-preview.png", desc: "Tailwind CSS component plugin for streamlined UI theme layouts.", category: "Frontend", themeColor: "blue" },
-  // { name: "Lottie React", icon: "https://i.ibb.co.com/p6SmmFgQ/1-Ne-VWPYVuurc41-Qt4-Vv46g-Q.jpg", desc: "High performance rendering engine for interactive Lottie animations.", category: "Frontend", themeColor: "blue" },
-
   // Backend
   {
     name: 'Node.js',
@@ -83,13 +78,12 @@ const allSkills = [
     themeColor: 'emerald',
   },
   {
-  name: 'Firebase',
-  icon: 'https://www.vectorlogo.zone/logos/firebase/firebase-icon.svg',
-  desc: 'Backend-as-a-Service platform for fast authentication, real-time database, and cloud storage.',
-  category: 'Backend & Database',
-  themeColor: 'amber',
-},
-
+    name: 'Firebase',
+    icon: 'https://www.vectorlogo.zone/logos/firebase/firebase-icon.svg',
+    desc: 'Backend-as-a-Service platform for fast authentication, real-time database, and cloud storage.',
+    category: 'Backend & Database',
+    themeColor: 'amber',
+  },
   // Tools & Auth
   {
     name: 'Git',
@@ -135,27 +129,6 @@ const allSkills = [
   },
 ];
 
-const themeStyles = {
-  blue: {
-    glow: 'rgba(59, 130, 246, 0.12)',
-    titleHover: 'hover:text-blue-500 dark:hover:text-blue-400',
-    numberText: 'text-blue-500 dark:text-blue-400',
-    buttonHover: 'dark:hover:bg-blue-600/20 hover:bg-blue-50',
-  },
-  emerald: {
-    glow: 'rgba(16, 185, 129, 0.12)',
-    titleHover: 'hover:text-emerald-500 dark:hover:text-emerald-400',
-    numberText: 'text-emerald-500 dark:text-emerald-400',
-    buttonHover: 'dark:hover:bg-emerald-600/20 hover:bg-emerald-50',
-  },
-  purple: {
-    glow: 'rgba(168, 85, 247, 0.12)',
-    titleHover: 'hover:text-purple-500 dark:hover:text-purple-400',
-    numberText: 'text-purple-500 dark:text-purple-400',
-    buttonHover: 'dark:hover:bg-purple-600/20 hover:bg-purple-50',
-  },
-};
-
 const TechStack = () => {
   const [hoveredTech, setHoveredTech] = useState(null);
   const [mounted, setMounted] = useState(false);
@@ -166,46 +139,39 @@ const TechStack = () => {
   const targetX = useRef(0);
   const targetY = useRef(0);
 
-  // Store 3D node coordinates
-  const [nodes, setNodes] = useState([]);
+  // Keep references to DOM elements and 3D coordinate data to prevent React re-renders
+  const nodeRefs = useRef([]);
+  const nodeCoords = useRef([]);
 
   useEffect(() => {
     setMounted(true);
   }, []);
 
-  // Initialize Spherical Coordinates for the 19 nodes
+  // Initialize Spherical Coordinates
   useEffect(() => {
     if (!mounted) return;
 
     const N = allSkills.length;
     const R = 180; // Radius of sphere
-    const points = [];
+    const coords = [];
     const phi = Math.PI * (3 - Math.sqrt(5)); // Golden ratio angle
 
     for (let i = 0; i < N; i++) {
-      const y = 1 - (i / (N - 1)) * 2; // y ranges from 1 to -1
-      const radius = Math.sqrt(1 - y * y); // radius at y
+      const y = 1 - (i / (N - 1)) * 2;
+      const radius = Math.sqrt(1 - y * y);
       const theta = phi * i;
 
-      const x = Math.cos(theta) * radius * R;
-      const z = Math.sin(theta) * radius * R;
-
-      points.push({
-        ...allSkills[i],
-        x,
+      coords.push({
+        x: Math.cos(theta) * radius * R,
         y: y * R,
-        z,
-        screenX: 0,
-        screenY: 0,
-        depthScale: 1,
-        depthOpacity: 1,
+        z: Math.sin(theta) * radius * R,
       });
     }
 
-    setNodes(points);
+    nodeCoords.current = coords;
   }, [mounted]);
 
-  // Set up Three.js Constellation Sphere
+  // Set up Three.js Constellation Sphere & Direct DOM Mutation Loop
   useEffect(() => {
     if (!mounted || !mountRef.current) return;
 
@@ -225,7 +191,7 @@ const TechStack = () => {
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     mountRef.current.appendChild(renderer.domElement);
 
-    // 4. Central Glowing Core (WebGL Wireframe Icosahedron)
+    // 4. Central Glowing Core
     const coreGeometry = new THREE.IcosahedronGeometry(25, 1);
     const coreMaterial = new THREE.MeshBasicMaterial({
       color: 0x3b82f6,
@@ -236,9 +202,9 @@ const TechStack = () => {
     const centralCore = new THREE.Mesh(coreGeometry, coreMaterial);
     scene.add(centralCore);
 
-    // 5. Constellation Lines (WebGL lines linking nodes to center and to close neighbors)
+    // 5. Constellation Lines
     const maxLines = 100;
-    const linePositions = new Float32Array(maxLines * 2 * 3); // Line segments
+    const linePositions = new Float32Array(maxLines * 2 * 3);
     const lineGeometry = new THREE.BufferGeometry();
     lineGeometry.setAttribute(
       'position',
@@ -268,7 +234,7 @@ const TechStack = () => {
       const v = Math.random();
       const theta = u * 2.0 * Math.PI;
       const phi = Math.acos(2.0 * v - 1.0);
-      const r = 210 + Math.random() * 60; // sphere shell around the nodes
+      const r = 210 + Math.random() * 60;
 
       positions[i] = r * Math.sin(phi) * Math.cos(theta);
       positions[i + 1] = r * Math.sin(phi) * Math.sin(theta);
@@ -280,7 +246,6 @@ const TechStack = () => {
       new THREE.BufferAttribute(positions, 3)
     );
 
-    // Custom glowing point texture
     const createParticleTexture = () => {
       const canvas = document.createElement('canvas');
       canvas.width = 16;
@@ -306,7 +271,7 @@ const TechStack = () => {
     const starParticles = new THREE.Points(particleGeometry, particleMaterial);
     scene.add(starParticles);
 
-    // 7. Rotation Helper functions
+    // Helper functions for 3D rotations
     const rotateX = (x, y, z, angle) => {
       const cos = Math.cos(angle);
       const sin = Math.sin(angle);
@@ -332,20 +297,20 @@ const TechStack = () => {
 
     mountRef.current.addEventListener('mousemove', handleMouseMove);
 
-    // Set up IntersectionObserver to check if section is visible
+    // Track intersection for performance
     let isIntersecting = true;
     const observer = new IntersectionObserver(
       ([entry]) => {
         isIntersecting = entry.isIntersecting;
       },
-      { threshold: 0.05 } // Triggers when 5% of the section is visible
+      { threshold: 0.05 }
     );
     const sectionEl = mountRef.current.closest('section');
     if (sectionEl) {
       observer.observe(sectionEl);
     }
 
-    // 8. Animation Loop
+    // Animation Loop
     let animationFrameId;
     const tempVector = new THREE.Vector3();
 
@@ -358,27 +323,24 @@ const TechStack = () => {
       mouseX.current += (targetX.current - mouseX.current) * 0.05;
       mouseY.current += (targetY.current - mouseY.current) * 0.05;
 
-      // Base spinning speed + user cursor offset speed
       const speedX = 0.001 + mouseY.current * 0.005;
       const speedY = 0.003 + mouseX.current * 0.006;
 
       currentRotX += speedX;
       currentRotY += speedY;
 
-      // Rotate background stars and central core wireframe
       starParticles.rotation.x += 0.0004;
       starParticles.rotation.y += 0.0005;
       centralCore.rotation.x += 0.006;
       centralCore.rotation.y += 0.009;
 
-      // Calculate and project coordinates for HTML Nodes
-      let rotatedNodes = [];
+      const coords = nodeCoords.current;
+      const refs = nodeRefs.current;
 
-      setNodes(prevNodes => {
-        rotatedNodes = prevNodes.map(node => {
-          let { x, y, z } = node;
+      if (coords.length && refs.length) {
+        const rotatedCoords = coords.map(coord => {
+          let { x, y, z } = coord;
 
-          // Apply rotation deltas
           const rotatedY = rotateY(x, y, z, currentRotY);
           x = rotatedY.x;
           z = rotatedY.z;
@@ -387,21 +349,17 @@ const TechStack = () => {
           y = rotatedX.y;
           z = rotatedX.z;
 
-          // Project to 2D Screen Space
           tempVector.set(x, y, z);
           tempVector.project(camera);
 
           const screenX = (tempVector.x * 0.5 + 0.5) * width;
           const screenY = (-(tempVector.y * 0.5) + 0.5) * height;
 
-          // Scale and opacity according to depth
-          // normalized depth [0, 1]
           const normalizedZ = (z + 180) / 360;
-          const depthScale = 0.65 + normalizedZ * 0.55; // scale between 0.65x and 1.2x
-          const depthOpacity = 0.15 + normalizedZ * 0.85; // opacity between 0.15 and 1.0
+          const depthScale = 0.65 + normalizedZ * 0.55;
+          const depthOpacity = 0.15 + normalizedZ * 0.85;
 
           return {
-            ...node,
             xCalc: x,
             yCalc: y,
             zCalc: z,
@@ -412,19 +370,29 @@ const TechStack = () => {
           };
         });
 
-        // Update WebGL constellation connecting lines
+        // Directly mutate DOM elements style to avoid React rendering cycles
+        rotatedCoords.forEach((node, idx) => {
+          const element = refs[idx];
+          if (element) {
+            element.style.left = `${node.screenX}px`;
+            element.style.top = `${node.screenY}px`;
+            element.style.transform = `translate(-50%, -50%) scale(${node.depthScale})`;
+            element.style.opacity = node.depthOpacity;
+            element.style.zIndex = Math.round(100 + node.zCalc);
+            element.style.pointerEvents = 'auto';
+          }
+        });
+
+        // Update constellation connecting lines
         const linesArray = lineGeometry.attributes.position.array;
         let lineIdx = 0;
 
-        // 1. Draw rungs connecting each node to the central core
-        rotatedNodes.forEach(node => {
+        rotatedCoords.forEach(node => {
           if (lineIdx < maxLines) {
             const offset = lineIdx * 6;
-            // Point A (Node)
             linesArray[offset] = node.xCalc;
             linesArray[offset + 1] = node.yCalc;
             linesArray[offset + 2] = node.zCalc;
-            // Point B (Center Core)
             linesArray[offset + 3] = 0;
             linesArray[offset + 4] = 0;
             linesArray[offset + 5] = 0;
@@ -432,21 +400,18 @@ const TechStack = () => {
           }
         });
 
-        // 2. Draw links between close neighboring nodes to form a constellation mesh
-        for (let i = 0; i < rotatedNodes.length; i++) {
-          for (let j = i + 1; j < rotatedNodes.length; j++) {
+        for (let i = 0; i < rotatedCoords.length; i++) {
+          for (let j = i + 1; j < rotatedCoords.length; j++) {
             if (lineIdx >= maxLines) break;
 
-            const nodeA = rotatedNodes[i];
-            const nodeB = rotatedNodes[j];
+            const nodeA = rotatedCoords[i];
+            const nodeB = rotatedCoords[j];
 
-            // Calculate distance in 3D WebGL space
             const dx = nodeA.xCalc - nodeB.xCalc;
             const dy = nodeA.yCalc - nodeB.yCalc;
             const dz = nodeA.zCalc - nodeB.zCalc;
             const dist = Math.sqrt(dx * dx + dy * dy + dz * dz);
 
-            // Connect neighboring nodes within distance threshold
             if (dist < 145) {
               const offset = lineIdx * 6;
               linesArray[offset] = nodeA.xCalc;
@@ -460,7 +425,6 @@ const TechStack = () => {
           }
         }
 
-        // Fill remaining buffer index points with zeros to prevent rendering trash lines
         for (let k = lineIdx; k < maxLines; k++) {
           const offset = k * 6;
           linesArray[offset] = 0;
@@ -472,16 +436,13 @@ const TechStack = () => {
         }
 
         lineGeometry.attributes.position.needsUpdate = true;
-
-        return rotatedNodes;
-      });
+      }
 
       renderer.render(scene, camera);
     };
 
     animate();
 
-    // Resize Handler
     const handleResize = () => {
       if (!mountRef.current) return;
       const newWidth = mountRef.current.clientWidth;
@@ -494,7 +455,6 @@ const TechStack = () => {
 
     window.addEventListener('resize', handleResize);
 
-    // Clean up
     const mountNode = mountRef.current;
     return () => {
       cancelAnimationFrame(animationFrameId);
@@ -507,7 +467,7 @@ const TechStack = () => {
         try {
           mountNode.removeChild(renderer.domElement);
         } catch (e) {
-          // ignore if already removed
+          // ignore
         }
       }
       renderer.dispose();
@@ -522,7 +482,7 @@ const TechStack = () => {
       id="tech"
     >
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-        {/* Left Side: Heading, Description & Spec Detail Box */}
+        {/* Left Side: Heading & Spec Box */}
         <div className="lg:col-span-4 flex flex-col justify-center gap-6">
           <div>
             <span className="text-blue-500 dark:text-blue-400 text-xs font-bold tracking-[0.2em] uppercase mb-2 block animate-pulse">
@@ -536,14 +496,13 @@ const TechStack = () => {
             </h2>
             <p className="text-sm md:text-base text-slate-500 dark:text-gray-400 font-medium leading-relaxed max-w-md">
               An interactive constellation sphere representing the
-              Stack, languages, and tools I use to build scalable web
+              languages, frameworks, and tools I use to build scalable web
               applications.
             </p>
           </div>
 
           {/* Interactive Specification Detail Card */}
-          <div className="p-6 md:p-8 rounded-[32px] bg-transparent backdrop-blur-2xl border border-slate-200/80 dark:border-neutral-800/80  min-h-[160px] flex flex-col justify-center relative overflow-hidden transition-all duration-300 pointer-events-auto">
-            {/* Dynamic Card Color Border top */}
+          <div className="p-6 md:p-8 rounded-[32px] bg-transparent backdrop-blur-2xl border border-slate-200/80 dark:border-neutral-800/80 min-h-[160px] flex flex-col justify-center relative overflow-hidden transition-all duration-300 pointer-events-auto">
             <div
               className={`absolute top-0 left-0 right-0 h-1 rounded-t-3xl transition-colors duration-500 ${
                 hoveredTech?.themeColor === 'blue'
@@ -559,7 +518,7 @@ const TechStack = () => {
             {hoveredTech ? (
               <div className="flex flex-col gap-3 animate-fade-in">
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-xl flex items-center justify-center bg-transparent  p-2">
+                  <div className="w-10 h-10 rounded-xl flex items-center justify-center bg-transparent p-2">
                     <img
                       src={hoveredTech.icon}
                       alt={hoveredTech.name}
@@ -600,28 +559,30 @@ const TechStack = () => {
 
         {/* Right Side: 3D Sphere Canvas & HTML Projection */}
         <div className="lg:col-span-8 relative flex items-center justify-center min-h-[520px] md:min-h-[600px] bg-transparent rounded-[40px] overflow-hidden">
-          {/* ThreeJS Container */}
+          {/* ThreeJS Canvas */}
           <div ref={mountRef} className="absolute inset-0 z-0" />
 
           {/* HTML Projecting Nodes */}
           <div className="absolute inset-0 z-10 pointer-events-none overflow-hidden select-none">
-            {nodes.map(tech => {
+            {allSkills.map((tech, idx) => {
               const isCurrentlyHovered = hoveredTech?.name === tech.name;
 
               return (
                 <div
                   key={tech.name}
+                  ref={el => {
+                    nodeRefs.current[idx] = el;
+                  }}
                   className="absolute pointer-events-auto cursor-pointer"
                   onMouseEnter={() => setHoveredTech(tech)}
                   onMouseLeave={() => setHoveredTech(null)}
                   style={{
-                    left: `${tech.screenX}px`,
-                    top: `${tech.screenY}px`,
-                    transform: `translate(-50%, -50%) scale(${tech.depthScale})`,
-                    opacity: tech.depthOpacity,
-                    zIndex: Math.round(100 + (tech.zCalc || 0)),
-                    transition:
-                      'transform 0.05s ease-out, opacity 0.15s ease-out',
+                    position: 'absolute',
+                    left: '0px',
+                    top: '0px',
+                    transform: 'translate(-50%, -50%) scale(0)',
+                    opacity: 0,
+                    pointerEvents: 'none',
                   }}
                 >
                   <div

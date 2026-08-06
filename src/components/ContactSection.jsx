@@ -43,7 +43,7 @@ const ContactSection = () => {
 
   return (
     <section
-      className="py-20 px-4 md:px-10 w-full flex flex-col items-center overflow-hidden bg-white dark:bg-black transition-colors duration-700 relative"
+      className="py-20 px-4 md:px-10 w-full flex flex-col items-center overflow-hidden bg-transparent transition-colors duration-700 relative"
       id="contact"
     >
       {/* Grid Pattern */}
@@ -79,7 +79,7 @@ const ContactSection = () => {
               className={`flex flex-col items-center p-5 bg-white/10 dark:bg-white/[0.07] backdrop-blur-xl border border-gray-200 dark:border-white/[0.15] rounded-3xl transition-all duration-300 transform hover:-translate-y-1.5 hover:scale-[1.02] ${method.color} group shadow-lg relative overflow-hidden`}
             >
               {/* Subtle Inner Glow */}
-              <div className="absolute inset-0 bg-gradient-to-br from-white/[0.05] to-transparent pointer-events-none" />
+              <div className="absolute inset-0  pointer-events-none" />
               <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
               <div className="p-3 bg-gray-100 dark:bg-white/10 rounded-2xl mb-3 group-hover:bg-white dark:group-hover:bg-white/15 transition-colors shadow-sm relative z-10">

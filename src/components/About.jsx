@@ -24,11 +24,11 @@ const About = () => {
 
   return (
     <section
-      className="px-6 bg-transparent text-slate-900 dark:text-white min-h-screen flex flex-col items-center justify-center py-20 overflow-hidden"
+      className="px-6  text-slate-900 dark:text-white flex flex-col items-center justify-center overflow-hidden mt-5"
       id="about"
     >
-      <ScrollReveal className="text-center mb-16" effect="fade-up">
-        <h2 className="text-4xl font-bold mb-2 tracking-tight">About</h2>
+      <ScrollReveal className="text-center mb-10" effect="fade-up">
+        <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tighter leading-none select-none">About</h2>
         <p className="text-slate-500 dark:text-gray-500 tracking-widest uppercase text-sm font-medium">
           My Introduction
         </p>

@@ -1,223 +1,526 @@
 'use client';
-import React, { useState, useEffect } from 'react';
-import { ExternalLink, X, Eye, ChevronDown, LucideAward } from 'lucide-react';
-import Image from 'next/image';
-import ScrollReveal from './ScrollReveal';
+import React, { useState, useEffect, useRef } from 'react';
+import { 
+  Layout, Grid, Smartphone, Zap, Code, Braces, List, Settings, 
+  Award, Eye, BookOpen, Layers, Cpu, Activity, Shield, Lock, Key, 
+  UserCheck, Server, Database, Sliders, ArrowLeftRight, Sparkles, 
+  GitBranch, Terminal, Code2, GitFork, Heart, Users, ExternalLink,
+  X
+} from 'lucide-react';
+import { FaFigma } from 'react-icons/fa6';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
-// Achievements & Certificates Data Model
-const certificatesData = [
+if (typeof window !== 'undefined') {
+  gsap.registerPlugin(ScrollTrigger);
+}
+
+const stackSteps = [
   {
-    id: '01',
-    title: 'Web Dev with JavaScript',
-    issuer: 'Ostad',
-    date: 'December 2025',
-    image: '/achievements/cert-webdev.png',
-    verifyLink: 'https://ostad.app/share/certificate/c43083-null',
-    tags: ['MongoDB', 'Express', 'React', 'Node'],
+    id: "web-fundamentals",
+    stackLabel: "WEB FUNDAMENTALS",
+    title: "Responsive Web Foundations",
+    description: "Mastered semantic HTML5, modern CSS3 layout paradigms (Flexbox and Grid), responsive design principles, and cross-browser styling optimization.",
+    verifyLink: "https://ostad.app/share/certificate/c43083-null",
+    image: "/achievements/cert-webdev.png",
+    badges: [
+      { icon: "Layout", label: "Semantic HTML" },
+      { icon: "Grid", label: "CSS Grid & Flexbox" },
+      { icon: "Smartphone", label: "Mobile-First Design" },
+      { icon: "Zap", label: "Cross-Browser Fixes" },
+    ],
   },
   {
-    id: '04',
-    title: 'Adobe Illustrator',
-    issuer: '10 Minute School',
-    date: 'April 2026',
-    image: '/achievements/cert-illustrator.png',
-    verifyLink: 'https://10minuteschool.com/certificate/6a06aff791d73',
-    tags: ['Networking', 'Personal Branding', 'Professional Profile'],
+    id: "javascript-core",
+    stackLabel: "JAVASCRIPT CORE",
+    title: "JavaScript & ES6 Foundations",
+    description: "Deep dive into core programming logic, asynchronous executions, scope structures, closures, array processing, DOM manipulation, and advanced problem-solving methodologies.",
+    verifyLink: "https://ostad.app/share/certificate/c43244-null",
+    image: "/achievements/cert-js.png",
+    badges: [
+      { icon: "Code", label: "Asynchronous JS" },
+      { icon: "Braces", label: "Closures & Scopes" },
+      { icon: "List", label: "Array Operations" },
+      { icon: "Settings", label: "DOM API" },
+    ],
   },
   {
-    id: '02',
-    title: 'JavaScript Fundamentals',
-    issuer: 'Ostad',
-    date: 'February 2026',
-    image: '/achievements/cert-js.png',
-    verifyLink: 'https://ostad.app/share/certificate/c43244-null',
-    tags: ['JavaScript', 'Frontend', 'ES6+'],
+    id: "design-uxui",
+    stackLabel: "UX/UI DESIGN",
+    title: "User Experience & UI Principles",
+    description: "Trained in visual hierarchy, typography systems, user personas, wireframing, and interactive UI prototyping using industry-standard tools like Figma.",
+    verifyLink: "https://ostad.app/share/certificate/c43082-null",
+    image: "/achievements/cert-uxui.png",
+    badges: [
+      { icon: "Figma", label: "UI/UX Prototyping" },
+      { icon: "Eye", label: "Visual Systems" },
+      { icon: "BookOpen", label: "User Journeys" },
+      { icon: "Layout", label: "Wireframing" },
+    ],
   },
   {
-    id: '03',
-    title: 'UX/UI Design',
-    issuer: 'Ostad',
-    date: 'March 2026',
-    image: '/achievements/cert-uxui.png',
-    verifyLink: 'https://ostad.app/share/certificate/c43082-null',
-    tags: ['Design', 'UX/UI'],
+    id: "adobe-illustrator",
+    stackLabel: "VECTOR DESIGN",
+    title: "Adobe Illustrator Vector Graphics",
+    description: "Mastered path rendering, vector illustration, color theories, layout compositions, brand identity designs, and high-fidelity graphics asset creation.",
+    verifyLink: "https://10minuteschool.com/certificate/6a06aff791d73",
+    image: "/achievements/cert-illustrator.png",
+    badges: [
+      { icon: "Award", label: "Vector Path Design" },
+      { icon: "Sparkles", label: "Branding Assets" },
+      { icon: "Grid", label: "Layout Composition" },
+      { icon: "Settings", label: "Illustration Tools" },
+    ],
   },
+  {
+    id: "nextjs-frontend",
+    stackLabel: "NEXT.JS & FRONTEND",
+    title: "Modern Frontend with Next.js",
+    description: "Leveraged Next.js App Router, Server Components, Server-Side Rendering (SSR), Static Site Generation (SSG), and performance tuning with Tailwind CSS.",
+    verifyLink: "https://ostad.app/share/certificate/c43083-null",
+    image: "/achievements/cert-webdev.png",
+    badges: [
+      { icon: "Layers", label: "App Router" },
+      { icon: "Cpu", label: "Server Components" },
+      { icon: "Zap", label: "Performance Tuning" },
+      { icon: "Activity", label: "Dynamic Routing" },
+    ],
+  },
+  
 ];
 
+const getIcon = (name) => {
+  const icons = {
+    Layout: <Layout size={14} />,
+    Grid: <Grid size={14} />,
+    Smartphone: <Smartphone size={14} />,
+    Zap: <Zap size={14} />,
+    Code: <Code size={14} />,
+    Braces: <Braces size={14} />,
+    List: <List size={14} />,
+    Settings: <Settings size={14} />,
+    Award: <Award size={14} />,
+    Eye: <Eye size={14} />,
+    BookOpen: <BookOpen size={14} />,
+    Layers: <Layers size={14} />,
+    Cpu: <Cpu size={14} />,
+    Activity: <Activity size={14} />,
+    Shield: <Shield size={14} />,
+    Lock: <Lock size={14} />,
+    Key: <Key size={14} />,
+    UserCheck: <UserCheck size={14} />,
+    Server: <Server size={14} />,
+    Database: <Database size={14} />,
+    Sliders: <Sliders size={14} />,
+    ArrowLeftRight: <ArrowLeftRight size={14} />,
+    Sparkles: <Sparkles size={14} />,
+    GitBranch: <GitBranch size={14} />,
+    Terminal: <Terminal size={14} />,
+    Code2: <Code2 size={14} />,
+    GitFork: <GitFork size={14} />,
+    Heart: <Heart size={14} />,
+    Users: <Users size={14} />,
+    Figma: <FaFigma size={14} />,
+  };
+  return icons[name] || <Award size={14} />;
+};
+
+const StackCard = ({ step, index, state, activeStep, onCardClick }) => {
+  let transform = '';
+  let opacity = 1;
+  let zIndex = 10;
+  
+  if (state === 'passed') {
+    transform = 'rotateX(15deg) rotateY(-10deg) rotateZ(-2deg) translateZ(160px) translateY(-160px) scale(0.95)';
+    opacity = 0;
+    zIndex = 50 - index;
+  } else if (state === 'active') {
+    transform = 'rotateX(15deg) rotateY(-10deg) rotateZ(-2deg) translateZ(40px) translateY(0px)';
+    opacity = 1;
+    zIndex = 100;
+  } else {
+    const diff = index - activeStep;
+    transform = `rotateX(15deg) rotateY(-10deg) rotateZ(-2deg) translateZ(-${diff * 22}px) translateY(${diff * 16}px)`;
+    opacity = Math.max(0, 1 - diff * 0.16);
+    zIndex = 40 - index;
+  }
+  
+  const hasImage = !!step.image;
+  
+  return (
+    <div
+      className={`absolute inset-0 rounded-2xl transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] flex flex-col justify-between border select-none overflow-hidden group ${
+        state === 'active'
+          ? hasImage
+            ? 'border-transparent shadow-[0_20px_50px_rgba(139,92,246,0.35)] scale-[1.02] cursor-pointer text-white'
+            : 'bg-gradient-to-br from-purple-600 to-pink-500 text-white border-transparent shadow-[0_20px_50px_rgba(139,92,246,0.3)] scale-[1.02] p-6'
+          : 'bg-white dark:bg-neutral-900 text-slate-400 dark:text-neutral-500 border-slate-200 dark:border-white/5 shadow-sm p-6'
+      }`}
+      style={{
+        transform,
+        opacity,
+        zIndex,
+        transformOrigin: 'center center',
+      }}
+      onClick={() => {
+        if (state === 'active' && hasImage) {
+          onCardClick(step);
+        }
+      }}
+    >
+      {/* Card Image and Overlay */}
+      {hasImage && (
+        <div className="absolute inset-0 z-0">
+          <img 
+            src={step.image} 
+            alt={step.title}
+            className={`w-full h-full object-cover transition-all duration-700 ${
+              state === 'active' 
+                ? 'opacity-100 scale-100 group-hover:scale-[1.03]' 
+                : 'opacity-20 dark:opacity-10 grayscale scale-100'
+            }`}
+          />
+          {state !== 'active' && (
+            <div className="absolute inset-0 bg-white/80 dark:bg-neutral-900/90 transition-all duration-700" />
+          )}
+        </div>
+      )}
+
+      {/* Fallback Solid BG */}
+      {!hasImage && (
+        <div className={`absolute inset-0 z-0 transition-all duration-700 ${
+          state === 'active'
+            ? 'bg-gradient-to-br from-purple-600 to-pink-500 opacity-100'
+            : 'bg-white dark:bg-neutral-900 opacity-100'
+        }`} />
+      )}
+
+      {/* Card Header Content (Only shown if no image exists on the card) */}
+      {!hasImage && (
+        <div className="flex justify-between items-start relative z-10">
+          <span className={`text-[10px] font-mono tracking-widest uppercase font-black ${
+            state === 'active' 
+              ? 'text-white/70' 
+              : 'text-slate-500 dark:text-neutral-400'
+          }`}>
+            {step.stackLabel}
+          </span>
+          <div className={`w-6 h-6 rounded-full flex items-center justify-center border text-xs font-bold ${
+            state === 'active' 
+              ? 'bg-white/20 border-white/20 text-white' 
+              : 'bg-slate-100 dark:bg-white/5 border-slate-200 dark:border-white/10 text-slate-500 dark:text-neutral-400'
+          }`}>
+            {index + 1}
+          </div>
+        </div>
+      )}
+      
+      {/* Card Body Content (Only shown if no image exists on the card) */}
+      {!hasImage && (
+        <div className="relative z-10">
+          <h3 className={`text-base font-extrabold tracking-tight mb-1 ${
+            state === 'active' 
+              ? 'text-white' 
+              : 'text-slate-800 dark:text-neutral-300'
+          }`}>
+            {step.title}
+          </h3>
+          
+          {state === 'active' && (
+            <div className="flex gap-2 mt-3 animate-pulse">
+              <div className="w-1.5 h-1.5 rounded-full bg-white/80" />
+              <div className="w-1.5 h-1.5 rounded-full bg-white/50" />
+              <div className="w-1.5 h-1.5 rounded-full bg-white/30" />
+            </div>
+          )}
+        </div>
+      )}
+    </div>
+  );
+};
+
 const Achievements = () => {
-  const [selectedCert, setSelectedCert] = useState(null);
-  const [showAll, setShowAll] = useState(false);
+  const containerRef = useRef(null);
+  const sectionRef = useRef(null);
+  const [activeStep, setActiveStep] = useState(0);
+  const [transitioningStep, setTransitioningStep] = useState(0);
+  const [opacity, setOpacity] = useState(1);
+  const [translateY, setTranslateY] = useState(0);
+  const [isDesktop, setIsDesktop] = useState(false);
   const [mounted, setMounted] = useState(false);
+  const [selectedCert, setSelectedCert] = useState(null);
 
   useEffect(() => {
     setMounted(true);
+    const checkIsDesktop = () => {
+      setIsDesktop(window.innerWidth >= 1024);
+    };
+    checkIsDesktop();
+    window.addEventListener('resize', checkIsDesktop);
+    return () => window.removeEventListener('resize', checkIsDesktop);
   }, []);
+
+  useEffect(() => {
+    if (!mounted || !isDesktop) return;
+
+    const section = sectionRef.current;
+    if (!section) return;
+
+    let ctx = gsap.context(() => {
+      ScrollTrigger.create({
+        trigger: section,
+        start: 'top top',
+        end: () => `+=${stackSteps.length * 100}%`,
+        pin: true,
+        scrub: 0.5,
+        snap: {
+          snapTo: 1 / (stackSteps.length - 1),
+          duration: { min: 0.2, max: 0.5 },
+          delay: 0.1,
+          ease: 'power1.inOut',
+        },
+        onUpdate: (self) => {
+          const stepIndex = Math.round(self.progress * (stackSteps.length - 1));
+          setActiveStep(stepIndex);
+        },
+      });
+    }, section);
+
+    return () => ctx.revert();
+  }, [mounted, isDesktop]);
+
+  useEffect(() => {
+    setOpacity(0);
+    setTranslateY(8);
+    const timer = setTimeout(() => {
+      setTransitioningStep(activeStep);
+      setOpacity(1);
+      setTranslateY(0);
+    }, 200);
+    return () => clearTimeout(timer);
+  }, [activeStep]);
 
   if (!mounted) return null;
 
-  const visibleCertificates = showAll ? certificatesData : certificatesData.slice(0, 4);
-
   return (
     <section
-      className="py-10 px-4 md:px-10 bg-transparent flex flex-col items-center w-full overflow-hidden"
+      ref={sectionRef}
+      className="relative min-h-screen w-full flex flex-col justify-center items-center overflow-hidden bg-transparent transition-colors duration-700 select-none"
       id="achievements"
     >
-      {/* Header Section */}
-      <ScrollReveal className="text-center mb-20" effect="fade-up">
-        <h2 className="text-4xl md:text-5xl font-bold mb-3 text-slate-900 dark:text-white uppercase tracking-tight">
-          Achievements
-        </h2>
-        <p className="text-slate-500 dark:text-gray-400 tracking-[0.3em] uppercase text-sm font-semibold">
-          Certificates & Recognition
-        </p>
-      </ScrollReveal>
+      {/* Soft Grid Box Pattern */}
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808006_1px,transparent_1px),linear-gradient(to_bottom,#80808006_1px,transparent_1px)] bg-[size:40px_40px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,#000_70%,transparent_100%)] pointer-events-none -z-10" />
 
-      {/* Main 4-Column Bento Container */}
-      <ScrollReveal 
-        effect="fade-up"
-        delay={0.15}
-        className="max-w-7xl w-full rounded-xl bg-white/[0.40] dark:bg-transparent backdrop-blur-xl border border-gray-300 dark:border-gray-700 shadow-md overflow-hidden grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4"
-      >
-        {visibleCertificates.map((cert, index) => {
-          const isNotFirst = index !== 0;
-          const isLeftColumnOnLarge = index % 4 !== 0;
-          const isLeftColumnOnMedium = index % 2 !== 0;
+      {isDesktop ? (
+        /* DESKTOP VIEW: PINNED STEPPED SCROLL */
+        <div className="w-full max-w-7xl mx-auto px-6 sm:px-12 grid grid-cols-2 gap-12 items-center min-h-[80vh]">
 
-          return (
-            <div
-              key={cert.id}
-              className={`group p-6 md:p-5 flex flex-col justify-between h-full relative transition-all duration-300
-                hover:bg-blue-600/[0.02] dark:hover:bg-blue-500/[0.015]
-                border-gray-300 dark:border-gray-800
-                ${isNotFirst ? 'border-t lg:border-t-0' : ''} 
-                ${isLeftColumnOnLarge ? 'lg:border-l' : ''}
-                ${isLeftColumnOnMedium ? 'md:border-l sm:border-l' : ''}
-                ${index >= 2 ? 'sm:border-t md:border-t lg:border-t-0' : ''}
-                ${index >= 4 ? 'lg:border-t' : ''}
-              `}
-            >
-              <div className="relative z-10">
-                {/* Certificate Image Wrapper — Handles Click to Open Lightbox */}
-                <div 
-                  onClick={() => setSelectedCert(cert)}
-                  className="relative aspect-[16/10] overflow-hidden rounded-xl bg-slate-100 dark:bg-slate-900/60 border border-slate-200/40 dark:border-white/[0.03] mb-5 group-hover:border-blue-500/30 transition-all duration-300 cursor-pointer"
-                >
-                  <Image
-                    src={cert.image}
-                    alt={cert.title}
-                    fill
-                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+
+          {/* Right Stack Column */}
+          <div className="relative w-full h-[600px] flex items-center justify-center">
+            <div className="relative w-[440px] h-[280px]" style={{ perspective: '1500px', transformStyle: 'preserve-3d' }}>
+              {stackSteps.map((step, idx) => {
+                let state = 'upcoming';
+                if (idx < activeStep) {
+                  state = 'passed';
+                } else if (idx === activeStep) {
+                  state = 'active';
+                }
+                
+                return (
+                  <StackCard 
+                    key={step.id}
+                    step={step}
+                    index={idx}
+                    state={state}
+                    activeStep={activeStep}
+                    onCardClick={setSelectedCert}
                   />
-                  {/* View Overlay Icon */}
-                  <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                    <div className="p-2.5 bg-white/20 backdrop-blur-md rounded-full text-white transform translate-y-2 group-hover:translate-y-0 transition-all duration-300">
-                      <Eye size={20} />
-                    </div>
-                  </div>
-                </div>
+                );
+              })}
+            </div>
+          </div>
 
-                {/* ID & Headings Typography */}
-                <div className="mb-4">
-                  <span className="font-mono text-sm font-bold text-emerald-400 group-hover:text-blue-400 transition-colors duration-300 block mb-1">
-                    {cert.id}
-                  </span>
-                  <h3 className="text-lg font-bold text-slate-900 dark:text-white leading-snug group-hover:text-blue-500 dark:group-hover:text-blue-400 transition-colors duration-300 min-h-[56px] line-clamp-2">
-                    {cert.title}
-                  </h3>
-                  <p className="text-xs font-semibold text-slate-400 dark:text-gray-400 mt-1">
-                    Issued by {cert.issuer}
-                  </p>
+                    
+          {/* Left Content Column */}
+          <div 
+            className="flex flex-col justify-center h-full transition-all duration-300"
+            style={{
+              opacity,
+              transform: `translateY(${translateY}px)`,
+            }}
+          >
+            <div className="text-xs font-semibold tracking-[0.2em] uppercase text-slate-400 dark:text-neutral-500 mb-2">
+              Milestone {String(transitioningStep + 1).padStart(2, '0')} / {String(stackSteps.length).padStart(2, '0')}
+            </div>
+            
+            <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight mb-4 uppercase">
+              {stackSteps[transitioningStep].title}
+            </h2>
+            
+            <p className="text-slate-600 dark:text-neutral-400 text-sm md:text-base leading-relaxed mb-6">
+              {stackSteps[transitioningStep].description}
+            </p>
+            
+            <div className="flex flex-wrap gap-2 mb-8">
+              {stackSteps[transitioningStep].badges.map((badge, idx) => (
+                <div 
+                  key={idx}
+                  className="flex items-center gap-1.5 px-3 py-1.5 text-xs rounded-full bg-slate-100 dark:bg-white/5 text-slate-700 dark:text-neutral-300 border border-slate-200/50 dark:border-white/10"
+                >
+                  {getIcon(badge.icon)}
+                  <span>{badge.label}</span>
                 </div>
-
-                {/* Badges Flow */}
-                <div className="flex flex-wrap gap-1.5 mb-6">
-                  {cert.tags.map((tag, tIdx) => (
-                    <span
-                      key={tIdx}
-                      className="font-mono text-[10px] md:text-xs font-medium text-slate-600 dark:text-gray-400 bg-slate-100 dark:bg-white/[0.02] border border-slate-200/60 dark:border-white/[0.04] group-hover:border-blue-500/10 px-2 py-0.5 rounded-md tracking-wide transition-colors duration-300"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-              </div>
-
-              {/* Interactive Action Footer Row */}
-              <div className="pt-4 border-t border-slate-100 dark:border-white/[0.04] group-hover:border-blue-500/10 flex items-center justify-between text-xs text-slate-400 dark:text-gray-500 font-semibold mt-auto relative z-10 transition-colors duration-300">
-                <a
-                  href={cert.verifyLink}
+              ))}
+            </div>
+            
+            <div className="flex gap-4">
+              {stackSteps[transitioningStep].verifyLink && (
+                <a 
+                  href={stackSteps[transitioningStep].verifyLink}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-1.5 text-xs font-bold text-orange-400 dark:text-orange-300 hover:text-orange-500 dark:hover:text-orange-400 transition-colors uppercase tracking-widest active:scale-95 transform duration-150"
+                  className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-blue-500  hover:text-blue-700 dark:hover:text-cyan-300 transition-colors w-fit group"
                 >
-                  Verify Credential <LucideAward size={12} />
+                  Verify Achievement <ExternalLink size={14} className="group-hover:translate-x-0.5 transition-transform" />
                 </a>
-              </div>
+              )}
+              {stackSteps[transitioningStep].image && (
+                <button
+                  onClick={() => setSelectedCert(stackSteps[transitioningStep])}
+                  className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-gray-400 transition-colors w-fit group cursor-pointer"
+                >
+                  View <Eye size={14} className="group-hover:scale-105 transition-transform" />
+                </button>
+              )}
             </div>
-          );
-        })}
-      </ScrollReveal>
+          </div>
 
-      {/* Dynamic Show All Switch Trigger */}
-      {certificatesData.length > 4 && (
-        <button
-          onClick={() => {
-            setShowAll(!showAll);
-          }}
-          className="mt-12 flex items-center gap-2 px-6 py-2.5 bg-white/[0.02] dark:bg-neutral-900/[0.2] hover:bg-blue-600/[0.05] hover:text-blue-400 dark:hover:text-blue-400 backdrop-blur-md border border-slate-200/60 dark:border-white/[0.05] hover:border-blue-500/30 text-slate-800 dark:text-white text-sm font-semibold rounded-xl shadow-md transition-all group cursor-pointer"
-        >
-          <span>
-            {showAll ? 'Show less' : `Show more (${certificatesData.length - 4})`}
-          </span>
-          <ChevronDown
-            size={16}
-            className={`group-hover:translate-y-0.5 transition-transform duration-300 ${showAll ? 'rotate-180' : ''}`}
-          />
-        </button>
+        </div>
+      ) : (
+        /* MOBILE VIEW: VERTICAL TIMELINE LIST */
+        <div className="w-full max-w-2xl mx-auto px-6 py-20 flex flex-col items-center">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl font-extrabold text-slate-900 dark:text-white uppercase tracking-tight mb-2">
+              Achievements
+            </h2>
+            <p className="text-xs font-semibold tracking-[0.2em] uppercase text-slate-400 dark:text-neutral-500">
+              Milestones & Recognition
+            </p>
+          </div>
+
+          <div className="flex flex-col gap-12 w-full relative pl-6 border-l border-slate-200 dark:border-white/10">
+            {stackSteps.map((step, idx) => (
+              <div key={step.id} className="relative flex flex-col items-start w-full">
+                {/* Timeline Dot */}
+                <div className="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 border-4 border-white dark:border-black shadow-sm" />
+                
+                <span className="text-[10px] font-mono tracking-widest uppercase font-bold text-purple-600 dark:text-pink-400 mb-1">
+                  {step.stackLabel}
+                </span>
+
+                <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-2">
+                  {step.title}
+                </h3>
+
+                {step.image && (
+                  <div 
+                    onClick={() => setSelectedCert(step)}
+                    className="relative w-full aspect-[16/10] overflow-hidden rounded-xl bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-white/10 mb-4 cursor-pointer group"
+                  >
+                    <img 
+                      src={step.image} 
+                      alt={step.title}
+                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                      <div className="p-2 bg-white/20 backdrop-blur-md rounded-full text-white transform translate-y-2 group-hover:translate-y-0 transition-all duration-300">
+                        <Eye size={18} />
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                <p className="text-sm text-slate-600 dark:text-neutral-400 leading-relaxed mb-4">
+                  {step.description}
+                </p>
+
+                <div className="flex flex-wrap gap-1.5 mb-4">
+                  {step.badges.map((badge, bIdx) => (
+                    <div 
+                      key={bIdx}
+                      className="flex items-center gap-1 px-2.5 py-1 text-[11px] rounded-full bg-slate-100 dark:bg-white/5 text-slate-700 dark:text-neutral-300 border border-slate-200/50 dark:border-white/10"
+                    >
+                      {getIcon(badge.icon)}
+                      <span>{badge.label}</span>
+                    </div>
+                  ))}
+                </div>
+
+                <div className="flex gap-4">
+                  {step.verifyLink && (
+                    <a 
+                      href={step.verifyLink}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-blue-600 dark:text-cyan-400 hover:text-blue-700 dark:hover:text-cyan-300 transition-colors group"
+                    >
+                      Verify Certificate <ExternalLink size={12} className="group-hover:translate-x-0.5 transition-transform" />
+                    </a>
+                  )}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
       )}
 
-      {/* Lightbox Modal System for Certificate Preview — Pure CSS Hardware Accelerated */}
+      {/* Lightbox Modal System for Certificate Preview */}
       <div
-        className={`fixed inset-0 z-50 bg-black/85 backdrop-blur-md flex items-center justify-center p-4 transition-all duration-300 ${
+        className={`fixed inset-0 z-[9999] bg-black/90 backdrop-blur-md flex flex-col items-center justify-center p-4 transition-all duration-300 ${
           selectedCert ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
         }`}
         onClick={() => setSelectedCert(null)}
       >
-        <div
-          className={`relative max-w-4xl w-full bg-white dark:bg-[#0d0e12] border border-white/10 dark:border-blue-500/20 rounded-[24px] overflow-hidden shadow-2xl transition-all duration-300 transform ${
-            selectedCert ? 'scale-100 translate-y-0' : 'scale-95 translate-y-4'
-          }`}
-          onClick={e => e.stopPropagation()}
+        <button
+          onClick={() => setSelectedCert(null)}
+          className="absolute top-6 right-6 p-3 bg-white/10 hover:bg-white/20 text-white rounded-full transition-all cursor-pointer z-50 border border-white/15 active:scale-95"
         >
-          <button
-            onClick={() => setSelectedCert(null)}
-            className="absolute top-4 right-4 z-10 p-2 bg-black/50 hover:bg-blue-500/40 backdrop-blur-md rounded-full text-white transition-all cursor-pointer"
+          <X size={20} />
+        </button>
+        
+        {selectedCert && (
+          <div 
+            className="relative max-w-4xl w-full flex flex-col items-center justify-center transform transition-transform duration-300 scale-100"
+            onClick={e => e.stopPropagation()}
           >
-            <X size={18} />
-          </button>
-          
-          {selectedCert && (
-            <>
-              <div className="relative w-full h-[50vh] md:h-[70vh] bg-black">
-                <Image
-                  src={selectedCert.image}
-                  alt={selectedCert.title}
-                  fill
-                  className="object-contain"
-                />
-              </div>
-              <div className="p-6 md:p-8 border-t border-slate-100 dark:border-white/[0.05]">
-                <h4 className="text-xl md:text-2xl font-bold text-slate-900 dark:text-white mb-1">
-                  {selectedCert.title}
-                </h4>
-                <p className="text-sm text-blue-500 dark:text-blue-400 font-semibold">
-                  Issued by {selectedCert.issuer} — {selectedCert.date}
-                </p>
-              </div>
-            </>
-          )}
-        </div>
+            <div className="relative w-full aspect-[16/11] max-h-[75vh] rounded-2xl overflow-hidden border border-white/10 shadow-2xl">
+              <img
+                src={selectedCert.image}
+                alt={selectedCert.title}
+                className="w-full h-full object-contain bg-black"
+              />
+            </div>
+            <div className="mt-6 text-center max-w-2xl px-4">
+              <h4 className="text-xl md:text-2xl font-bold text-white mb-2">
+                {selectedCert.title}
+              </h4>
+              <p className="text-sm text-cyan-400 font-semibold mb-4 uppercase tracking-widest font-mono text-[11px]">
+                {selectedCert.stackLabel}
+              </p>
+              {selectedCert.verifyLink && (
+                <a 
+                  href={selectedCert.verifyLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-6 py-2.5 bg-white text-black hover:bg-white/90 rounded-full text-xs font-bold uppercase tracking-wider transition-all duration-200 active:scale-95"
+                >
+                  Verify Credential
+                </a>
+              )}
+            </div>
+          </div>
+        )}
       </div>
     </section>
   );

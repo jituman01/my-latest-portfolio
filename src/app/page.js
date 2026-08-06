@@ -47,10 +47,10 @@ export default function Home() {
   
         {/* --- GLOBAL BACKGROUND GLOWS --- */}
         <div className="fixed inset-0 pointer-events-none overflow-hidden" style={{ zIndex: 0 }}>
-  <div className="absolute top-[-10%] left-[-10%] w-[350px] h-[350px] md:w-[600px] md:h-[600px] bg-blue-400/20 dark:bg-blue-500/10 blur-[100px] md:blur-[150px] rounded-full" />
-  <div className="absolute top-[30%] right-[-10%] w-[350px] h-[350px] md:w-[600px] md:h-[600px] bg-purple-600/15 dark:bg-purple-600/10 blur-[90px] md:blur-[140px] rounded-full" />
+  <div className="absolute top-[-10%] left-[-10%] w-[350px] h-[350px] md:w-[600px] md:h-[600px] dark:bg-blue-500/10 blur-[100px] md:blur-[150px] rounded-full" />
+  <div className="absolute top-[30%] right-[-10%] w-[350px] h-[350px] md:w-[600px] md:h-[600px]  dark:bg-purple-600/10 blur-[90px] md:blur-[140px] rounded-full" />
 
-  <div className="absolute bottom-[-10%] left-[-10%] w-[350px] h-[350px] md:w-[600px] md:h-[600px] bg-blue-400/15 dark:bg-blue-500/10 blur-[100px] md:blur-[150px] rounded-full" />
+  <div className="absolute bottom-[-10%] left-[-10%] w-[350px] h-[350px] md:w-[600px] md:h-[600px] dark:bg-blue-500/10 blur-[100px] md:blur-[150px] rounded-full" />
         </div>
 
         {/* --- SECTIONS --- */}

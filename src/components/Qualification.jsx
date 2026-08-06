@@ -60,11 +60,12 @@ const Qualification = () => {
   const filteredData = qualificationData.filter((item) => item.type === activeTab);
 
   return (
-    <section className="py-24 px-6 relative overflow-hidden bg-white dark:bg-black transition-colors duration-700 w-full" id="qualification">
+    <section className="py-24 px-6 relative overflow-hidden bg-transparent transition-colors duration-700 w-full" id="qualification">
       {/* Grid Pattern */}
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808006_1px,transparent_1px),linear-gradient(to_bottom,#80808006_1px,transparent_1px)] bg-[size:40px_40px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,#000_70%,transparent_100%)] pointer-events-none -z-10" />
       <div className="max-w-4xl mx-auto">
-        {/* Header Section */}
+        <div>
+          {/* Header Section */}
         <ScrollReveal className="text-center mb-16" effect="fade-up">
           <h2 className="text-4xl md:text-5xl font-bold mb-3 text-slate-900 dark:text-white uppercase tracking-tight">
             Qualification
@@ -73,8 +74,10 @@ const Qualification = () => {
             My Personal Journey
           </p>
         </ScrollReveal>
+        </div>
 
-        {/* Tab Selection */}
+        <div>
+                  {/* Tab Selection */}
         <ScrollReveal className="flex justify-center gap-8 mb-16" effect="fade-up" delay={0.1}>
           <button
             onClick={() => handleTabChange('education')}
@@ -139,6 +142,7 @@ const Qualification = () => {
             );
           })}
         </div>
+</div>
       </div>
     </section>
   );

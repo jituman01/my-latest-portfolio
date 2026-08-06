@@ -1,344 +1,421 @@
 "use client";
 
 import React, { useEffect, useRef, useState } from "react";
-import Image from "next/image";
-import { ExternalLink, ChevronDown } from "lucide-react";
+import { ExternalLink } from "lucide-react";
 import { LogoGithub } from "@gravity-ui/icons";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-// Register ScrollTrigger safely for Next.js SSR
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
 }
 
 const projectsData = [
   {
-    image: "/mockups/recipehub.png",
-    title: "RecipeHub: Recipe Sharing Platform",
+    id: "recipehub",
+    index: "01",
+    category: "RECIPE SHARING COMMUNITY",
+    title: ["RECIPEHUB", "PLATFORM"],
     description:
       "RecipeHub is a dynamic recipe-sharing platform designed for food enthusiasts and home chefs. It serves as a social ecosystem where users can publish unique recipes, discover secret family dishes, and build a vibrant community of culinary creators. With a clean and intuitive interface, the platform aims to celebrate the art of cooking by making it easy to share techniques and connect with food lovers worldwide.",
-    tags: [
-      "Tailwind",
-      "Next.js",
-      "ExpressJs",
-      "MongoDB",
-      "BetterAuth",
-      "GoogleAuth",
-      "Stripe",
-    ],
+    stack: ["NEXT.JS", "EXPRESS", "MONGODB", "BETTERAUTH", "STRIPE"],
+    image: "/mockups/recipehub.png",
     github: "https://github.com/jituman01/recipehub-client",
     demo: "https://recipehub-client-nine.vercel.app",
-    themeColor: "purple",
   },
   {
-    image: "/mockups/docappoint.png",
-    title: "DocAppoint: Appointment Booking Platform",
+    id: "docappoint",
+    index: "02",
+    category: "HEALTHCARE CONSULTATION",
+    title: ["DOCAPPOINT", "PORTAL"],
     description:
       "A Doctor Appointment Management System is a web-based platform designed to streamline the interaction between patients and healthcare providers. Its primary goal is to provide a fast, efficient, and hassle-free experience for patients booking medical consultations.",
-    tags: [
-      "Next.js",
-      "Tailwind",
-      "MongoDB",
-      "BetterAuth",
-      "ExpressJs",
-      "GoogleAuth",
-    ],
+    stack: ["NEXT.JS", "EXPRESS", "MONGODB", "BETTERAUTH", "TAILWIND"],
+    image: "/mockups/docappoint.png",
     github: "https://github.com/jituman01/doctor-appointment-manager",
     demo: "https://doctor-appointment-manager-lovat.vercel.app",
-    themeColor: "purple",
   },
   {
-    image: "/mockups/qurbanihat.png",
-    title: "Qurbanihat: livestock booking platform",
+    id: "qurbanihat",
+    index: "03",
+    category: "LIVESTOCK MARKETPLACE",
+    title: ["QURBANIHAT", "MARKET"],
     description:
-      "A modern livestock marketplace for booking and selling cattle. Built with Next.js for a seamless user experience.",
-    tags: ["Next.js", "Tailwind", "MongoDB", "BetterAuth"],
-    github:
-      "https://github.com/jituman01/qurbanihat-livestock-booking-platform",
+      "A modern livestock marketplace for booking and selling cattle. Built with Next.js for a seamless user experience, secure backend pipelines, and role-based access control.",
+    stack: ["NEXT.JS", "TAILWIND", "MONGODB", "BETTERAUTH"],
+    image: "/mockups/qurbanihat.png",
+    github: "https://github.com/jituman01/qurbanihat-livestock-booking-platform",
     demo: "https://qurbanihat-livestock-booking-platfo.vercel.app/",
-    themeColor: "blue",
   },
   {
-    image: "/mockups/wanderlast.png",
-    title: "Wanderlast: Travel Booking Platform",
+    id: "wanderlast",
+    index: "04",
+    category: "TRAVEL & ITINERARY",
+    title: ["WANDERLAST", "BOOKING"],
     description:
       "Wanderlast is a next-generation travel booking platform built for modern adventurers. By combining real-time flight and accommodation booking with personalized, AI-driven itinerary planning, Wanderlast removes the friction from travel.",
-    tags: ["Next.js", "Tailwind", "MongoDB", "BetterAuth"],
+    stack: ["NEXT.JS", "TAILWIND", "MONGODB", "BETTERAUTH"],
+    image: "/mockups/wanderlast.png",
     github: "https://github.com/jituman01/wanderlast-travel-booking",
     demo: "https://wanderlast-travel-booking.vercel.app",
-    themeColor: "purple",
   },
   {
-    image: "/mockups/gadgetheaven.png",
-    title: "Gadget Heaven: E-commerce",
+    id: "gadget-heaven",
+    index: "05",
+    category: "E-COMMERCE RETAIL",
+    title: ["GADGET HEAVEN", "STORE"],
     description:
       "Secure file storage platform with role-based access, real-time updates, and sharing features. Gadget Heaven is a premier e-commerce destination built for tech enthusiasts, early adopters, and everyday consumers looking to upgrade their digital lives.",
-    tags: ["React", "Node.js", "MongoDB", "Clerk"],
+    stack: ["REACT", "NODE.JS", "MONGODB", "CLERK"],
+    image: "/mockups/gadgetheaven.png",
     github: "https://github.com/jituman01/gadget-heaven",
     demo: "https://gadget-heaven-amber.vercel.app",
-    themeColor: "green",
   },
   {
-    image: "/mockups/pixgen.png",
-    title: "Pixgen: Image Generator with Ai",
+    id: "pixgen",
+    index: "06",
+    category: "AI IMAGE GENERATION",
+    title: ["PIXGEN", "AI ENGINE"],
     description:
       "It is a modern web application that leverages artificial intelligence to transform text descriptions into high-quality, unique images.",
-    tags: ["Next.js", "Tailwind", "MongoDB", "BetterAuth"],
+    stack: ["NEXT.JS", "TAILWIND", "MONGODB", "BETTERAUTH"],
+    image: "/mockups/pixgen.png",
     github: "https://github.com/jituman01/pixgen",
     demo: "https://pixgen-snowy.vercel.app",
-    themeColor: "purple",
   },
-  {
-    image: "/mockups/keenkeeper.png",
-    title: "KeenKeeper",
-    description:
-      "KeenKeeper helps you keep track of your friendships and social connections. Reminds you when you last spoke to someone.",
-    tags: ["React", "Tailwind", "React Router DOM", "DaisyUI", "Hot-Toast"],
-    github: "https://github.com/jituman01/B13-A7-KeenKeeper",
-    demo: "https://keenkeeper-connection.netlify.app",
-    themeColor: "green",
-  },
-  {
-    image: "/mockups/digitools.png",
-    title: "DigiTools-Platform",
-    description:
-      "DigiTools is a fast and clean web application where users can find premium digital products.",
-    tags: ["React", "Tailwind", "DaisyUI", "Lucide React", "React-Toastify"],
-    github: "https://github.com/jituman01/B13-A6-DigiTools-Platform",
-    demo: "https://digitoolsplatformapp.netlify.app/",
-    themeColor: "blue",
-  },
-  {
-    image: "/mockups/issue-tracker.png",
-    title: "Github-Issue-Tracker",
-    description:
-      "GitHub Issue Tracker is a productivity tool designed to help developers manage and monitor project issues efficiently.",
-    tags: ["Javascript", "CSS", "DaisyUi"],
-    github: "https://github.com/jituman01/B13-A5-Github-Issue-Tracker",
-    demo: "https://jituman01.github.io/B13-A5-Github-Issue-Tracker",
-    themeColor: "green",
-  },
+  // {
+  //   id: "keenkeeper",
+  //   index: "07",
+  //   category: "SOCIAL CRM",
+  //   title: ["KEENKEEPER", "TRACKER"],
+  //   description:
+  //     "KeenKeeper helps you keep track of your friendships and social connections. Reminds you when you last spoke to someone, and maps network relationships.",
+  //   stack: ["REACT", "TAILWIND", "REACT ROUTER DOM", "DAISYUI"],
+  //   image: "/mockups/keenkeeper.png",
+  //   github: "https://github.com/jituman01/B13-A7-KeenKeeper",
+  //   demo: "https://keenkeeper-connection.netlify.app",
+  // },
+  // {
+  //   id: "digitools",
+  //   index: "08",
+  //   category: "DIGITAL MARKETPLACE",
+  //   title: ["DIGITOOLS", "PLATFORM"],
+  //   description:
+  //     "DigiTools is a fast and clean web application where users can search, find, purchase, and review premium digital products.",
+  //   stack: ["REACT", "TAILWIND", "DAISYUI", "LUCIDE REACT"],
+  //   image: "/mockups/digitools.png",
+  //   github: "https://github.com/jituman01/B13-A6-DigiTools-Platform",
+  //   demo: "https://digitoolsplatformapp.netlify.app/",
+  // },
+  // {
+  //   id: "github-issue-tracker",
+  //   index: "09",
+  //   category: "DEVELOPER PRODUCTIVITY",
+  //   title: ["ISSUE", "TRACKER"],
+  //   description:
+  //     "GitHub Issue Tracker is a productivity tool designed to help developers manage and monitor project issues efficiently with real-time status pipelines.",
+  //   stack: ["JAVASCRIPT", "CSS", "DAISYUI"],
+  //   image: "/mockups/issue-tracker.png",
+  //   github: "https://github.com/jituman01/B13-A5-Github-Issue-Tracker",
+  //   demo: "https://jituman01.github.io/B13-A5-Github-Issue-Tracker",
+  // },
 ];
 
-const themeStyles = {
-  purple: {
-    glow: "rgba(168, 85, 247, 0.12)",
-    titleHover: "hover:text-purple-500 dark:hover:text-purple-400",
-    numberText: "text-purple-500 dark:text-purple-400",
-    buttonHover: "dark:hover:bg-purple-600/20 hover:bg-purple-50",
-  },
-  green: {
-    glow: "rgba(16, 185, 129, 0.12)",
-    titleHover: "hover:text-emerald-500 dark:hover:text-emerald-400",
-    numberText: "text-emerald-500 dark:text-emerald-400",
-    buttonHover: "dark:hover:bg-emerald-600/20 hover:bg-emerald-50",
-  },
-  blue: {
-    glow: "rgba(59, 130, 246, 0.12)",
-    titleHover: "hover:text-blue-500 dark:hover:text-blue-400",
-    numberText: "text-blue-500 dark:text-blue-400",
-    buttonHover: "dark:hover:bg-blue-600/20 hover:bg-blue-50",
-  },
-};
-
-const ProjectCard = React.forwardRef(({ project, index, total }, ref) => {
-  const theme = themeStyles[project.themeColor] || themeStyles.blue;
-
-  return (
-    <div
-      ref={ref}
-      className="project-card sticky top-[100px] md:top-[120px] w-full max-w-7xl mx-auto rounded-3xl bg-white/70 dark:bg-[#0c0d12]/50 backdrop-blur-3xl   overflow-hidden transition-all duration-300"
-      style={{
-        transformOrigin: "top center",
-        zIndex: index + 10,
-      }}
-    >
-      {/* Dynamic Background Glow inside the card */}
-      <div
-        className="absolute  rounded-full blur-[100px] pointer-events-none -z-10 transition-all duration-500"
-        style={{ backgroundColor: theme.glow }}
-      />
-
-      <div className="flex flex-col md:flex-row h-full w-full min-h-[460px] md:h-[480px]">
-        {/* Left Side: Mockup Image */}
-        <div className="w-full  relative overflow-hidden  flex items-center justify-center min-h-[250px] md:min-h-0">
-          <div className="w-full h-full rounded-2xl overflow-hidden relative group/img">
-            <Image
-              src={project.image}
-              alt={project.title}
-              fill
-              sizes="(max-width: 768px) 100vw, 50vw"
-              className="object-cover transition-transform duration-700 group-hover/img:scale-105"
-              priority={index === 0}
-            />
-            {/* Overlay gradient */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent pointer-events-none" />
-          </div>
-        </div>
-
-        {/* Right Side: Content */}
-        <div className="w-full md:w-[52%] p-6 md:p-8 flex flex-col justify-between">
-          <div>
-            {/* Header with Project Number */}
-            <div className="flex justify-between items-center mb-3">
-              <span className="text-xs font-semibold tracking-[0.2em] uppercase text-slate-400 dark:text-neutral-500">
-                Recent Project
-              </span>
-              <span className={`font-mono text-sm font-bold ${theme.numberText}`}>
-                {String(index + 1).padStart(2, "0")} / {String(total).padStart(2, "0")}
-              </span>
-            </div>
-
-            {/* Title */}
-            <h3 className={`text-xl md:text-2xl font-bold text-slate-900 dark:text-white mb-3 tracking-tight transition-colors duration-300 ${theme.titleHover}`}>
-              {project.title}
-            </h3>
-
-            {/* Description */}
-            <p className="text-xs md:text-sm text-slate-600 dark:text-neutral-400 mb-5 leading-relaxed line-clamp-4 md:line-clamp-5">
-              {project.description}
-            </p>
-
-            {/* Tags */}
-            <div className="flex flex-wrap gap-1.5 mb-6">
-              {project.tags.map((tag) => (
-                <span
-                  key={tag}
-                  className="px-2.5 py-1 text-[10px] md:text-xs font-medium rounded-full bg-slate-100/80 dark:bg-white/5 text-slate-700 dark:text-neutral-300 border border-slate-200/50 dark:border-white/10"
-                >
-                  {tag}
-                </span>
-              ))}
-            </div>
-          </div>
-
-          {/* Action Buttons */}
-          <div className="grid grid-cols-2 gap-3 mt-auto pt-2">
-            <a
-              href={project.github}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-slate-900 dark:bg-white/10 hover:bg-slate-800 dark:hover:bg-white/15 text-white text-[11px] md:text-xs font-semibold active:scale-95 transition-all duration-200 shadow-md shadow-black/10"
-            >
-              <LogoGithub size={14} /> GitHub
-            </a>
-            <a
-              href={project.demo}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={`flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl text-[11px] md:text-xs font-semibold transition-all duration-200 text-slate-900 dark:text-white bg-transparent border border-slate-300 dark:border-white/10 active:scale-95 ${theme.buttonHover}`}
-            >
-              <ExternalLink size={14} /> Live Demo
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-});
-
-ProjectCard.displayName = "ProjectCard";
-
 const Projects = () => {
-  const [showAll, setShowAll] = useState(false);
-  const containerRef = useRef(null);
-  const cardRefs = useRef([]);
-
-  // Reset refs on each render to avoid accumulation
-  cardRefs.current = [];
-
-  const visibleProjects = showAll ? projectsData : projectsData.slice(0, 4);
+  const sectionRef = useRef(null);
+  const [activeProject, setActiveProject] = useState(0);
+  const [transitioningProject, setTransitioningProject] = useState(0);
+  const [progress, setProgress] = useState(0);
+  const [textOpacity, setTextOpacity] = useState(1);
+  const [textY, setTextY] = useState(0);
+  const [isDesktop, setIsDesktop] = useState(false);
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    const cards = cardRefs.current;
-    if (!cards.length) return;
-
-    const ctx = gsap.context(() => {
-      cards.forEach((card, index) => {
-        // We only animate the scale and fade of card i when card i+1 starts scrolling up to overlap it
-        if (index === cards.length - 1) return;
-
-        const nextCard = cards[index + 1];
-        if (!nextCard) return;
-
-        gsap.to(card, {
-          scale: 0.93 - (cards.length - 1 - index) * 0.005,
-          opacity: 0.35,
-          filter: "brightness(0.5) blur(1.5px)",
-          scrollTrigger: {
-            trigger: nextCard,
-            start: "top 95%",    // When the next card's top reaches near the bottom of viewport
-            end: "top 120px",    // When the next card reaches its sticky resting spot
-            scrub: true,
-          },
-        });
-      });
-    }, containerRef);
-
-    // Give React brief moments to repaint, then recalculate ScrollTrigger positions
-    const timeout = setTimeout(() => {
-      ScrollTrigger.refresh();
-    }, 150);
-
-    return () => {
-      ctx.revert();
-      clearTimeout(timeout);
+    setMounted(true);
+    const checkIsDesktop = () => {
+      setIsDesktop(window.innerWidth >= 1024);
     };
-  }, [showAll]);
+    checkIsDesktop();
+    window.addEventListener("resize", checkIsDesktop);
+    return () => window.removeEventListener("resize", checkIsDesktop);
+  }, []);
 
-  const handleSeeAll = () => {
-    setShowAll(true);
-  };
+  useEffect(() => {
+    if (!mounted || !isDesktop) return;
+
+    const section = sectionRef.current;
+    if (!section) return;
+
+    let ctx = gsap.context(() => {
+      ScrollTrigger.create({
+        trigger: section,
+        start: "top top",
+        end: () => `+=${projectsData.length * 100}%`,
+        pin: true,
+        scrub: 0.5,
+        snap: {
+          snapTo: 1 / (projectsData.length - 1),
+          duration: { min: 0.2, max: 0.5 },
+          delay: 0.1,
+          ease: "power1.inOut",
+        },
+        onUpdate: (self) => {
+          const stepIndex = Math.round(self.progress * (projectsData.length - 1));
+          setActiveProject(stepIndex);
+          setProgress(self.progress);
+        },
+      });
+    }, section);
+
+    return () => ctx.revert();
+  }, [mounted, isDesktop]);
+
+  useEffect(() => {
+    setTextOpacity(0);
+    setTextY(15);
+    const timer = setTimeout(() => {
+      setTransitioningProject(activeProject);
+      setTextOpacity(1);
+      setTextY(0);
+    }, 200);
+    return () => clearTimeout(timer);
+  }, [activeProject]);
+
+  if (!mounted) return null;
+
+  // Circular progress configuration
+  const radius = 16;
+  const stroke = 2.5;
+  const normalizedRadius = radius - stroke * 2;
+  const circumference = normalizedRadius * 2 * Math.PI;
+  const strokeDashoffset = circumference - progress * circumference;
 
   return (
-    <section id="projects" className="py-24 px-4 md:px-6 relative">
-      {/* Ambient background glows */}
-      <div className="absolute top-20 right-10 w-[500px] h-[500px] bg-blue-500/5 blur-[120px] rounded-full -z-10 pointer-events-none" />
-      <div className="absolute bottom-20 left-10 w-[400px] h-[400px] bg-purple-500/5 blur-[120px] rounded-full -z-10 pointer-events-none" />
+    <section
+      ref={sectionRef}
+      className="relative min-h-screen w-full flex flex-col justify-center items-center overflow-hidden bg-transparent transition-colors duration-700 select-none"
+      id="projects"
+    >
+      {/* Soft Grid Background Pattern */}
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808006_1px,transparent_1px),linear-gradient(to_bottom,#80808006_1px,transparent_1px)] bg-[size:40px_40px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,#000_70%,transparent_100%)] pointer-events-none -z-10" />
 
-      <div className="max-w-6xl mx-auto">
-        {/* Section Header */}
-        <div className="text-center mb-16 md:mb-24">
-          <h2 className="text-4xl md:text-5xl font-bold mb-3 text-slate-950 dark:text-white uppercase tracking-tight">
-            CREATIVE WORKS
-          </h2>
-          <p className="text-slate-500 dark:text-gray-400 tracking-[0.2em] uppercase text-xs font-semibold">
-            Featured Project
-          </p>
-        </div>
-
-        {/* Cards Stack Container */}
-        <div
-          ref={containerRef}
-          className="flex flex-col gap-[20vh] md:gap-[40vh] pb-[10vh]"
-        >
-          {visibleProjects.map((project, index) => (
-            <ProjectCard
-              key={index}
-              project={project}
-              index={index}
-              total={visibleProjects.length}
-              ref={(el) => {
-                if (el) cardRefs.current[index] = el;
-              }}
-            />
-          ))}
-        </div>
-
-        {/* "See All Projects" Trigger Button */}
-        {!showAll && (
-          <div className="mt-6 md:mt-10 text-center">
-            <button
-              onClick={handleSeeAll}
-              className="group relative inline-flex items-center gap-2 px-8 py-4 rounded-full border border-blue-500/30 dark:border-blue-500/20 text-blue-600 dark:text-blue-400 font-semibold tracking-wider hover:border-blue-500 text-sm active:scale-95 transition-all duration-300 cursor-pointer shadow-lg bg-white/40 dark:bg-neutral-900/40 backdrop-blur-md"
-            >
-              See All Projects
-              <ChevronDown size={18} className="group-hover:translate-y-1 transition-transform duration-300" />
-            </button>
+      {isDesktop ? (
+        /* DESKTOP VIEW: PINNED STEPPED SCROLL SHOWCASE */
+        <div className="w-full max-w-7xl mx-auto px-6 sm:px-12 grid grid-cols-12 gap-12 items-center min-h-[85vh] relative">
+          
+          {/* Progress Ring in Top Area */}
+          <div className="absolute top-0 right-12 z-20 flex items-center gap-2.5 bg-slate-50 dark:bg-white/5 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-slate-200/50 dark:border-white/10 shadow-sm">
+            <span className="text-[9px] font-mono tracking-widest font-black text-slate-400 dark:text-neutral-500 uppercase">
+              PROJECT {String(activeProject + 1).padStart(2, "0")} / {String(projectsData.length).padStart(2, "0")}
+            </span>
+            <svg height={radius * 2} width={radius * 2} className="transform -rotate-90">
+              <circle
+                stroke="rgba(128,128,128,0.15)"
+                fill="transparent"
+                strokeWidth={stroke}
+                r={normalizedRadius}
+                cx={radius}
+                cy={radius}
+              />
+              <circle
+                stroke="url(#showcaseProgressGradient)"
+                fill="transparent"
+                strokeWidth={stroke}
+                strokeDasharray={circumference + " " + circumference}
+                style={{ strokeDashoffset, transition: "stroke-dashoffset 0.1s linear" }}
+                r={normalizedRadius}
+                cx={radius}
+                cy={radius}
+              />
+              <defs>
+                <linearGradient id="showcaseProgressGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stopColor="#8B5CF6" />
+                  <stop offset="100%" stopColor="#EC4899" />
+                </linearGradient>
+              </defs>
+            </svg>
           </div>
-        )}
-      </div>
+
+          {/* Left Column: Staggered Project Metadata (grid span 5) */}
+          <div 
+            className="col-span-5 flex flex-col justify-center h-full transition-all duration-300"
+            style={{
+              opacity: textOpacity,
+              transform: `translateY(${textY}px)`,
+            }}
+          >
+            <div className="flex items-center gap-3 mb-4">
+              <span className="text-4xl md:text-5xl font-black tracking-tight  text-gray-500 bg-clip-text ">
+                {projectsData[transitioningProject].index}
+              </span>
+              <div className="h-6 w-[1px] bg-slate-200 dark:bg-white/10" />
+              <span className="text-xs font-mono tracking-[0.2em] uppercase font-bold text-gray-500">
+                {projectsData[transitioningProject].category}
+              </span>
+            </div>
+
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-black dark:text-white text-black tracking-tight uppercase leading-[1.08] mb-6">
+              {projectsData[transitioningProject].title[0]}<br />
+              {projectsData[transitioningProject].title[1]}
+            </h2>
+
+            <p className="text-slate-600 dark:text-neutral-400 text-sm leading-relaxed mb-6">
+              {projectsData[transitioningProject].description}
+            </p>
+
+            <hr className="border-slate-200 dark:border-white/10 mb-6" />
+
+            <div className="mb-8">
+              <p className="text-[9px] font-mono tracking-[0.2em] text-slate-400 dark:text-neutral-500 uppercase font-black mb-2.5">
+                STACK & ARCHITECTURE
+              </p>
+              <div className="flex flex-wrap gap-1.5">
+                {projectsData[transitioningProject].stack.map((tech) => (
+                  <span 
+                    key={tech}
+                    className="text-[11px] font-bold px-3 py-1 rounded-full bg-slate-50 dark:bg-white/5 border border-slate-200/50 dark:border-white/10 text-slate-700 dark:text-neutral-300"
+                  >
+                    {tech}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            <div className="flex gap-4">
+              <a
+                href={projectsData[transitioningProject].demo}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-700 hover:to-blue-600 text-white text-[11px] font-bold uppercase tracking-wider transition-all duration-300 active:scale-95 shadow-lg shadow-blue-500/25"
+              >
+                Explore Live View <ExternalLink size={14} />
+              </a>
+              <a
+                href={projectsData[transitioningProject].github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-slate-50 dark:bg-white/5 border border-slate-200/50 dark:border-white/10 hover:bg-slate-100 dark:hover:bg-white/10 text-slate-800 dark:text-white text-[11px] font-bold uppercase tracking-wider transition-all duration-300 active:scale-95"
+              >
+                <LogoGithub size={14} /> GitHub
+              </a>
+            </div>
+          </div>
+
+          {/* Right Column: Mockup Image Crossfade (grid span 7) */}
+          <div className="col-span-7 relative w-full h-[500px] flex items-center justify-center pl-6">
+            {projectsData.map((project, idx) => {
+              const isActive = idx === activeProject;
+              return (
+                <div
+                  key={project.id}
+                  className="absolute inset-0 flex items-center justify-center transition-all duration-[800ms] ease-[cubic-bezier(0.25,1,0.5,1)]"
+                  style={{
+                    opacity: isActive ? 1 : 0,
+                    transform: isActive ? "scale(1) translateY(0)" : "scale(0.95) translateY(12px)",
+                    pointerEvents: isActive ? "auto" : "none",
+                    zIndex: isActive ? 10 : 0,
+                  }}
+                >
+                  {/* Laptop Mockup Box */}
+                  <div className="relative w-full max-w-[760px] aspect-[16/10]  rounded-[28px] border border-slate-200 dark:border-neutral-800 shadow-[0_25px_60px_rgba(0,0,0,0.15)] overflow-hidden group">
+                    {/* Glass glare effect */}
+                    <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/5 to-white/10 pointer-events-none z-10" />
+                    
+                    {/* Inner Screen viewport */}
+                    <div className="relative w-full h-full rounded-2xl overflow-hidden bg-black border border-slate-200 dark:border-neutral-800">
+                      <img 
+                        src={project.image} 
+                        alt={project.title.join(" ")}
+                        className="w-full h-full object-cover transition-transform duration-[800ms] group-hover:scale-[1.02]"
+                      />
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+
+        </div>
+      ) : (
+        /* MOBILE VIEW: VERTICAL TIMELINE LIST */
+        <div className="w-full max-w-2xl mx-auto px-6 py-20 flex flex-col items-center">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl font-extrabold text-slate-900 dark:text-white uppercase tracking-tight mb-2">
+              Creative Works
+            </h2>
+            <p className="text-xs font-semibold tracking-[0.2em] uppercase text-slate-400 dark:text-neutral-500">
+              Recent Projects
+            </p>
+          </div>
+
+          <div className="flex flex-col gap-24 w-full">
+            {projectsData.map((project) => (
+              <div key={project.id} className="flex flex-col items-start w-full">
+                {/* Mockup Container */}
+                <div className="relative w-full aspect-[16/10] bg-slate-900 dark:bg-neutral-900 rounded-2xl border border-slate-200 dark:border-neutral-800 shadow-xl p-2.5 overflow-hidden mb-6">
+                  <div className="relative w-full h-full rounded-xl overflow-hidden bg-black border border-slate-200 dark:border-neutral-800">
+                    <img 
+                      src={project.image} 
+                      alt={project.title.join(" ")}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                </div>
+
+                {/* Index & Category */}
+                <div className="flex items-center gap-2.5 mb-3">
+                  <span className="text-2xl font-black bg-gradient-to-r from-blue-600 to-blue-500 bg-clip-text text-transparent">
+                    {project.index}
+                  </span>
+                  <div className="h-4 w-[1px] bg-slate-200 dark:bg-white/10" />
+                  <span className="text-[10px] font-mono tracking-widest uppercase font-bold text-blue-600 dark:text-blue-400">
+                    {project.category}
+                  </span>
+                </div>
+
+                <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-3">
+                  {project.title.join(" ")}
+                </h3>
+
+                <p className="text-sm text-slate-600 dark:text-neutral-400 leading-relaxed mb-5">
+                  {project.description}
+                </p>
+
+                <div className="flex flex-wrap gap-1.5 mb-6">
+                  {project.stack.map((tech) => (
+                    <span 
+                      key={tech}
+                      className="text-[11px] font-medium px-2.5 py-1 rounded-full bg-slate-100 dark:bg-white/5 border border-slate-200/50 dark:border-white/10 text-slate-700 dark:text-neutral-300"
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+
+                <div className="flex gap-3 w-full">
+                  <a
+                    href={project.demo}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex-1 flex items-center justify-center gap-1.5 px-4 py-3 bg-gradient-to-r from-blue-600 to-blue-500 text-white rounded-xl text-xs font-bold uppercase tracking-wider shadow-md shadow-blue-500/10"
+                  >
+                    Live <ExternalLink size={12} />
+                  </a>
+                  <a
+                    href={project.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex-1 flex items-center justify-center gap-1.5 px-4 py-3 bg-slate-100 dark:bg-white/5 border border-slate-200/50 dark:border-white/10 text-slate-800 dark:text-white rounded-xl text-xs font-bold uppercase tracking-wider"
+                  >
+                    GitHub <LogoGithub size={12} />
+                  </a>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
     </section>
   );
 };
